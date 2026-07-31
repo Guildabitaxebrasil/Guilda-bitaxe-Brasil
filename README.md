@@ -1,4 +1,4 @@
-# ⛏️⛏️ B Guilda bitaxeBrasil — Guia Completo de Mineração Bitcoin
+# ⛏️⛏️ B Guilda bitaxeBrasil
 
 > O guia mais completo em português para mineradores Bitcoin com **Bitaxe** — do iniciante ao overclock extremo.
 
