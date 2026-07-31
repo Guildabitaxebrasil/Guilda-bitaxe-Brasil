@@ -1,1511 +1,775 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🪓 guidi bitaxeBrasil — Guia Completo de Mineração Bitcoin</title>
-    <meta name="description" content="Guia completo sobre Bitaxe: todos os modelos, firmware, overclock, pools, API e muito mais. O maior guia em português para mineradores Bitcoin. Criado por guidi.">
-    <meta name="author" content="guidi (johnnymacena950-cmd)">
-    <style>
-        /* ===== RESET & BASE ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --btc: #f7931a;
-            --btc-dark: #d47815;
-            --bg: #0a0a14;
-            --bg2: #111122;
-            --bg3: #1a1a30;
-            --card: #16162a;
-            --card-hover: #1e1e38;
-            --text: #d0d0e0;
-            --text2: #a0a0b8;
-            --text3: #707088;
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(247,147,26,0.3);
-            --green: #32cd32;
-            --blue: #6495ed;
-            --red: #ff453a;
-            --orange: #ff8c00;
-            --gold: #ffd700;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🪓 guidi bitaxeBrasil — Guia Completo de Mineração Bitcoin</title>
+<meta name="description" content="Guia completo sobre Bitaxe em português: modelos, firmware, overclock, pools, API e muito mais. Criado por guidi.">
+<meta name="author" content="guidi (johnnymacena950-cmd)">
+<meta property="og:title" content="guidi bitaxeBrasil — Guia Completo de Mineração Bitcoin">
+<meta property="og:description" content="O guia mais completo em português para mineradores Bitcoin com Bitaxe.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f7931a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  --btc: #f7931a;
+  --btc-glow: rgba(247,147,26,0.3);
+  --btc-dim: #d47815;
+  --bg: #08080f;
+  --bg2: #0d0d1a;
+  --bg3: #141428;
+  --card: #181830;
+  --card-hover: #202040;
+  --text: #d8d8e8;
+  --text2: #a0a0b8;
+  --text3: #6a6a80;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(247,147,26,0.25);
+  --green: #2ecc71;
+  --blue: #5b8def;
+  --red: #e74c3c;
+  --orange: #e67e22;
+  --gold: #f1c40f;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
 
-        html { scroll-behavior: smooth; }
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.65;
-            min-height: 100vh;
-        }
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(247,147,26,0.2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(247,147,26,0.4)}
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: rgba(247,147,26,0.3); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(247,147,26,0.5); }
+/* ===== UTILITY ===== */
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+@media(max-width:480px){.container{padding:0 16px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-        /* ===== UTILITY ===== */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .section-padding { padding: 60px 0; }
-        .text-btc { color: var(--btc); }
-        .text-green { color: var(--green); }
-        .text-blue { color: var(--blue); }
-        .text-red { color: var(--red); }
-        .text-gold { color: var(--gold); }
-        .text-small { color: var(--text3); font-size: 0.85em; }
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(8,8,15,0.82);backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  transition:var(--transition);
+  height:64px;
+}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.navbar .logo{
+  font-size:1.1rem;font-weight:700;color:var(--btc);text-decoration:none;
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+  transition:var(--transition);
+}
+.navbar .logo:hover{filter:brightness(1.2)}
+.navbar .nav-links{display:flex;gap:2px;list-style:none;align-items:center}
+.navbar .nav-links a{
+  color:var(--text2);text-decoration:none;padding:8px 14px;border-radius:8px;
+  font-size:0.85rem;font-weight:500;transition:var(--transition);white-space:nowrap;
+}
+.navbar .nav-links a:hover,.navbar .nav-links a.active{color:var(--btc);background:rgba(247,147,26,0.1)}
+.navbar .nav-links a.active{color:var(--btc);font-weight:600}
+.nav-toggle{
+  display:none;background:none;border:none;color:var(--text);font-size:1.5rem;
+  cursor:pointer;padding:8px;border-radius:8px;transition:var(--transition);
+  line-height:1;
+}
+.nav-toggle:hover{background:rgba(255,255,255,0.05)}
+@media(max-width:768px){
+  .nav-toggle{display:block}
+  .navbar .nav-links{
+    display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;
+    background:rgba(8,8,15,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);padding:12px 24px;gap:4px;
+  }
+  .navbar .nav-links.open{display:flex}
+  .navbar .nav-links a{padding:12px 16px;font-size:0.95rem}
+}
+@media(min-width:769px){
+  .navbar .nav-links{display:flex!important}
+}
 
-        /* ===== HEADER / HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: radial-gradient(ellipse at center top, rgba(247,147,26,0.08) 0%, transparent 70%),
-                        radial-gradient(ellipse at center bottom, rgba(100,149,237,0.05) 0%, transparent 70%);
-            position: relative;
-            overflow: hidden;
-        }
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:100px 24px 60px;
+  background:
+    radial-gradient(ellipse 800px 400px at 50% -20%, rgba(247,147,26,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 400px at 80% 80%, rgba(91,141,239,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 20% 90%, rgba(46,204,113,0.03) 0%, transparent 70%);
+  position:relative;overflow:hidden;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.hero-icon{font-size:5rem;margin-bottom:16px;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(247,147,26,0.15))}
+@media(max-width:480px){.hero-icon{font-size:3.5rem}}
+.hero h1{
+  font-size:clamp(2rem,5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:8px;
+  background:linear-gradient(135deg,var(--btc) 0%,#ffd700 50%,var(--btc) 100%);
+  background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gradient-shift 4s ease-in-out infinite;
+}
+@keyframes gradient-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero .subtitle{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--text2);font-weight:400;max-width:580px;margin:0 auto 28px}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
+.hero-badges span{
+  padding:6px 16px;border-radius:100px;font-size:0.82rem;font-weight:500;
+  border:1px solid;backdrop-filter:blur(4px);transition:var(--transition);
+}
+.hero-badges span:hover{transform:translateY(-2px)}
+.hero-badges .h-orange{background:rgba(247,147,26,0.1);border-color:rgba(247,147,26,0.2);color:var(--btc)}
+.hero-badges .h-blue{background:rgba(91,141,239,0.1);border-color:rgba(91,141,239,0.2);color:var(--blue)}
+.hero-badges .h-green{background:rgba(46,204,113,0.1);border-color:rgba(46,204,113,0.2);color:var(--green)}
+.hero-badges .h-purple{background:rgba(155,89,182,0.1);border-color:rgba(155,89,182,0.2);color:#9b59b6}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(247,147,26,0.03) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: float 20s ease-in-out infinite;
-        }
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;
+  font-size:0.95rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--btc),var(--btc-dim));
+  color:#fff;box-shadow:0 4px 24px rgba(247,147,26,0.25);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(247,147,26,0.4)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{
+  background:rgba(255,255,255,0.04);color:var(--text);border:1px solid var(--border);
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.08);border-color:var(--border-hover);transform:translateY(-2px)}
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(100,149,237,0.03) 0%, transparent 70%);
-            bottom: -100px;
-            left: -100px;
-            animation: float 25s ease-in-out infinite reverse;
-        }
+/* ===== SECTION ===== */
+.section{padding:80px 0}
+@media(max-width:768px){.section{padding:56px 0}}
+@media(max-width:480px){.section{padding:40px 0}}
+.section:nth-child(even){background:var(--bg2)}
+.section-header{margin-bottom:40px}
+.section-title{
+  font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;color:#fff;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-desc{color:var(--text2);font-size:1.05rem;max-width:680px;line-height:1.7}
+@media(max-width:480px){.section-desc{font-size:0.95rem}}
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
+/* ===== CARDS ===== */
+.models-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
+}
+@media(max-width:480px){.models-grid{grid-template-columns:1fr;gap:14px}}
 
-        .hero-icon { font-size: 5em; margin-bottom: 20px; animation: pulse 3s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.model-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:var(--transition);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.model-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--btc),transparent);
+  opacity:0;transition:var(--transition);
+}
+.model-card:hover{transform:translateY(-4px);border-color:var(--border-hover);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+.model-card:hover::before{opacity:1}
+.model-name{font-size:1.25rem;font-weight:700;color:var(--btc);margin-bottom:2px}
+.model-chip{color:var(--text3);font-size:0.85rem;margin-bottom:14px}
+.model-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.model-specs .spec .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3)}
+.model-specs .spec .value{font-size:1rem;font-weight:600;color:#fff;margin-top:1px}
+.model-status{
+  position:absolute;top:16px;right:16px;font-size:0.7rem;padding:4px 10px;
+  border-radius:100px;font-weight:600;
+}
+.status-current{background:rgba(46,204,113,0.12);color:var(--green);border:1px solid rgba(46,204,113,0.2)}
+.status-legacy{background:rgba(231,76,60,0.1);color:var(--red);border:1px solid rgba(231,76,60,0.2)}
+.status-new{background:rgba(247,147,26,0.12);color:var(--btc);border:1px solid rgba(247,147,26,0.2)}
 
-        .hero h1 {
-            font-size: 3.5em;
-            background: linear-gradient(135deg, var(--btc), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+/* ===== TABLE ===== */
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);margin:20px 0;-webkit-overflow-scrolling:touch}
+table.comp{width:100%;border-collapse:collapse;font-size:0.88rem;min-width:600px}
+table.comp th{
+  background:rgba(247,147,26,0.08);color:var(--btc);padding:14px 12px;
+  text-align:center;font-weight:600;border-bottom:2px solid rgba(247,147,26,0.15);
+  white-space:nowrap;
+}
+table.comp th:first-child{text-align:left;padding-left:20px}
+table.comp td{padding:12px;text-align:center;border-bottom:1px solid var(--border)}
+table.comp td:first-child{text-align:left;padding-left:20px;font-weight:500;color:#fff;white-space:nowrap}
+table.comp tr:hover td{background:rgba(247,147,26,0.03)}
+table.comp tr:last-child td{border-bottom:none}
+@media(max-width:480px){table.comp{font-size:0.78rem}table.comp td,table.comp th{padding:8px 6px}}
 
-        .hero h2 {
-            font-size: 1.3em;
-            color: var(--text2);
-            font-weight: 400;
-            max-width: 600px;
-            margin-bottom: 30px;
-        }
+/* ===== BOXES ===== */
+.box{border-radius:var(--radius-sm);padding:18px 22px;margin:16px 0;border:1px solid}
+.box-tip{background:rgba(46,204,113,0.05);border-color:rgba(46,204,113,0.15)}
+.box-warn{background:rgba(231,76,60,0.05);border-color:rgba(231,76,60,0.15)}
+.box-info{background:rgba(91,141,239,0.05);border-color:rgba(91,141,239,0.15)}
+.box-title{font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;font-size:0.95rem}
 
-        .hero .badges {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
+/* ===== STEPS ===== */
+.steps{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.step{
+  display:flex;gap:16px;align-items:flex-start;
+  background:rgba(255,255,255,0.02);border-left:3px solid var(--btc);
+  padding:16px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  transition:var(--transition);
+}
+.step:hover{background:rgba(247,147,26,0.03)}
+.step-num{
+  width:32px;height:32px;min-width:32px;border-radius:50%;
+  background:rgba(247,147,26,0.12);border:1px solid rgba(247,147,26,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--btc);font-size:0.85rem;
+}
+.step-content{flex:1}
+.step-content strong{color:#fff}
 
-        .hero .badge {
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            border: 1px solid;
-            backdrop-filter: blur(10px);
-        }
-        .hero .badge.orange { background: rgba(247,147,26,0.12); border-color: rgba(247,147,26,0.25); color: var(--btc); }
-        .hero .badge.blue { background: rgba(100,149,237,0.12); border-color: rgba(100,149,237,0.25); color: var(--blue); }
-        .hero .badge.green { background: rgba(50,205,50,0.12); border-color: rgba(50,205,50,0.25); color: var(--green); }
-        .hero .badge.purple { background: rgba(180,100,255,0.12); border-color: rgba(180,100,255,0.25); color: #b464ff; }
+/* ===== CODE ===== */
+.code{
+  background:#04040e;border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px 20px;font-family:var(--mono);font-size:0.82rem;color:var(--green);
+  overflow-x:auto;margin:16px 0;line-height:1.8;
+}
+.code .c{color:#555}
+.code .p{color:var(--btc)}
+@media(max-width:480px){.code{font-size:0.72rem;padding:12px 14px}}
 
-        .hero-cta {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+/* ===== OC CARDS ===== */
+.oc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:20px 0}
+@media(max-width:480px){.oc-grid{grid-template-columns:1fr 1fr;gap:10px}}
+.oc-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:18px;text-align:center;transition:var(--transition);
+}
+.oc-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+.oc-level{font-weight:700;font-size:0.95rem;margin-bottom:2px}
+.oc-hash{font-size:1.3rem;font-weight:800;color:#fff;margin:6px 0}
+.oc-details{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+.oc-details .lbl{font-size:0.65rem;text-transform:uppercase;color:var(--text3);letter-spacing:0.5px}
+.oc-details .val{font-weight:600;color:var(--text2);font-size:0.85rem;margin-top:1px}
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 1em;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-        }
+/* ===== TEMP BAR ===== */
+.temp-bar{display:flex;gap:4px;flex-wrap:wrap;margin:16px 0}
+.temp-s{padding:6px 14px;border-radius:8px;font-size:0.8rem;font-weight:500}
+.t-g{background:rgba(46,204,113,0.12);color:var(--green);border:1px solid rgba(46,204,113,0.2)}
+.t-y{background:rgba(241,196,15,0.1);color:var(--gold);border:1px solid rgba(241,196,15,0.2)}
+.t-o{background:rgba(230,126,34,0.1);color:var(--orange);border:1px solid rgba(230,126,34,0.2)}
+.t-r{background:rgba(231,76,60,0.1);color:var(--red);border:1px solid rgba(231,76,60,0.2)}
+.t-dr{background:rgba(139,0,0,0.15);color:#ff6666;border:1px solid rgba(139,0,0,0.2)}
+@media(max-width:480px){.temp-s{font-size:0.7rem;padding:4px 10px}}
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--btc), var(--btc-dark));
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(247,147,26,0.3);
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(247,147,26,0.45); }
+/* ===== POOL CARDS ===== */
+.pools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:20px 0}
+@media(max-width:480px){.pools-grid{grid-template-columns:1fr}}
+.pool-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:var(--transition);
+}
+.pool-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+.pool-name{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:2px}
+.pool-type{font-size:0.8rem;color:var(--text3);margin-bottom:8px}
+.pool-url{font-size:0.85rem;color:var(--btc);font-family:var(--mono);margin-bottom:6px}
+.pool-desc{font-size:0.85rem;color:var(--text2);line-height:1.6}
+.pool-badge{display:inline-block;padding:2px 10px;border-radius:6px;font-size:0.72rem;font-weight:600;margin-top:8px}
+.pool-badge.solo{background:rgba(241,196,15,0.12);color:var(--gold);border:1px solid rgba(241,196,15,0.2)}
+.pool-badge.pooled{background:rgba(91,141,239,0.12);color:var(--blue);border:1px solid rgba(91,141,239,0.2)}
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.06);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--border-hover); transform: translateY(-2px); }
+/* ===== API GRID ===== */
+.api-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:20px 0}
+@media(max-width:480px){.api-grid{grid-template-columns:1fr}}
+.api-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 16px;transition:var(--transition);
+}
+.api-card:hover{border-color:var(--border-hover)}
+.api-method{
+  display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;
+}
+.m-get{background:rgba(46,204,113,0.12);color:var(--green)}
+.m-post{background:rgba(247,147,26,0.12);color:var(--btc)}
+.m-patch{background:rgba(91,141,239,0.12);color:var(--blue)}
+.m-put{background:rgba(155,89,182,0.12);color:#9b59b6}
+.api-path{font-family:var(--mono);font-size:0.8rem;color:#fff;margin-bottom:4px}
+.api-desc{font-size:0.78rem;color:var(--text2)}
 
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            background: rgba(10,10,20,0.85);
-            backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s;
-        }
+/* ===== TROUBLES ===== */
+.trouble-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:20px 0}
+@media(max-width:480px){.trouble-grid{grid-template-columns:1fr}}
+.trouble-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;transition:var(--transition)}
+.trouble-item:hover{border-color:var(--border-hover)}
+.trouble-item .prob{color:var(--red);font-weight:600;font-size:0.9rem;margin-bottom:2px}
+.trouble-item .cause{color:var(--text3);font-size:0.8rem;margin-bottom:4px}
+.trouble-item .soln{color:var(--green);font-size:0.85rem}
 
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            height: 60px;
-        }
+/* ===== FAQ ===== */
+.faq-list{display:flex;flex-direction:column;gap:4px;margin:20px 0}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:border-color var(--transition)}
+.faq-item:hover{border-color:rgba(247,147,26,0.2)}
+.faq-q{
+  padding:18px 20px;cursor:pointer;font-weight:600;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;user-select:none;
+  transition:background var(--transition);font-size:0.95rem;
+}
+.faq-q:hover{background:rgba(255,255,255,0.02)}
+.faq-q .arrow{color:var(--btc);transition:transform var(--transition);font-size:0.8rem}
+.faq-q.active .arrow{transform:rotate(180deg)}
+.faq-a{
+  padding:0 20px;max-height:0;overflow:hidden;transition:all var(--transition);
+  color:var(--text2);font-size:0.9rem;line-height:1.7;
+}
+.faq-a.open{padding:0 20px 18px;max-height:500px}
+@media(max-width:480px){.faq-q{font-size:0.88rem;padding:14px 16px}.faq-a{font-size:0.85rem}}
 
-        .navbar .logo {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: var(--btc);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+/* ===== LINKS ===== */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
+@media(max-width:480px){.links-grid{grid-template-columns:1fr 1fr}}
+.link-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 16px;text-decoration:none;color:var(--text2);transition:var(--transition);
+}
+.link-card:hover{border-color:var(--border-hover);background:var(--card-hover);transform:translateY(-3px)}
+.link-title{color:var(--btc);font-weight:600;font-size:0.88rem;margin-bottom:3px}
+.link-desc{font-size:0.78rem}
 
-        .navbar .nav-links {
-            display: flex;
-            gap: 4px;
-            list-style: none;
-        }
+/* ===== FOOTER ===== */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 0 32px;text-align:center}
+footer .f-brand{font-size:1.3rem;font-weight:700;color:var(--btc);margin-bottom:4px}
+footer .f-author{color:var(--text3);font-size:0.9rem;margin-bottom:12px}
+footer .f-nav{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+footer .f-nav a{color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
+footer .f-nav a:hover{color:var(--btc)}
+footer .f-copy{color:var(--text3);font-size:0.8rem;margin-top:12px}
+footer .f-copy a{color:var(--btc);text-decoration:none}
 
-        .navbar .nav-links a {
-            color: var(--text2);
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85em;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .navbar .nav-links a:hover { color: var(--btc); background: rgba(247,147,26,0.08); }
+/* ===== SCROLL TOP ===== */
+.scroll-top{
+  position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;
+  background:rgba(247,147,26,0.1);border:1px solid rgba(247,147,26,0.2);
+  color:var(--btc);display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:1.3rem;z-index:100;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:var(--transition);opacity:0;pointer-events:none;transform:translateY(10px);
+}
+.scroll-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.scroll-top:hover{background:rgba(247,147,26,0.2);transform:translateY(-3px)}
 
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5em;
-            cursor: pointer;
-            padding: 4px;
-        }
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.6s ease forwards}
 
-        /* ===== SECTIONS ===== */
-        .section-title {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .section-title .icon { font-size: 1em; }
-        .section-desc { color: var(--text2); margin-bottom: 40px; font-size: 1.05em; max-width: 700px; }
+/* ===== BADGE ROW ===== */
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.badge-row span{
+  padding:4px 14px;border-radius:100px;font-size:0.78rem;font-weight:500;
+  background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:var(--green);
+}
 
-        section:nth-child(even) { background: var(--bg2); }
-
-        /* ===== MODEL CARDS ===== */
-        .models-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .model-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .model-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            background: var(--card-hover);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-        }
-
-        .model-card .model-name {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--btc);
-            margin-bottom: 4px;
-        }
-        .model-card .model-chip {
-            color: var(--text3);
-            font-size: 0.9em;
-            margin-bottom: 16px;
-        }
-        .model-card .model-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .model-card .model-specs .spec { }
-        .model-card .model-specs .spec .label { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); }
-        .model-card .model-specs .spec .value { font-size: 1em; font-weight: 600; color: #fff; margin-top: 1px; }
-        .model-card .model-status {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 0.72em;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-        .model-card .status-current { background: rgba(50,205,50,0.15); color: var(--green); border: 1px solid rgba(50,205,50,0.2); }
-        .model-card .status-legacy { background: rgba(255,69,58,0.12); color: var(--red); border: 1px solid rgba(255,69,58,0.2); }
-        .model-card .status-new { background: rgba(247,147,26,0.15); color: var(--btc); border: 1px solid rgba(247,147,26,0.2); }
-
-        /* ===== COMPARISON TABLE ===== */
-        .table-wrapper {
-            overflow-x: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin: 20px 0;
-        }
-
-        table.comparison {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88em;
-            min-width: 650px;
-        }
-
-        table.comparison th {
-            background: rgba(247,147,26,0.1);
-            color: var(--btc);
-            padding: 14px 12px;
-            text-align: center;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(247,147,26,0.2);
-        }
-        table.comparison th:first-child { text-align: left; padding-left: 16px; }
-
-        table.comparison td {
-            padding: 11px 12px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-        table.comparison td:first-child { text-align: left; padding-left: 16px; font-weight: 500; color: #fff; }
-        table.comparison tr:hover td { background: rgba(247,147,26,0.03); }
-        table.comparison tr:last-child td { border-bottom: none; }
-
-        .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.82em;
-            font-weight: 500;
-        }
-        .tag-green { background: rgba(50,205,50,0.15); color: var(--green); }
-        .tag-blue { background: rgba(100,149,237,0.15); color: var(--blue); }
-        .tag-gold { background: rgba(255,215,0,0.15); color: var(--gold); }
-        .tag-orange { background: rgba(255,140,0,0.15); color: var(--orange); }
-        .tag-red { background: rgba(255,69,58,0.15); color: var(--red); }
-
-        /* ===== STEPS ===== */
-        .steps-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .step-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            background: rgba(255,255,255,0.03);
-            border-left: 3px solid var(--btc);
-            padding: 16px 20px;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .step-item .step-num {
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
-            border-radius: 50%;
-            background: rgba(247,147,26,0.15);
-            border: 1px solid rgba(247,147,26,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--btc);
-            font-size: 0.9em;
-        }
-
-        .step-item .step-content { flex: 1; }
-        .step-item .step-content strong { color: #fff; }
-
-        /* ===== BOXES ===== */
-        .box {
-            border-radius: 12px;
-            padding: 18px 22px;
-            margin: 16px 0;
-            border: 1px solid;
-        }
-        .box-tip { background: rgba(50,205,50,0.06); border-color: rgba(50,205,50,0.18); }
-        .box-warning { background: rgba(255,69,58,0.06); border-color: rgba(255,69,58,0.18); }
-        .box-info { background: rgba(100,149,237,0.06); border-color: rgba(100,149,237,0.18); }
-
-        .box .box-title { font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-        .box-tip .box-title { color: var(--green); }
-        .box-warning .box-title { color: var(--red); }
-        .box-info .box-title { color: var(--blue); }
-
-        /* ===== CODE BLOCK ===== */
-        .code-block {
-            background: #060612;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.88em;
-            color: var(--green);
-            overflow-x: auto;
-            margin: 16px 0;
-            line-height: 1.7;
-        }
-        .code-block .comment { color: #555; }
-        .code-block .prompt { color: var(--btc); }
-
-        /* ===== POOL CARDS ===== */
-        .pools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .pool-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            transition: all 0.3s;
-        }
-        .pool-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-3px);
-        }
-        .pool-card .pool-name { font-size: 1.15em; font-weight: 700; color: #fff; margin-bottom: 2px; }
-        .pool-card .pool-type { font-size: 0.82em; color: var(--text3); margin-bottom: 10px; }
-        .pool-card .pool-url { font-size: 0.9em; color: var(--btc); font-family: monospace; margin-bottom: 4px; }
-        .pool-card .pool-desc { font-size: 0.88em; color: var(--text2); }
-        .pool-card .pool-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-        .pool-card .pool-badge.solo { background: rgba(255,215,0,0.15); color: var(--gold); border: 1px solid rgba(255,215,0,0.2); }
-        .pool-card .pool-badge.pool { background: rgba(100,149,237,0.15); color: var(--blue); border: 1px solid rgba(100,149,237,0.2); }
-
-        /* ===== OC TABLE ===== */
-        .oc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .oc-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .oc-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-        .oc-card .oc-level { font-weight: 700; font-size: 1.1em; margin-bottom: 4px; }
-        .oc-card .oc-hash { font-size: 1.5em; font-weight: 800; color: #fff; margin: 8px 0; }
-        .oc-card .oc-details { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
-        .oc-card .oc-details .d { }
-        .oc-card .oc-details .d .lbl { font-size: 0.7em; text-transform: uppercase; color: var(--text3); letter-spacing: 0.5px; }
-        .oc-card .oc-details .d .val { font-weight: 600; color: var(--text2); margin-top: 2px; }
-
-        /* ===== TROUBLESHOOT ===== */
-        .trouble-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .trouble-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 18px;
-        }
-        .trouble-item .prob { color: var(--red); font-weight: 600; margin-bottom: 2px; }
-        .trouble-item .cause { color: var(--text3); font-size: 0.85em; margin-bottom: 4px; }
-        .trouble-item .soln { color: var(--green); font-size: 0.9em; }
-
-        /* ===== FAQ ===== */
-        .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin: 20px 0;
-        }
-
-        .faq-item {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .faq-item:hover { border-color: rgba(247,147,26,0.2); }
-
-        .faq-q {
-            padding: 18px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-            transition: background 0.2s;
-        }
-        .faq-q:hover { background: rgba(255,255,255,0.02); }
-        .faq-q .arrow { color: var(--btc); transition: transform 0.3s; font-size: 0.9em; }
-        .faq-q.active .arrow { transform: rotate(180deg); }
-
-        .faq-a {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            color: var(--text2);
-        }
-        .faq-a.open {
-            padding: 0 20px 18px;
-            max-height: 300px;
-        }
-
-        /* ===== LINKS ===== */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 14px;
-            margin: 20px 0;
-        }
-
-        .link-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 18px;
-            text-decoration: none;
-            color: var(--text2);
-            transition: all 0.3s;
-        }
-        .link-card:hover {
-            border-color: var(--border-hover);
-            background: var(--card-hover);
-            transform: translateY(-3px);
-        }
-        .link-card .link-title { color: var(--btc); font-weight: 600; margin-bottom: 4px; }
-        .link-card .link-desc { font-size: 0.85em; }
-
-        /* ===== TEMP BAR ===== */
-        .temp-bar {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            margin: 16px 0;
-        }
-        .temp-seg {
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.82em;
-            font-weight: 500;
-        }
-        .temp-g { background: rgba(50,205,50,0.15); color: var(--green); border: 1px solid rgba(50,205,50,0.2); }
-        .temp-y { background: rgba(255,215,0,0.12); color: var(--gold); border: 1px solid rgba(255,215,0,0.2); }
-        .temp-o { background: rgba(255,140,0,0.12); color: var(--orange); border: 1px solid rgba(255,140,0,0.2); }
-        .temp-r { background: rgba(255,69,58,0.12); color: var(--red); border: 1px solid rgba(255,69,58,0.2); }
-        .temp-dr { background: rgba(139,0,0,0.2); color: #ff6666; border: 1px solid rgba(139,0,0,0.25); }
-
-        /* ===== API GRID ===== */
-        .api-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-        .api-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px 16px;
-        }
-        .api-card .api-method {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-        .api-method.get { background: rgba(50,205,50,0.15); color: var(--green); }
-        .api-method.post { background: rgba(247,147,26,0.15); color: var(--btc); }
-        .api-method.patch { background: rgba(100,149,237,0.15); color: var(--blue); }
-        .api-method.put { background: rgba(180,100,255,0.15); color: #b464ff; }
-        .api-card .api-path { font-family: monospace; font-size: 0.85em; color: #fff; margin-bottom: 4px; }
-        .api-card .api-desc { font-size: 0.82em; color: var(--text2); }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 40px 0;
-            text-align: center;
-            color: var(--text3);
-            font-size: 0.85em;
-        }
-        footer a { color: var(--btc); text-decoration: none; }
-        footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 12px 0; }
-        footer .footer-links a { color: var(--text2); font-size: 0.9em; }
-        footer .footer-links a:hover { color: var(--btc); }
-
-        /* ===== SCROLL TOP ===== */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(247,147,26,0.12);
-            border: 1px solid rgba(247,147,26,0.25);
-            color: var(--btc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.3em;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-        .scroll-top.visible { opacity: 1; pointer-events: auto; }
-        .scroll-top:hover { background: rgba(247,147,26,0.25); transform: translateY(-3px); }
-
-        /* ===== MOBILE ===== */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2em; }
-            .hero-icon { font-size: 3.5em; }
-            .section-title { font-size: 1.5em; }
-            .navbar .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: rgba(10,10,20,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 12px 20px; }
-            .navbar .nav-links.open { display: flex; }
-            .nav-toggle { display: block; }
-            .models-grid { grid-template-columns: 1fr; }
-            .pools-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+/* ===== GLOW CARDS ===== */
+.glow-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;transition:var(--transition)}
+.glow-card:hover{border-color:var(--border-hover);box-shadow:0 0 30px rgba(247,147,26,0.05)}
+</style>
 </head>
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar">
-    <div class="container">
-        <a href="#hero" class="logo">🪓 guidi bitaxeBrasil</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#modelos">Modelos</a></li>
-            <li><a href="#comparacao">Comparação</a></li>
-            <li><a href="#firmware">Firmware</a></li>
-            <li><a href="#overclock">Overclock</a></li>
-            <li><a href="#pools">Pools</a></li>
-            <li><a href="#api">API</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ul>
-    </div>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+  <div class="container">
+    <a href="#hero" class="logo">🪓 guidi bitaxeBrasil</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li role="none"><a href="#modelos" role="menuitem">Modelos</a></li>
+      <li role="none"><a href="#comparacao" role="menuitem">Comparação</a></li>
+      <li role="none"><a href="#firmware" role="menuitem">Firmware</a></li>
+      <li role="none"><a href="#overclock" role="menuitem">Overclock</a></li>
+      <li role="none"><a href="#pools" role="menuitem">Pools</a></li>
+      <li role="none"><a href="#api" role="menuitem">API</a></li>
+      <li role="none"><a href="#faq" role="menuitem">FAQ</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section id="hero" class="hero">
-    <div class="hero-icon">🪓</div>
-    <h1>🪓 guidi bitaxeBrasil</h1>
-    <p style="color:var(--text3);font-size:0.9em;margin-top:4px;">👤 Criado por <strong style="color:var(--btc);">guidi</strong></p>
-    <h2>O guia mais completo em português para mineradores Bitcoin com Bitaxe</h2>
-    <div class="badges">
-        <span class="badge orange">⚡ Todos os Modelos</span>
-        <span class="badge blue">🛠️ Firmware & Overclock</span>
-        <span class="badge green">🌐 Pools & Configuração</span>
-        <span class="badge purple">📡 API & AxeOS</span>
-    </div>
-    <div class="hero-cta">
-        <a href="#modelos" class="btn btn-primary">📖 Começar</a>
-        <a href="#comparacao" class="btn btn-secondary">📊 Comparar Modelos</a>
-    </div>
+  <div class="hero-icon" aria-hidden="true">🪓</div>
+  <h1>🪓 guidi bitaxeBrasil</h1>
+  <p class="subtitle">O guia mais completo em português para mineradores Bitcoin com Bitaxe</p>
+  <div class="hero-badges">
+    <span class="h-orange">⚡ Todos os Modelos</span>
+    <span class="h-blue">🛠️ Firmware &amp; Overclock</span>
+    <span class="h-green">🌐 Pools &amp; Configuração</span>
+    <span class="h-purple">📡 API &amp; AxeOS</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#modelos" class="btn btn-primary">📖 Começar</a>
+    <a href="#comparacao" class="btn btn-secondary">📊 Comparar Modelos</a>
+  </div>
 </section>
 
 <!-- ===== MODELOS ===== -->
-<section id="modelos" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">🪓</span> Todos os Modelos de Bitaxe</h2>
-        <p class="section-desc">Conheça cada modelo disponível, do clássico Max ao potente Hex. Cada Bitaxe é um minerador ASIC open-source que funciona como um "bilhete de loteria" para mineração solo de Bitcoin.</p>
-
-        <div class="models-grid">
-
-            <div class="model-card">
-                <span class="model-status status-legacy">🔄 Legado</span>
-                <div class="model-name">Bitaxe Max</div>
-                <div class="model-chip">BM1397 (Antminer S17)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~400 GH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~15W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~30-35 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div>
-                </div>
-            </div>
-
-            <div class="model-card">
-                <span class="model-status status-legacy">🔄 Legado</span>
-                <div class="model-name">Bitaxe Ultra</div>
-                <div class="model-chip">BM1366 (Antminer S19 XP)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~400-500 GH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~12W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~24 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div>
-                </div>
-            </div>
-
-            <div class="model-card">
-                <span class="model-status status-new">⭐ Atual</span>
-                <div class="model-name">Bitaxe Supra</div>
-                <div class="model-chip">BM1368 (Antminer S21)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~625-775 GH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~12W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~17 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div>
-                </div>
-            </div>
-
-            <div class="model-card">
-                <span class="model-status status-current">🔥 Seu Modelo</span>
-                <div class="model-name">Bitaxe Gamma</div>
-                <div class="model-chip">BM1370 (Antminer S21 Pro)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~1.0-1.2 TH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~15-21W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~15 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div>
-                </div>
-            </div>
-
-            <div class="model-card">
-                <span class="model-status status-new">🆕 Novo</span>
-                <div class="model-name">Bitaxe GT (Gamma Turbo)</div>
-                <div class="model-chip">2x BM1370 (Dual Chip)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~2.0-2.15 TH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~35-43W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~18 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">12V DC (XT30)</div></div>
-                </div>
-            </div>
-
-            <div class="model-card">
-                <span class="model-status status-new">🆕 Novo</span>
-                <div class="model-name">Bitaxe Hex</div>
-                <div class="model-chip">6x BM1366 (Multi Chip)</div>
-                <div class="model-specs">
-                    <div class="spec"><div class="label">Hashrate</div><div class="value">~3.0-3.3 TH/s</div></div>
-                    <div class="spec"><div class="label">Consumo</div><div class="value">~65-90W</div></div>
-                    <div class="spec"><div class="label">Eficiência</div><div class="value">~27-30 J/TH</div></div>
-                    <div class="spec"><div class="label">Voltagem</div><div class="value">12V DC (XT30)</div></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="box box-info">
-            <div class="box-title">💡 Qual Bitaxe escolher?</div>
-            <p>O <strong>Gamma</strong> (BM1370) é o melhor custo-benefício: maior eficiência (~15 J/TH) e hashrate excelente para single-chip. O <strong>GT</strong> dobra a potência com dois chips, e o <strong>Hex</strong> é o mais potente com 6 chips. O <strong>Supra</strong> é a opção de entrada mais moderna e eficiente.</p>
-        </div>
+<section id="modelos" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">🪓 Todos os Modelos de Bitaxe</h2>
+      <p class="section-desc">Conheça cada modelo disponível, do clássico Max ao potente Hex. Cada Bitaxe é um minerador ASIC open-source que funciona como um "bilhete de loteria" para mineração solo de Bitcoin.</p>
     </div>
+    <div class="models-grid">
+      <div class="model-card"><span class="model-status status-legacy">🔄 Legado</span><div class="model-name">Bitaxe Max</div><div class="model-chip">BM1397 (Antminer S17)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~400 GH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~15W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~30-35 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div></div></div>
+      <div class="model-card"><span class="model-status status-legacy">🔄 Legado</span><div class="model-name">Bitaxe Ultra</div><div class="model-chip">BM1366 (Antminer S19 XP)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~400-500 GH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~12W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~24 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div></div></div>
+      <div class="model-card"><span class="model-status status-new">⭐ Atual</span><div class="model-name">Bitaxe Supra</div><div class="model-chip">BM1368 (Antminer S21)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~625-775 GH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~12W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~17 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div></div></div>
+      <div class="model-card"><span class="model-status status-current">🔥 Seu Modelo</span><div class="model-name">Bitaxe Gamma</div><div class="model-chip">BM1370 (Antminer S21 Pro)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~1.0-1.2 TH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~15-21W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~15 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">5V DC</div></div></div></div>
+      <div class="model-card"><span class="model-status status-new">🆕 Novo</span><div class="model-name">Bitaxe GT (Gamma Turbo)</div><div class="model-chip">2x BM1370 (Dual Chip)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~2.0-2.15 TH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~35-43W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~18 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">12V (XT30)</div></div></div></div>
+      <div class="model-card"><span class="model-status status-new">🆕 Novo</span><div class="model-name">Bitaxe Hex</div><div class="model-chip">6x BM1366 (Multi Chip)</div><div class="model-specs"><div class="spec"><div class="label">Hashrate</div><div class="value">~3.0-3.3 TH/s</div></div><div class="spec"><div class="label">Consumo</div><div class="value">~65-90W</div></div><div class="spec"><div class="label">Eficiência</div><div class="value">~27-30 J/TH</div></div><div class="spec"><div class="label">Voltagem</div><div class="value">12V (XT30)</div></div></div></div>
+    </div>
+    <div class="box box-info"><div class="box-title">💡 Qual Bitaxe escolher?</div><p>O <strong>Gamma</strong> (BM1370) é o melhor custo-benefício: maior eficiência (~15 J/TH) e hashrate excelente para single-chip. O <strong>GT</strong> dobra a potência com dois chips, e o <strong>Hex</strong> é o mais potente com 6 chips. O <strong>Supra</strong> é a opção de entrada mais moderna e eficiente.</p></div>
+  </div>
 </section>
 
 <!-- ===== COMPARAÇÃO ===== -->
-<section id="comparacao" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">📊</span> Comparação Completa</h2>
-        <p class="section-desc">Compare todos os modelos lado a lado para escolher o ideal para você.</p>
-
-        <div class="table-wrapper">
-            <table class="comparison">
-                <thead>
-                    <tr>
-                        <th>Modelo</th>
-                        <th>ASIC</th>
-                        <th>Hashrate</th>
-                        <th>Consumo</th>
-                        <th>Eficiência</th>
-                        <th>Voltagem</th>
-                        <th>OC Máx</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Max</td>
-                        <td>BM1397</td>
-                        <td>~400 GH/s</td>
-                        <td>~15W</td>
-                        <td><span class="tag tag-red">30-35 J/TH</span></td>
-                        <td>5V</td>
-                        <td>~450 GH/s</td>
-                    </tr>
-                    <tr>
-                        <td>Ultra</td>
-                        <td>BM1366</td>
-                        <td>~400-500 GH/s</td>
-                        <td>~12W</td>
-                        <td><span class="tag tag-orange">~24 J/TH</span></td>
-                        <td>5V</td>
-                        <td>~600 GH/s</td>
-                    </tr>
-                    <tr>
-                        <td>Supra</td>
-                        <td>BM1368</td>
-                        <td>~625-775 GH/s</td>
-                        <td>~12W</td>
-                        <td><span class="tag tag-blue">~17 J/TH</span></td>
-                        <td>5V</td>
-                        <td>~900 GH/s</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Gamma</strong></td>
-                        <td><strong>BM1370</strong></td>
-                        <td><strong>~1.0-1.2 TH/s</strong></td>
-                        <td><strong>~15-21W</strong></td>
-                        <td><span class="tag tag-green">~15 J/TH</span></td>
-                        <td>5V</td>
-                        <td><strong>~1.8+ TH/s</strong></td>
-                    </tr>
-                    <tr>
-                        <td>GT (Turbo)</td>
-                        <td>2x BM1370</td>
-                        <td>~2.0-2.15 TH/s</td>
-                        <td>~35-43W</td>
-                        <td><span class="tag tag-blue">~18 J/TH</span></td>
-                        <td>12V</td>
-                        <td>~2.55 TH/s</td>
-                    </tr>
-                    <tr>
-                        <td>Hex</td>
-                        <td>6x BM1366</td>
-                        <td>~3.0-3.3 TH/s</td>
-                        <td>~65-90W</td>
-                        <td><span class="tag tag-orange">~27-30 J/TH</span></td>
-                        <td>12V</td>
-                        <td>~4.0 TH/s</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="box box-tip">
-            <div class="box-title">💰 Custo Mensal de Energia (a R$ 0,70/kWh)</div>
-            <p>Gamma/Supra/Ultra: <strong>~R$ 7-12/mês</strong> | GT: ~R$ 18-22/mês | Hex: ~R$ 33-45/mês</p>
-        </div>
-
-        <div class="box box-warning">
-            <div class="box-title">⚠️ Importante sobre alimentação</div>
-            <p>Modelos 5V (Ultra, Supra, Gamma) usam conector barril 5.5x2.1mm. Modelos 12V (GT, Hex) usam conector <strong>XT30</strong>. A porta USB-C é apenas para <strong>flash/debug</strong>, não para alimentação!</p>
-        </div>
+<section id="comparacao" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">📊 Comparação Completa</h2>
+      <p class="section-desc">Compare todos os modelos lado a lado para escolher o ideal para você.</p>
     </div>
+    <div class="table-wrap">
+      <table class="comp">
+        <thead><tr><th>Modelo</th><th>ASIC</th><th>Hashrate</th><th>Consumo</th><th>Eficiência</th><th>Voltagem</th><th>OC Máx</th></tr></thead>
+        <tbody>
+          <tr><td>Max</td><td>BM1397</td><td>~400 GH/s</td><td>~15W</td><td><span style="color:var(--red)">30-35 J/TH</span></td><td>5V</td><td>~450 GH/s</td></tr>
+          <tr><td>Ultra</td><td>BM1366</td><td>~400-500 GH/s</td><td>~12W</td><td><span style="color:var(--orange)">~24 J/TH</span></td><td>5V</td><td>~600 GH/s</td></tr>
+          <tr><td>Supra</td><td>BM1368</td><td>~625-775 GH/s</td><td>~12W</td><td><span style="color:var(--blue)">~17 J/TH</span></td><td>5V</td><td>~900 GH/s</td></tr>
+          <tr style="background:rgba(247,147,26,0.04)"><td><strong style="color:var(--btc)">Gamma</strong></td><td><strong>BM1370</strong></td><td><strong>~1.0-1.2 TH/s</strong></td><td><strong>~15-21W</strong></td><td><strong style="color:var(--green)">~15 J/TH</strong></td><td>5V</td><td><strong>~1.8+ TH/s</strong></td></tr>
+          <tr><td>GT (Turbo)</td><td>2x BM1370</td><td>~2.0-2.15 TH/s</td><td>~35-43W</td><td><span style="color:var(--blue)">~18 J/TH</span></td><td>12V</td><td>~2.55 TH/s</td></tr>
+          <tr><td>Hex</td><td>6x BM1366</td><td>~3.0-3.3 TH/s</td><td>~65-90W</td><td><span style="color:var(--orange)">~27-30 J/TH</span></td><td>12V</td><td>~4.0 TH/s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box box-tip"><div class="box-title">💰 Custo Mensal de Energia (a R$ 0,70/kWh)</div><p>Gamma / Supra / Ultra: <strong>~R$ 7-12/mês</strong> &nbsp;|&nbsp; GT: ~R$ 18-22/mês &nbsp;|&nbsp; Hex: ~R$ 33-45/mês</p></div>
+    <div class="box box-warn"><div class="box-title">⚠️ Alimentação</div><p>Modelos 5V usam conector barril 5.5×2.1mm. Modelos 12V (GT, Hex) usam <strong>XT30</strong>. USB-C é apenas para flash/debug!</p></div>
+  </div>
 </section>
 
 <!-- ===== FIRMWARE ===== -->
-<section id="firmware" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">🛠️</span> Atualização de Firmware</h2>
-        <p class="section-desc">Mantenha seu Bitaxe atualizado com a versão mais recente do ESP-Miner / AxeOS para obter as melhores funcionalidades e segurança.</p>
-
-        <div class="badge-container" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
-            <span class="badge" style="background:rgba(50,205,50,0.12);border-color:rgba(50,205,50,0.2);color:var(--green);padding:6px 14px;border-radius:20px;font-size:0.85em;">✅ Stratum V2</span>
-            <span class="badge" style="background:rgba(50,205,50,0.12);border-color:rgba(50,205,50,0.2);color:var(--green);padding:6px 14px;border-radius:20px;font-size:0.85em;">✅ mDNS (bitaxe.local)</span>
-            <span class="badge" style="background:rgba(50,205,50,0.12);border-color:rgba(50,205,50,0.2);color:var(--green);padding:6px 14px;border-radius:20px;font-size:0.85em;">✅ Fan Control</span>
-            <span class="badge" style="background:rgba(50,205,50,0.12);border-color:rgba(50,205,50,0.2);color:var(--green);padding:6px 14px;border-radius:20px;font-size:0.85em;">✅ Dashboard Novo</span>
-            <span class="badge" style="background:rgba(50,205,50,0.12);border-color:rgba(50,205,50,0.2);color:var(--green);padding:6px 14px;border-radius:20px;font-size:0.85em;">✅ Swarm Management</span>
-        </div>
-
-        <h3>📥 Método A — OTA pela Web (Recomendado) ⭐</h3>
-        <p>Atualização sem fio, preserva todas as configurações.</p>
-        <div class="steps-list">
-            <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-content">Acesse o dashboard do Bitaxe: <strong>http://&lt;IP_DO_BITAXE&gt;</strong> ou <strong>http://bitaxe.local</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-content">Vá em <strong>Settings → Update Firmware</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-content">Clique em <strong>Check Latest Releases</strong> ou baixe manualmente o <code>esp-miner.bin</code></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-content">Selecione o arquivo e clique em <strong>Upload</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">5</div>
-                <div class="step-content">Aguarde ~60 segundos — o Bitaxe reinicia sozinho ✅</div>
-            </div>
-        </div>
-
-        <div class="box box-tip">
-            <div class="box-title">💡 Arquivo correto para seu modelo</div>
-            <p>Baixe o arquivo com o número do seu modelo: <code>esp-miner-factory-<strong>601</strong>-v2.14.x.bin</code> para Gamma 601, <code>-401</code> para Supra, etc.</p>
-        </div>
-
-        <h3 style="margin-top: 30px;">📥 Método B — Bitaxe Web Flasher (USB Recovery)</h3>
-        <p>Para recuperação (unbrick) ou primeira configuração via USB.</p>
-        <div class="steps-list">
-            <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-content">Conecte o USB-C ao PC (cabo de <strong>dados</strong>, não só de carga)</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-content">Coloque em modo bootloader: segure <strong>Boot</strong>, aperte <strong>Reset</strong>, solte <strong>Boot</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-content">Abra o <a href="https://bitaxe.org/flash" target="_blank" style="color:var(--btc);">Bitaxe Web Flasher</a> no <strong>Chrome</strong> ou <strong>Edge</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-content">Conecte, selecione o modelo correto e clique <strong>Start Flashing</strong></div>
-            </div>
-        </div>
-        <div class="box box-warning">
-            <div class="box-title">⚠️ Atenção</div>
-            <p>Flash via USB <strong>apaga todas as configurações</strong> (Wi-Fi, pool, wallet). Anote seus dados antes!</p>
-        </div>
-
-        <h3 style="margin-top: 30px;">📥 Método C — bitaxetool (CLI)</h3>
-        <p>Para usuários avançados que preferem linha de comando.</p>
-        <div class="code-block">
-            <span class="comment"># Instalar versão compatível</span><br>
-            <span class="prompt">$</span> pip install bitaxetool==0.6.1<br><br>
-            <span class="comment"># Flash completo (exemplo para Gamma 601)</span><br>
-            <span class="prompt">$</span> bitaxetool --port COM6 --config ./config-601.cvs --firmware ./esp-miner-factory-601-v2.14.0.bin
-        </div>
-        <div class="box box-warning">
-            <div class="box-title">⚠️ Compatibilidade</div>
-            <p>bitaxetool NÃO funciona com esptool v5.x! Use a versão 0.6.1 (travada com esptool v4.9.0).</p>
-        </div>
+<section id="firmware" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">🛠️ Atualização de Firmware</h2>
+      <p class="section-desc">Mantenha seu Bitaxe atualizado com a versão mais recente do ESP-Miner / AxeOS para obter as melhores funcionalidades e segurança.</p>
     </div>
+    <div class="badge-row">
+      <span>✅ Stratum V2</span><span>✅ mDNS (bitaxe.local)</span><span>✅ Fan Control</span><span>✅ Dashboard</span><span>✅ Swarm</span>
+    </div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">📥 Método A — OTA pela Web <span style="font-weight:400;color:var(--green)">⭐ Recomendado</span></h3>
+    <p style="color:var(--text2);margin-bottom:12px;">Atualização sem fio — preserva todas as configurações.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Acesse o dashboard: <strong>http://&lt;IP_DO_BITAXE&gt;</strong> ou <strong>http://bitaxe.local</strong></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Vá em <strong>Settings → Update Firmware</strong></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content">Clique em <strong>Check Latest Releases</strong> ou baixe o <code style="font-family:var(--mono);font-size:0.85rem;">esp-miner.bin</code></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">Selecione o arquivo e clique <strong>Upload</strong></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">Aguarde ~60s — o Bitaxe reinicia sozinho ✅</div></div>
+    </div>
+    <div class="box box-tip"><div class="box-title">💡 Arquivo correto</div><p>Baixe com o número do seu modelo: <code style="font-family:var(--mono);font-size:0.85rem;">esp-miner-factory-<strong>601</strong>-v2.14.x.bin</code> (Gamma 601), <code style="font-family:var(--mono);font-size:0.85rem;">-401</code> (Supra), etc.</p></div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">📥 Método B — Web Flasher (USB Recovery)</h3>
+    <p style="color:var(--text2);margin-bottom:12px;">Para recuperação (unbrick) ou primeira configuração.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Conecte o USB-C ao PC (cabo de <strong>dados</strong>)</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Modo bootloader: segure <strong>Boot</strong> + aperte <strong>Reset</strong> + solte <strong>Boot</strong></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content">Abra o <a href="https://bitaxe.org/flash" target="_blank" style="color:var(--btc);">Bitaxe Web Flasher</a> no <strong>Chrome</strong> ou <strong>Edge</strong></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">Conecte, selecione o modelo e clique <strong>Start Flashing</strong></div></div>
+    </div>
+    <div class="box box-warn"><div class="box-title">⚠️ Atenção</div><p>Flash USB <strong>apaga todas as configurações</strong> (Wi-Fi, pool, wallet). Anote seus dados antes!</p></div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">📥 Método C — bitaxetool (CLI)</h3>
+    <div class="code">
+      <span class="c"># Instalar versão compatível</span><br>
+      <span class="p">$</span> pip install bitaxetool==0.6.1<br><br>
+      <span class="c"># Flash Gamma 601</span><br>
+      <span class="p">$</span> bitaxetool --port COM6 --config ./config-601.cvs --firmware ./esp-miner-factory-601-v2.14.0.bin
+    </div>
+    <div class="box box-warn"><div class="box-title">⚠️ Compatibilidade</div><p>bitaxetool NÃO funciona com esptool v5.x! Use a versão 0.6.1 (travada com esptool v4.9.0).</p></div>
+  </div>
 </section>
 
 <!-- ===== OVERCLOCK ===== -->
-<section id="overclock" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">🔥</span> Overclock Seguro</h2>
-        <p class="section-desc">Aumente o desempenho do seu Bitaxe com segurança. Siga as etapas e respeite os limites térmicos.</p>
-
-        <h3>🔓 Destravando as Configurações OC</h3>
-        <p>No AxeOS, as opções de frequência e voltagem vêm ocultas por padrão. Para ativar:</p>
-        <div class="code-block">
-            <span class="comment"># Adicione ?oc no final da URL de Settings</span><br>
-            http://&lt;IP_DO_BITAXE&gt;/settings<strong>?oc</strong>
-        </div>
-
-        <h3 style="margin-top: 30px;">🌡️ Limites Térmicos</h3>
-        <div class="temp-bar">
-            <span class="temp-seg temp-g">✅ 45-55°C Confortável</span>
-            <span class="temp-seg temp-y">⚠️ 55-65°C Aceitável</span>
-            <span class="temp-seg temp-o">🔶 65-70°C Atenção</span>
-            <span class="temp-seg temp-r">🔴 70-75°C Throttling</span>
-            <span class="temp-seg temp-dr">☠️ 75°C+ PERIGO</span>
-        </div>
-
-        <div class="box box-warning">
-            <div class="box-title">☠️ Regras de Ouro da Voltagem</div>
-            <p>✅ Máximo seguro 24/7: <strong>1250 mV</strong><br>⚠️ Limite absoluto: <strong>1300 mV</strong><br>☠️ Acima disso = risco de danificar o chip (electromigration)!</p>
-        </div>
-
-        <h3 style="margin-top: 30px;">🎯 Tabela de Overclock — Gamma 601 (BM1370)</h3>
-        <div class="oc-grid">
-            <div class="oc-card" style="border-left: 3px solid var(--green);">
-                <div class="oc-level" style="color:var(--green);">🌿 Stock</div>
-                <div class="oc-hash">1.0-1.2 TH/s</div>
-                <div class="oc-details">
-                    <div class="d"><div class="lbl">Freq</div><div class="val">400-525 MHz</div></div>
-                    <div class="d"><div class="lbl">Volt</div><div class="val">1050 mV</div></div>
-                    <div class="d"><div class="lbl">Temp</div><div class="val">~45°C</div></div>
-                </div>
-            </div>
-            <div class="oc-card" style="border-left: 3px solid var(--blue);">
-                <div class="oc-level" style="color:var(--blue);">✅ Seguro</div>
-                <div class="oc-hash">~1.3 TH/s</div>
-                <div class="oc-details">
-                    <div class="d"><div class="lbl">Freq</div><div class="val">600 MHz</div></div>
-                    <div class="d"><div class="lbl">Volt</div><div class="val">1150 mV</div></div>
-                    <div class="d"><div class="lbl">Temp</div><div class="val">~50°C</div></div>
-                </div>
-            </div>
-            <div class="oc-card" style="border-left: 3px solid var(--gold);">
-                <div class="oc-level" style="color:var(--gold);">👍 Bom</div>
-                <div class="oc-hash">~1.5 TH/s</div>
-                <div class="oc-details">
-                    <div class="d"><div class="lbl">Freq</div><div class="val">700 MHz</div></div>
-                    <div class="d"><div class="lbl">Volt</div><div class="val">1200 mV</div></div>
-                    <div class="d"><div class="lbl">Temp</div><div class="val">~55°C</div></div>
-                </div>
-            </div>
-            <div class="oc-card" style="border-left: 3px solid var(--orange);">
-                <div class="oc-level" style="color:var(--orange);">⚡ Avançado</div>
-                <div class="oc-hash">~1.6-1.7 TH/s</div>
-                <div class="oc-details">
-                    <div class="d"><div class="lbl">Freq</div><div class="val">800 MHz</div></div>
-                    <div class="d"><div class="lbl">Volt</div><div class="val">1250 mV</div></div>
-                    <div class="d"><div class="lbl">Temp</div><div class="val">~60°C</div></div>
-                </div>
-            </div>
-            <div class="oc-card" style="border-left: 3px solid var(--red);">
-                <div class="oc-level" style="color:var(--red);">🔥 Extremo*</div>
-                <div class="oc-hash">~1.8+ TH/s</div>
-                <div class="oc-details">
-                    <div class="d"><div class="lbl">Freq</div><div class="val">850-900 MHz</div></div>
-                    <div class="d"><div class="lbl">Volt</div><div class="val">1250-1300 mV</div></div>
-                    <div class="d"><div class="lbl">Temp</div><div class="val">~65°C</div></div>
-                </div>
-            </div>
-        </div>
-        <p class="text-small">*Extremo requer upgrades de cooling: heatsink pin-fin, pasta Kryonaut, heatsinks VRM e fonte de 50W+</p>
-
-        <h3 style="margin-top: 30px;">📈 Procedimento Passo a Passo</h3>
-        <div class="steps-list">
-            <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-content"><strong>Teste de Baseline (24h):</strong> Deixe rodando em stock. Anote hashrate, temperatura e erros.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-content"><strong>Aumente +25 MHz por vez:</strong> Suba a frequência em etapas de 25 MHz. Espere 15-20 min entre cada passo.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-content"><strong>Monitore:</strong> Erros &lt; 1-2% e temperatura estável = ✅. Queda de hashrate ou reboots = ❌ volte 25 MHz.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-content"><strong>Adicione voltagem (se necessário):</strong> Suba +25~50 mV, mas nunca ultrapasse 1300 mV.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">5</div>
-                <div class="step-content"><strong>Validação final (72h):</strong> Rode por 72 horas para confirmar estabilidade em diferentes temperaturas ambiente.</div>
-            </div>
-        </div>
-
-        <div class="box box-tip">
-            <div class="box-title">🎯 Recomendação para Iniciantes</div>
-            <p>Comece com <strong>600 MHz / 1150 mV</strong> — ganho de ~1.3 TH/s sem precisar trocar fonte ou cooling. Depois que pegar confiança, suba para 700 MHz com uma fonte Mean Well LRS-50-5.</p>
-        </div>
+<section id="overclock" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">🔥 Overclock Seguro</h2>
+      <p class="section-desc">Aumente o desempenho do seu Bitaxe com segurança. Siga as etapas e respeite os limites térmicos.</p>
     </div>
+
+    <h3 style="color:var(--btc);margin-bottom:12px;font-size:1.05rem;">🔓 Destravando Configurações OC</h3>
+    <p style="color:var(--text2);margin-bottom:12px;">Adicione <strong style="color:#fff;">?oc</strong> no final da URL de Settings:</p>
+    <div class="code">http://&lt;IP_DO_BITAXE&gt;/settings<strong style="color:var(--btc);">?oc</strong></div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">🌡️ Limites Térmicos</h3>
+    <div class="temp-bar">
+      <span class="temp-s t-g">✅ 45-55°C</span>
+      <span class="temp-s t-y">⚠️ 55-65°C</span>
+      <span class="temp-s t-o">🔶 65-70°C</span>
+      <span class="temp-s t-r">🔴 70-75°C</span>
+      <span class="temp-s t-dr">☠️ 75°C+</span>
+    </div>
+    <div class="box box-warn"><div class="box-title">☠️ Regras de Ouro da Voltagem</div><p>✅ Máximo 24/7: <strong>1250 mV</strong> &nbsp;|&nbsp; ⚠️ Limite absoluto: <strong>1300 mV</strong> &nbsp;|&nbsp; ☠️ Acima disso = risco de danificar o chip!</p></div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">🎯 Tabela — Gamma 601 (BM1370)</h3>
+    <div class="oc-grid">
+      <div class="oc-card" style="border-left:3px solid var(--green)"><div class="oc-level" style="color:var(--green)">🌿 Stock</div><div class="oc-hash">1.0-1.2 TH/s</div><div class="oc-details"><div><div class="lbl">Freq</div><div class="val">400-525 MHz</div></div><div><div class="lbl">Volt</div><div class="val">1050 mV</div></div><div><div class="lbl">Temp</div><div class="val">~45°C</div></div></div></div>
+      <div class="oc-card" style="border-left:3px solid var(--blue)"><div class="oc-level" style="color:var(--blue)">✅ Seguro</div><div class="oc-hash">~1.3 TH/s</div><div class="oc-details"><div><div class="lbl">Freq</div><div class="val">600 MHz</div></div><div><div class="lbl">Volt</div><div class="val">1150 mV</div></div><div><div class="lbl">Temp</div><div class="val">~50°C</div></div></div></div>
+      <div class="oc-card" style="border-left:3px solid var(--gold)"><div class="oc-level" style="color:var(--gold)">👍 Bom</div><div class="oc-hash">~1.5 TH/s</div><div class="oc-details"><div><div class="lbl">Freq</div><div class="val">700 MHz</div></div><div><div class="lbl">Volt</div><div class="val">1200 mV</div></div><div><div class="lbl">Temp</div><div class="val">~55°C</div></div></div></div>
+      <div class="oc-card" style="border-left:3px solid var(--orange)"><div class="oc-level" style="color:var(--orange)">⚡ Avançado</div><div class="oc-hash">~1.6-1.7 TH/s</div><div class="oc-details"><div><div class="lbl">Freq</div><div class="val">800 MHz</div></div><div><div class="lbl">Volt</div><div class="val">1250 mV</div></div><div><div class="lbl">Temp</div><div class="val">~60°C</div></div></div></div>
+      <div class="oc-card" style="border-left:3px solid var(--red)"><div class="oc-level" style="color:var(--red)">🔥 Extremo*</div><div class="oc-hash">~1.8+ TH/s</div><div class="oc-details"><div><div class="lbl">Freq</div><div class="val">850-900 MHz</div></div><div><div class="lbl">Volt</div><div class="val">1250-1300 mV</div></div><div><div class="lbl">Temp</div><div class="val">~65°C</div></div></div></div>
+    </div>
+    <p class="text-small" style="color:var(--text3);font-size:0.8rem;margin-top:4px;">*Extremo requer heatsink pin-fin, pasta Kryonaut, heatsinks VRM e fonte 50W+</p>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">📈 Procedimento</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Baseline (24h):</strong> Rode em stock. Anote hashrate, temperatura e erros.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Aumente +25 MHz</strong> por vez. Espere 15-20 min entre cada passo.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Monitore:</strong> Erros &lt; 2% e temp estável = ✅. Queda/reboot = ❌ volte 25 MHz.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Voltagem:</strong> Suba +25~50 mV se necessário. Nunca &gt; 1300 mV!</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Validação (72h):</strong> Rode 72h para confirmar estabilidade.</div></div>
+    </div>
+    <div class="box box-tip"><div class="box-title">🎯 Recomendação Inicial</div><p><strong>600 MHz / 1150 mV</strong> → ~1.3 TH/s sem trocar fonte ou cooling. Depois suba para 700 MHz com fonte Mean Well LRS-50-5.</p></div>
+  </div>
 </section>
 
 <!-- ===== POOLS ===== -->
-<section id="pools" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">🌐</span> Pools de Mineração</h2>
-        <p class="section-desc">Configure seu Bitaxe para minerar em pool ou solo. Para dispositivos de baixo hashrate como Bitaxe, a mineração solo (CKPool) funciona como um bilhete de loteria.</p>
-
-        <h3>⚙️ Configuração Básica</h3>
-        <div class="steps-list">
-            <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-content">Acesse o dashboard: <strong>http://&lt;IP_DO_BITAXE&gt;</strong> → <strong>Settings</strong></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-content">Preencha <strong>Stratum URL</strong> e <strong>Stratum Port</strong> do pool escolhido</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-content">No campo <strong>Username</strong>, coloque seu endereço Bitcoin (começa com <code>bc1...</code>)</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-content"><strong>Password:</strong> deixe em branco ou coloque <code>x</code></div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">5</div>
-                <div class="step-content">Salve e reinicie. Pronto! ✅</div>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 30px;">🏊 Pools Recomendados</h3>
-        <div class="pools-grid">
-
-            <div class="pool-card">
-                <div class="pool-name">CKPool</div>
-                <div class="pool-type">Mineração Solo (Loteria)</div>
-                <div class="pool-url">solo.ckpool.org:3333</div>
-                <div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, você fica com o block reward inteiro (3.125 BTC). Taxa de 2% apenas se encontrar bloco.</div>
-                <span class="pool-badge solo">🎯 Solo</span>
-            </div>
-
-            <div class="pool-card">
-                <div class="pool-name">OCEAN</div>
-                <div class="pool-type">Pool Descentralizado</div>
-                <div class="pool-url">stratum-v1.ocean.xyz:4444</div>
-                <div class="pool-desc">Pool cypherpunk fundado por Luke Dashjr e Jack Dorsey. Não-custodial, pagamentos diretos via coinbase. Suporta SV2.</div>
-                <span class="pool-badge solo">🔐 Descentralizado</span>
-            </div>
-
-            <div class="pool-card">
-                <div class="pool-name">ViaBTC</div>
-                <div class="pool-type">Pool Tradicional</div>
-                <div class="pool-url">Regional (via site)</div>
-                <div class="pool-desc">Pool grande com modos PPS+, PPLNS e SOLO. Requer criar conta no site. Taxa ~2-4%.</div>
-                <span class="pool-badge pool">🏊 Pool</span>
-            </div>
-
-            <div class="pool-card">
-                <div class="pool-name">F2Pool</div>
-                <div class="pool-type">Pool Tradicional</div>
-                <div class="pool-url">btc.f2pool.com:3333</div>
-                <div class="pool-desc">Um dos pools mais antigos do Bitcoin. FPPS+ com taxa ~2.5%. Requer cadastro.</div>
-                <span class="pool-badge pool">🏊 Pool</span>
-            </div>
-
-        </div>
-
-        <h3 style="margin-top: 30px;">🔄 Stratum V2</h3>
-        <p>O Bitaxe suporta o novo protocolo <strong>Stratum V2</strong>, que traz mais eficiência, segurança e melhor comunicação com o pool.</p>
-        <div class="code-block">
-            <span class="comment"># Exemplo de configuração SV2 via API</span><br>
-            curl -X PUT http://&lt;BITAXE-IP&gt;/api/system/pools/1 \<br>
-            &nbsp;&nbsp;-H "Content-Type: application/json" \<br>
-            &nbsp;&nbsp;-d '{<br>
-            &nbsp;&nbsp;&nbsp;"stratumProtocol": "SV2",<br>
-            &nbsp;&nbsp;&nbsp;"stratumURL": "v2.srtm.ocean.xyz",<br>
-            &nbsp;&nbsp;&nbsp;"stratumPort": 3334,<br>
-            &nbsp;&nbsp;&nbsp;"stratumUser": "&lt;SUA_WALLET&gt;",<br>
-            &nbsp;&nbsp;&nbsp;"stratumPassword": "x"<br>
-            &nbsp;&nbsp;}'
-        </div>
-
-        <div class="box box-tip">
-            <div class="box-title">💡 Para Bitaxe, recomendamos</div>
-            <p><strong>CKPool Solo</strong> — como o hashrate é baixo, a mineração em pool tradicional renderia centavos por mês. No solo, você tem chance de acertar um bloco e ganhar 3.125 BTC de uma vez! 🎰</p>
-        </div>
+<section id="pools" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">🌐 Pools de Mineração</h2>
+      <p class="section-desc">Configure seu Bitaxe para minerar em pool ou solo. Para hashrate baixo, a mineração solo (CKPool) funciona como um bilhete de loteria.</p>
     </div>
+
+    <h3 style="color:var(--btc);margin-bottom:12px;font-size:1.05rem;">⚙️ Configuração Básica</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Acesse <strong>Settings</strong> no dashboard do Bitaxe</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Preencha <strong>Stratum URL</strong> e <strong>Port</strong> do pool</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Username:</strong> seu endereço Bitcoin (bc1...)</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Password:</strong> deixe em branco ou <code style="font-family:var(--mono)">x</code></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">Salve e reinicie ✅</div></div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">🏊 Pools Recomendados</h3>
+    <div class="pools-grid">
+      <div class="pool-card"><div class="pool-name">CKPool</div><div class="pool-type">Mineração Solo (Loteria)</div><div class="pool-url">solo.ckpool.org:3333</div><div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, fica com 3.125 BTC. Taxa de 2% apenas se achar bloco.</div><span class="pool-badge solo">🎯 Solo</span></div>
+      <div class="pool-card"><div class="pool-name">OCEAN</div><div class="pool-type">Pool Descentralizado</div><div class="pool-url">stratum-v1.ocean.xyz:4444</div><div class="pool-desc">Pool cypherpunk de Luke Dashjr e Jack Dorsey. Não-custodial, suporta SV2.</div><span class="pool-badge solo">🔐 Descentralizado</span></div>
+      <div class="pool-card"><div class="pool-name">ViaBTC</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">Regional (via site)</div><div class="pool-desc">PPS+, PPLNS e SOLO. Requer conta. Taxa ~2-4%.</div><span class="pool-badge pooled">🏊 Pool</span></div>
+      <div class="pool-card"><div class="pool-name">F2Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">btc.f2pool.com:3333</div><div class="pool-desc">Um dos pools mais antigos. FPPS+, taxa ~2.5%. Requer cadastro.</div><span class="pool-badge pooled">🏊 Pool</span></div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">🔄 Stratum V2</h3>
+    <p style="color:var(--text2);margin-bottom:12px;">O Bitaxe suporta o novo protocolo <strong>Stratum V2</strong> — mais eficiente e seguro.</p>
+    <div class="code">
+      <span class="c"># Configurar SV2 via API</span><br>
+      curl -X PUT http://&lt;BITAXE-IP&gt;/api/system/pools/1 \<br>
+      &nbsp;&nbsp;-H "Content-Type: application/json" \<br>
+      &nbsp;&nbsp;-d '{"stratumProtocol":"SV2","stratumURL":"v2.srtm.ocean.xyz","stratumPort":3334,"stratumUser":"&lt;SUA_WALLET&gt;","stratumPassword":"x"}'
+    </div>
+    <div class="box box-tip"><div class="box-title">💡 Recomendação</div><p>Para Bitaxe, <strong>CKPool Solo</strong> é a melhor pedida — chance de acertar um bloco e ganhar 3.125 BTC de uma vez! 🎰</p></div>
+  </div>
 </section>
 
 <!-- ===== API ===== -->
-<section id="api" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">📡</span> API do AxeOS</h2>
-        <p class="section-desc">O AxeOS expõe uma API RESTful completa para monitoramento e controle. Perfeito para criar dashboards e automações.</p>
-
-        <h3>📖 Endpoints Disponíveis</h3>
-        <div class="api-grid">
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/info</div>
-                <div class="api-desc">Informações completas do sistema (hashrate, temperatura, shares, etc.)</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/asic</div>
-                <div class="api-desc">Configurações do ASIC (modelo, frequência, voltagem)</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/statistics</div>
-                <div class="api-desc">Histórico de telemetria (requer logging ativado)</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/statistics/dashboard</div>
-                <div class="api-desc">Dados formatados para gráficos do dashboard</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/scoreboard</div>
-                <div class="api-desc">Top 20 shares de maior dificuldade</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/wifi/scan</div>
-                <div class="api-desc">Escaneia redes Wi-Fi disponíveis</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">GET</span>
-                <div class="api-path">/api/system/logs</div>
-                <div class="api-desc">Download dos logs do sistema</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method post">POST</span>
-                <div class="api-path">/api/system/restart</div>
-                <div class="api-desc">Reinicia o sistema</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method post">POST</span>
-                <div class="api-path">/api/system/pause</div>
-                <div class="api-desc">Pausa a mineração</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method post">POST</span>
-                <div class="api-path">/api/system/resume</div>
-                <div class="api-desc">Retoma a mineração</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method post">POST</span>
-                <div class="api-path">/api/system/OTA</div>
-                <div class="api-desc">Atualiza firmware via upload</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method patch">PATCH</span>
-                <div class="api-path">/api/system</div>
-                <div class="api-desc">Atualiza configurações (fanspeed, frequência, etc.)</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method put">PUT</span>
-                <div class="api-path">/api/system/pools/{slot}</div>
-                <div class="api-desc">Configura pool (SV1 ou SV2)</div>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 30px;">🔌 WebSockets</h3>
-        <div class="api-grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="api-card">
-                <span class="api-method get">WS</span>
-                <div class="api-path">/api/ws</div>
-                <div class="api-desc">Stream de logs em tempo real</div>
-            </div>
-            <div class="api-card">
-                <span class="api-method get">WS</span>
-                <div class="api-path">/api/ws/live</div>
-                <div class="api-desc">Stream JSON de telemetria ao vivo</div>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 30px;">📋 Exemplo de Uso</h3>
-        <div class="code-block">
-            <span class="comment"># Obter informações do sistema</span><br>
-            <span class="prompt">$</span> curl http://&lt;BITAXE-IP&gt;/api/system/info<br><br>
-            <span class="comment"># Exemplo de resposta (parcial)</span><br>
-            {<br>
-            &nbsp;&nbsp;"hashRate": "1.2 TH/s",<br>
-            &nbsp;&nbsp;"temp": 52,<br>
-            &nbsp;&nbsp;"power": 18.5,<br>
-            &nbsp;&nbsp;"sharesAccepted": 42,<br>
-            &nbsp;&nbsp;"bestDifficulty": "2.3M",<br>
-            &nbsp;&nbsp;"asicModel": "BM1370"<br>
-            }
-        </div>
+<section id="api" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">📡 API do AxeOS</h2>
+      <p class="section-desc">O AxeOS expõe uma API RESTful completa para monitoramento e controle. Perfeito para criar dashboards e automações.</p>
     </div>
+
+    <div class="api-grid">
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/info</div><div class="api-desc">Informações completas (hashrate, temp, shares)</div></div>
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/asic</div><div class="api-desc">Configurações do ASIC</div></div>
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/statistics</div><div class="api-desc">Histórico de telemetria</div></div>
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/scoreboard</div><div class="api-desc">Top 20 shares mais difíceis</div></div>
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/wifi/scan</div><div class="api-desc">Escaneia redes Wi-Fi</div></div>
+      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/logs</div><div class="api-desc">Download dos logs</div></div>
+      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/restart</div><div class="api-desc">Reinicia o sistema</div></div>
+      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/pause</div><div class="api-desc">Pausa a mineração</div></div>
+      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/resume</div><div class="api-desc">Retoma a mineração</div></div>
+      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/OTA</div><div class="api-desc">Atualiza firmware</div></div>
+      <div class="api-card"><span class="api-method m-patch">PATCH</span><div class="api-path">/api/system</div><div class="api-desc">Atualiza configurações</div></div>
+      <div class="api-card"><span class="api-method m-put">PUT</span><div class="api-path">/api/system/pools/{slot}</div><div class="api-desc">Configura pool (SV1/SV2)</div></div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:20px 0 12px;font-size:1.05rem;">🔌 WebSockets</h3>
+    <div class="api-grid" style="grid-template-columns:1fr 1fr">
+      <div class="api-card"><span class="api-method m-get">WS</span><div class="api-path">/api/ws</div><div class="api-desc">Stream de logs em tempo real</div></div>
+      <div class="api-card"><span class="api-method m-get">WS</span><div class="api-path">/api/ws/live</div><div class="api-desc">Stream JSON de telemetria ao vivo</div></div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">📋 Exemplo</h3>
+    <div class="code">
+      <span class="c"># Obter informações do sistema</span><br>
+      <span class="p">$</span> curl http://&lt;BITAXE-IP&gt;/api/system/info<br><br>
+      <span class="c"># Resposta</span><br>
+      {"hashRate":"1.2 TH/s","temp":52,"power":18.5,"sharesAccepted":42,"bestDifficulty":"2.3M","asicModel":"BM1370"}
+    </div>
+  </div>
 </section>
 
 <!-- ===== TROUBLESHOOTING ===== -->
-<section id="troubleshooting" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">🚨</span> Troubleshooting</h2>
-        <p class="section-desc">Problemas comuns e soluções rápidas para seu Bitaxe.</p>
-
-        <div class="trouble-grid">
-            <div class="trouble-item">
-                <div class="prob">🔄 Reboots aleatórios</div>
-                <div class="cause">Causa: Fonte insuficiente</div>
-                <div class="soln">✅ Troque para fonte de 50W (Mean Well LRS-50-5)</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">🔥 VRM &gt; 90°C</div>
-                <div class="cause">Causa: MOSFETs sem dissipador</div>
-                <div class="soln">✅ Adicione heatsinks nos VRMs</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">❌ Muitos shares rejeitados</div>
-                <div class="cause">Causa: Voltagem baixa p/ frequência</div>
-                <div class="soln">✅ Aumente +25mV ou diminua -25MHz</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">📉 Hashrate oscilando</div>
-                <div class="cause">Causa: Throttling térmico</div>
-                <div class="soln">✅ Melhore o cooling (heatsink, pasta, fan)</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">⚙️ Não aparece ?oc</div>
-                <div class="cause">Causa: URL errada</div>
-                <div class="soln">✅ Digite /settings?oc na barra de endereço</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">🌐 Não acha o Bitaxe</div>
-                <div class="cause">Causa: Roteador bloqueando</div>
-                <div class="soln">✅ Desligue AiProtection/IoT Protection</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">🔌 USB-C não reconhece</div>
-                <div class="cause">Causa: Problema conhecido</div>
-                <div class="soln">✅ Use adaptador USB-A para USB-C</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">🥶 Bitaxe muito quente</div>
-                <div class="cause">Causa: Pasta térmica original fraca</div>
-                <div class="soln">✅ Troque por Thermal Grizzly Kryonaut</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">📡 Sem hash após configurar</div>
-                <div class="cause">Causa: Pool configurado errado</div>
-                <div class="soln">✅ Verifique URL, porta e wallet do pool</div>
-            </div>
-            <div class="trouble-item">
-                <div class="prob">📱 Não consigo acessar o IP</div>
-                <div class="cause">Causa: Bitaxe em rede diferente</div>
-                <div class="soln">✅ Use o app Fing para descobrir o IP</div>
-            </div>
-        </div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">🚨 Troubleshooting</h2>
+      <p class="section-desc">Problemas comuns e soluções rápidas para seu Bitaxe.</p>
     </div>
+    <div class="trouble-grid">
+      <div class="trouble-item"><div class="prob">🔄 Reboots aleatórios</div><div class="cause">Causa: Fonte insuficiente</div><div class="soln">✅ Troque para fonte 50W (Mean Well LRS-50-5)</div></div>
+      <div class="trouble-item"><div class="prob">🔥 VRM &gt; 90°C</div><div class="cause">Causa: MOSFETs sem dissipador</div><div class="soln">✅ Adicione heatsinks nos VRMs</div></div>
+      <div class="trouble-item"><div class="prob">❌ Muitos shares rejeitados</div><div class="cause">Causa: Voltagem baixa p/ frequência</div><div class="soln">✅ +25mV ou -25MHz</div></div>
+      <div class="trouble-item"><div class="prob">📉 Hashrate oscilando</div><div class="cause">Causa: Throttling térmico</div><div class="soln">✅ Melhore o cooling</div></div>
+      <div class="trouble-item"><div class="prob">⚙️ Não aparece ?oc</div><div class="cause">Causa: URL errada</div><div class="soln">✅ Digite /settings?oc na barra</div></div>
+      <div class="trouble-item"><div class="prob">🌐 Não acha o Bitaxe</div><div class="cause">Causa: Roteador bloqueando</div><div class="soln">✅ Desligue AiProtection/IoT Protection</div></div>
+      <div class="trouble-item"><div class="prob">🔌 USB-C não reconhece</div><div class="cause">Causa: Problema conhecido</div><div class="soln">✅ Use adaptador USB-A → USB-C</div></div>
+      <div class="trouble-item"><div class="prob">🥵 Bitaxe muito quente</div><div class="cause">Causa: Pasta térmica original fraca</div><div class="soln">✅ Troque por Thermal Grizzly Kryonaut</div></div>
+      <div class="trouble-item"><div class="prob">📡 Sem hash após configurar</div><div class="cause">Causa: Pool configurado errado</div><div class="soln">✅ Verifique URL, porta e wallet</div></div>
+      <div class="trouble-item"><div class="prob">📱 Não acho o IP</div><div class="cause">Causa: Bitaxe em rede diferente</div><div class="soln">✅ Use app Fing para descobrir</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== FAQ ===== -->
-<section id="faq" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">❓</span> Perguntas Frequentes</h2>
-        <p class="section-desc">As dúvidas mais comuns sobre Bitaxe.</p>
-
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-q">O que é Bitaxe? <span class="arrow">▼</span></div>
-                <div class="faq-a">Bitaxe é um minerador ASIC open-source de Bitcoin, do tamanho de uma xícara. Ele usa chips reciclados de Antminers e um ESP32-S3 para controlar tudo. Ideal para mineração solo (loteria) ou aprendizado.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Quanto um Bitaxe ganha por dia? <span class="arrow">▼</span></div>
-                <div class="faq-a">Com 1.2 TH/s (Gamma), em um pool tradicional você ganharia centavos por mês. Por isso a maioria usa <strong>mineração solo</strong> (CKPool) — cada bloco encontrado paga 3.125 BTC (~R$ 1 milhão+). É um bilhete de loteria com custo de ~R$ 10/mês de energia!</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Precisa de computador ligado 24h? <span class="arrow">▼</span></div>
-                <div class="faq-a">Não! O Bitaxe é independente — conecta via Wi-Fi direto no pool. O computador só é necessário para configuração inicial e atualizações de firmware.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Qual a diferença entre os modelos? <span class="arrow">▼</span></div>
-                <div class="faq-a">Cada modelo usa um ASIC diferente: Ultra (BM1366), Supra (BM1368), Gamma (BM1370). O Gamma é o mais potente e eficiente (~15 J/TH). O GT tem 2 chips BM1370. O Hex tem 6 chips BM1366. A compatibilidade de firmware varia, sempre baixe o arquivo correto para seu modelo (601, 401, etc).</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Bitaxe funciona com qualquer roteador? <span class="arrow">▼</span></div>
-                <div class="faq-a">A maioria funciona, mas roteadores ASUS e TP-Link podem bloquear mineração. Desligue <strong>AiProtection</strong> (ASUS) e <strong>IoT Protection</strong> (TP-Link) se tiver problemas.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Overclock danifica o Bitaxe? <span class="arrow">▼</span></div>
-                <div class="faq-a">Overclock moderado (até 1250 mV e 65°C) é seguro para uso 24/7. O risco aumenta acima de 1300 mV (electromigration) ou 70°C (degradação térmica). Siga as etapas do guia de overclock com paciência.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Qual fonte usar? <span class="arrow">▼</span></div>
-                <div class="faq-a">Modelos 5V (Gamma, Supra, Ultra): fonte 5V / 6A+ (30W+), ex: Mean Well LRS-50-5. Modelos 12V (GT, Hex): fonte 12V / 10A+ (120W+) com conector XT30. A porta USB-C é apenas para dados/flash.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Como faço para atualizar o firmware? <span class="arrow">▼</span></div>
-                <div class="faq-a">A maneira mais fácil é pelo próprio dashboard (OTA): Settings → Update Firmware → upload do arquivo .bin. Também pode usar o Bitaxe Web Flasher via USB (Chrome/Edge) ou o bitaxetool via terminal.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">O que é mDNS? <span class="arrow">▼</span></div>
-                <div class="faq-a">mDNS permite acessar seu Bitaxe pelo nome em vez do IP. Depois de configurar, use <strong>http://bitaxe.local</strong> no navegador. Muito útil se o IP mudar!</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Posso minerar outras criptomoedas? <span class="arrow">▼</span></div>
-                <div class="faq-a">O Bitaxe minerada apenas SHA-256 (Bitcoin, Bitcoin Cash, Bitcoin SV). Não minera Ethereum, Litecoin ou outras moedas com algoritmos diferentes.</div>
-            </div>
-        </div>
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">❓ Perguntas Frequentes</h2>
+      <p class="section-desc">As dúvidas mais comuns sobre Bitaxe.</p>
     </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">O que é Bitaxe? <span class="arrow">▼</span></div><div class="faq-a">Bitaxe é um minerador ASIC open-source de Bitcoin, do tamanho de uma xícara. Usa chips reciclados de Antminers e um ESP32-S3. Ideal para mineração solo (loteria) ou aprendizado. Conecta via Wi-Fi direto no pool — não precisa de PC ligado!</div></div>
+      <div class="faq-item"><div class="faq-q">Quanto um Bitaxe ganha por dia? <span class="arrow">▼</span></div><div class="faq-a">Com 1.2 TH/s (Gamma), em pool tradicional seriam centavos por mês. Por isso a maioria usa <strong>mineração solo</strong> (CKPool) — cada bloco paga 3.125 BTC (~R$ 1 milhão+). É um bilhete de loteria com custo de ~R$ 10/mês de energia!</div></div>
+      <div class="faq-item"><div class="faq-q">Precisa de computador ligado 24h? <span class="arrow">▼</span></div><div class="faq-a">Não! O Bitaxe é independente — conecta via Wi-Fi direto no pool. O computador só é necessário para configuração inicial e atualizações de firmware.</div></div>
+      <div class="faq-item"><div class="faq-q">Qual a diferença entre os modelos? <span class="arrow">▼</span></div><div class="faq-a">Cada modelo usa um ASIC diferente: Ultra (BM1366), Supra (BM1368), Gamma (BM1370). O Gamma é o mais eficiente (~15 J/TH). O GT tem 2 chips BM1370. O Hex tem 6 chips BM1366. Sempre baixe o firmware correto para seu modelo (601, 401, etc).</div></div>
+      <div class="faq-item"><div class="faq-q">Bitaxe funciona com qualquer roteador? <span class="arrow">▼</span></div><div class="faq-a">A maioria funciona, mas roteadores ASUS e TP-Link podem bloquear mineração. Desligue <strong>AiProtection</strong> (ASUS) e <strong>IoT Protection</strong> (TP-Link) se tiver problemas.</div></div>
+      <div class="faq-item"><div class="faq-q">Overclock danifica o Bitaxe? <span class="arrow">▼</span></div><div class="faq-a">Overclock moderado (até 1250 mV e 65°C) é seguro 24/7. Risco aumenta acima de 1300 mV (electromigration) ou 70°C. Siga o guia com paciência e respeite os limites térmicos.</div></div>
+      <div class="faq-item"><div class="faq-q">Qual fonte usar? <span class="arrow">▼</span></div><div class="faq-a">Modelos 5V: fonte 5V / 6A+ (30W+), ex: Mean Well LRS-50-5. Modelos 12V (GT, Hex): fonte 12V / 10A+ com XT30. USB-C é apenas para dados/flash, não alimenta o Bitaxe!</div></div>
+      <div class="faq-item"><div class="faq-q">Como atualizar o firmware? <span class="arrow">▼</span></div><div class="faq-a">Pelo dashboard (OTA): Settings → Update Firmware → upload do .bin. Ou use o Bitaxe Web Flasher via USB (Chrome/Edge). Ou bitaxetool via terminal.</div></div>
+      <div class="faq-item"><div class="faq-q">O que é mDNS? <span class="arrow">▼</span></div><div class="faq-a">Permite acessar pelo nome em vez do IP. Use <strong>http://bitaxe.local</strong> no navegador. Muito útil se o IP mudar!</div></div>
+      <div class="faq-item"><div class="faq-q">Posso minerar outras moedas? <span class="arrow">▼</span></div><div class="faq-a">O Bitaxe minera apenas SHA-256 (Bitcoin, Bitcoin Cash, Bitcoin SV). Não minera Ethereum, Litecoin ou outras moedas.</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== LINKS ===== -->
-<section id="links" class="section-padding">
-    <div class="container">
-        <h2 class="section-title"><span class="icon">📚</span> Links Úteis</h2>
-        <p class="section-desc">Recursos oficiais e comunidades para se aprofundar.</p>
-
-        <div class="links-grid">
-            <a href="https://github.com/bitaxeorg/ESP-Miner/releases" target="_blank" class="link-card">
-                <div class="link-title">📦 ESP-Miner Releases</div>
-                <div class="link-desc">Baixar firmware mais recente</div>
-            </a>
-            <a href="https://github.com/bitaxeorg/bitaxegamma" target="_blank" class="link-card">
-                <div class="link-title">🔧 Bitaxe Gamma Hardware</div>
-                <div class="link-desc">Repositório oficial do hardware</div>
-            </a>
-            <a href="https://bitaxe.org/flash" target="_blank" class="link-card">
-                <div class="link-title">🌐 Bitaxe Web Flasher</div>
-                <div class="link-desc">Flash via navegador</div>
-            </a>
-            <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card">
-                <div class="link-title">📖 D-Central Guide</div>
-                <div class="link-desc">Guia de firmware (inglês)</div>
-            </a>
-            <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card">
-                <div class="link-title">📖 AxeOS Guide</div>
-                <div class="link-desc">Guia do dashboard AxeOS</div>
-            </a>
-            <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card">
-                <div class="link-title">🔥 Overclock Guide</div>
-                <div class="link-desc">Guia de overclock D-Central</div>
-            </a>
-            <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card">
-                <div class="link-title">🪓 Miner Miner (Shesh)</div>
-                <div class="link-desc">Dashboard animado do shesh</div>
-            </a>
-            <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card">
-                <div class="link-title">🎯 Overclock Gamma</div>
-                <div class="link-desc">Guia específico Gamma 601</div>
-            </a>
-            <a href="https://bitaxe.org" target="_blank" class="link-card">
-                <div class="link-title">🪓 Bitaxe.org</div>
-                <div class="link-desc">Site oficial do projeto</div>
-            </a>
-            <a href="https://github.com/bitaxeorg/ESP-Miner" target="_blank" class="link-card">
-                <div class="link-title">💻 ESP-Miner GitHub</div>
-                <div class="link-desc">Código fonte do firmware</div>
-            </a>
-            <a href="https://osmu.org" target="_blank" class="link-card">
-                <div class="link-title">🏛️ OSMU</div>
-                <div class="link-desc">Open Source Mining United</div>
-            </a>
-            <a href="https://t.me/bitaxe" target="_blank" class="link-card">
-                <div class="link-title">💬 Telegram Bitaxe</div>
-                <div class="link-desc">Comunidade global no Telegram</div>
-            </a>
-        </div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">📚 Links Úteis</h2>
+      <p class="section-desc">Recursos oficiais e comunidades para se aprofundar.</p>
     </div>
+    <div class="links-grid">
+      <a href="https://github.com/bitaxeorg/ESP-Miner/releases" target="_blank" class="link-card"><div class="link-title">📦 Firmware Releases</div><div class="link-desc">Baixar última versão</div></a>
+      <a href="https://github.com/bitaxeorg/bitaxegamma" target="_blank" class="link-card"><div class="link-title">🔧 Gamma Hardware</div><div class="link-desc">Repositório do hardware</div></a>
+      <a href="https://bitaxe.org/flash" target="_blank" class="link-card"><div class="link-title">🌐 Web Flasher</div><div class="link-desc">Flash via navegador</div></a>
+      <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card"><div class="link-title">📖 Guia D-Central</div><div class="link-desc">Firmware (inglês)</div></a>
+      <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card"><div class="link-title">📖 AxeOS Guide</div><div class="link-desc">Dashboard AxeOS</div></a>
+      <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card"><div class="link-title">🔥 Overclock Guide</div><div class="link-desc">Overclock D-Central</div></a>
+      <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card"><div class="link-title">🪓 Miner Miner</div><div class="link-desc">Dashboard do shesh</div></a>
+      <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card"><div class="link-title">🎯 OC Gamma</div><div class="link-desc">Overclock específico</div></a>
+      <a href="https://bitaxe.org" target="_blank" class="link-card"><div class="link-title">🪓 Bitaxe.org</div><div class="link-desc">Site oficial</div></a>
+      <a href="https://github.com/bitaxeorg/ESP-Miner" target="_blank" class="link-card"><div class="link-title">💻 Código Fonte</div><div class="link-desc">ESP-Miner no GitHub</div></a>
+      <a href="https://osmu.org" target="_blank" class="link-card"><div class="link-title">🏛️ OSMU</div><div class="link-desc">Open Source Mining</div></a>
+      <a href="https://t.me/bitaxe" target="_blank" class="link-card"><div class="link-title">💬 Telegram</div><div class="link-desc">Comunidade global</div></a>
+    </div>
+  </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    <div class="container">
-        <p style="font-size:1.2em;font-weight:700;color:var(--btc);margin-bottom:4px;">🪓 guidi bitaxeBrasil</p>
-        <p style="color:var(--text3);font-size:0.9em;margin-bottom:8px;">👤 Criado por <strong style="color:var(--btc);">guidi</strong> • <a href="https://github.com/johnnymacena950-cmd" style="color:var(--blue);text-decoration:none;" target="_blank">@johnnymacena950-cmd</a></p>
-        <p>O guia mais completo em português para mineradores Bitcoin com Bitaxe</p>
-        <div class="footer-links">
-            <a href="#modelos">Modelos</a>
-            <a href="#firmware">Firmware</a>
-            <a href="#overclock">Overclock</a>
-            <a href="#pools">Pools</a>
-            <a href="#api">API</a>
-            <a href="#faq">FAQ</a>
-        </div>
-        <p style="margin-top:12px;">Feito para a comunidade — um bloco de cada vez ⚡</p>
-        <p style="margin-top:4px;">Julho 2026 • <strong style="color:var(--btc);">guidi</strong> (<a href="https://github.com/johnnymacena950-cmd" style="color:var(--blue);">@johnnymacena950-cmd</a>) • <a href="https://github.com/bitaxeorg">bitaxeorg</a> • <a href="https://github.com/alexandersshen/bitaxe-miner-miner">alexandersshen</a></p>
+  <div class="container">
+    <div class="f-brand">🪓 guidi bitaxeBrasil</div>
+    <div class="f-author">👤 Criado por <strong style="color:var(--btc)">guidi</strong> · <a href="https://github.com/johnnymacena950-cmd" style="color:var(--blue);text-decoration:none;" target="_blank">@johnnymacena950-cmd</a></div>
+    <div class="f-nav">
+      <a href="#modelos">Modelos</a>
+      <a href="#firmware">Firmware</a>
+      <a href="#overclock">Overclock</a>
+      <a href="#pools">Pools</a>
+      <a href="#api">API</a>
+      <a href="#faq">FAQ</a>
     </div>
+    <p class="f-copy">Feito para a comunidade — um bloco de cada vez ⚡<br>
+    Julho 2026 · <strong style="color:var(--btc)">guidi</strong> · <a href="https://github.com/bitaxeorg">bitaxeorg</a> · <a href="https://github.com/alexandersshen/bitaxe-miner-miner">alexandersshen</a></p>
+  </div>
 </footer>
 
-<a href="#" class="scroll-top" id="scrollTop">↑</a>
+<a href="#" class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">↑</a>
 
 <script>
-    // FAQ Accordion
-    document.querySelectorAll('.faq-q').forEach(q => {
-        q.addEventListener('click', () => {
-            const answer = q.nextElementSibling;
-            const isOpen = answer.classList.contains('open');
-            document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-            document.querySelectorAll('.faq-q').forEach(h => h.classList.remove('active'));
-            if (!isOpen) {
-                answer.classList.add('open');
-                q.classList.add('active');
-            }
-        });
-    });
+// === FAQ ACCORDION ===
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const a = q.nextElementSibling;
+    const isOpen = a.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(x => x.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(x => x.classList.remove('active'));
+    if (!isOpen) { a.classList.add('open'); q.classList.add('active'); }
+  });
+});
+// Open first FAQ by default
+const firstQ = document.querySelector('.faq-q');
+const firstA = document.querySelector('.faq-a');
+if (firstQ && firstA) { firstA.classList.add('open'); firstQ.classList.add('active'); }
 
-    // Mobile Nav
-    document.getElementById('navToggle').addEventListener('click', () => {
-        document.getElementById('navLinks').classList.toggle('open');
-    });
+// === MOBILE NAV ===
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+});
+document.querySelectorAll('#navLinks a').forEach(l => l.addEventListener('click', () => {
+  links.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+}));
 
-    document.querySelectorAll('#navLinks a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('open');
-        });
-    });
+// === SCROLL TOP BUTTON ===
+const st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  st.classList.toggle('visible', window.scrollY > 400);
+});
 
-    // Scroll to Top Button
-    const scrollBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
-        }
-    });
+// === ACTIVE NAV LINK ===
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 100;
+    if (window.scrollY >= top) current = s.getAttribute('id');
+  });
+  navAnchors.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
 
-    // Fechar FAQ padrão (primeira pergunta aberta)
-    document.querySelector('.faq-a')?.classList.add('open');
-    document.querySelector('.faq-q')?.classList.add('active');
-
-    // Navbar hide/show on scroll
-    let lastScroll = 0;
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(10,10,20,0.95)';
-        } else {
-            navbar.style.background = 'rgba(10,10,20,0.85)';
-        }
-        lastScroll = currentScroll;
-    });
+// === FADE-IN ON SCROLL (Intersection Observer) ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-up'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
