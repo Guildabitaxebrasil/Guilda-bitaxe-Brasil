@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪓 Bitaxe Gamma 601 — Guia Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #1a1a3e, #24243e);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #f7931a, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            margin-bottom: 8px;
+        }
+
+        header .subtitle {
+            color: #a0a0c0;
+            font-size: 1.1em;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: rgba(247, 147, 26, 0.15);
+            border: 1px solid rgba(247, 147, 26, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #f7931a;
+        }
+
+        .badge.blue {
+            background: rgba(100, 149, 237, 0.15);
+            border-color: rgba(100, 149, 237, 0.3);
+            color: #6495ed;
+        }
+
+        .badge.green {
+            background: rgba(50, 205, 50, 0.15);
+            border-color: rgba(50, 205, 50, 0.3);
+            color: #32cd32;
+        }
+
+        .badge.red {
+            background: rgba(255, 69, 58, 0.15);
+            border-color: rgba(255, 69, 58, 0.3);
+            color: #ff453a;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        nav h3 {
+            color: #f7931a;
+            margin-bottom: 12px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        nav a {
+            color: #a0a0c0;
+            text-decoration: none;
+            display: block;
+            padding: 6px 0;
+            transition: color 0.2s;
+            font-size: 0.95em;
+        }
+
+        nav a:hover {
+            color: #f7931a;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        section:hover {
+            border-color: rgba(247, 147, 26, 0.3);
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            color: #f7931a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .emoji {
+            font-size: 1.2em;
+        }
+
+        h3 {
+            font-size: 1.15em;
+            margin: 20px 0 10px;
+            color: #c0c0e0;
+        }
+
+        p, li {
+            color: #b0b0d0;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .spec-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .spec-card .label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8888aa;
+        }
+
+        .spec-card .value {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 4px;
+        }
+
+        .spec-card .value.gold {
+            color: #f7931a;
+        }
+
+        .spec-card .value.blue {
+            color: #6495ed;
+        }
+
+        .spec-card .value.green {
+            color: #32cd32;
+        }
+
+        .oc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92em;
+        }
+
+        .oc-table th {
+            background: rgba(247, 147, 26, 0.15);
+            color: #f7931a;
+            padding: 12px 10px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+        }
+
+        .oc-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .oc-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .oc-table tr:hover {
+            background: rgba(247, 147, 26, 0.05);
+        }
+
+        .level-stock { color: #32cd32; }
+        .level-safe { color: #00bfff; }
+        .level-good { color: #ffd700; }
+        .level-advanced { color: #ff8c00; }
+        .level-extreme { color: #ff453a; }
+
+        .steps-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #f7931a;
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .steps-box .step {
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+
+        .steps-box .step strong {
+            color: #f7931a;
+        }
+
+        .warning-box {
+            background: rgba(255, 69, 58, 0.1);
+            border: 1px solid rgba(255, 69, 58, 0.25);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .warning-box strong {
+            color: #ff453a;
+        }
+
+        .tip-box {
+            background: rgba(50, 205, 50, 0.08);
+            border: 1px solid rgba(50, 205, 50, 0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .tip-box strong {
+            color: #32cd32;
+        }
+
+        .info-box {
+            background: rgba(100, 149, 237, 0.08);
+            border: 1px solid rgba(100, 149, 237, 0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .info-box strong {
+            color: #6495ed;
+        }
+
+        .temp-bar {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .temp-segment {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .temp-green { background: rgba(50, 205, 50, 0.25); color: #32cd32; border: 1px solid rgba(50, 205, 50, 0.3); }
+        .temp-yellow { background: rgba(255, 215, 0, 0.2); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.3); }
+        .temp-orange { background: rgba(255, 140, 0, 0.2); color: #ff8c00; border: 1px solid rgba(255, 140, 0, 0.3); }
+        .temp-red { background: rgba(255, 69, 58, 0.2); color: #ff453a; border: 1px solid rgba(255, 69, 58, 0.3); }
+        .temp-darkred { background: rgba(139, 0, 0, 0.3); color: #ff6666; border: 1px solid rgba(139, 0, 0, 0.3); }
+
+        .cmd-block {
+            background: #0a0a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #32cd32;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .cmd-block .comment {
+            color: #666;
+        }
+
+        .cmd-block .prompt {
+            color: #f7931a;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #b0b0d0;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover {
+            background: rgba(247, 147, 26, 0.1);
+            border-color: rgba(247, 147, 26, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .link-card .link-title {
+            color: #f7931a;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .link-card .link-desc {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checklist-item .check {
+            color: #32cd32;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+
+        .troubleshoot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .trouble-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .trouble-card .problem {
+            color: #ff453a;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .trouble-card .solution {
+            color: #32cd32;
+            font-size: 0.9em;
+        }
+
+        .trouble-card .cause {
+            color: #8888aa;
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        footer a {
+            color: #f7931a;
+            text-decoration: none;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(247, 147, 26, 0.2);
+            border: 1px solid rgba(247, 147, 26, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f7931a;
+            font-size: 1.4em;
+            text-decoration: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-top:hover {
+            background: rgba(247, 147, 26, 0.35);
+            transform: translateY(-3px);
+        }
+
+        .rec-config {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .rec-item {
+            background: rgba(50, 205, 50, 0.1);
+            border: 1px solid rgba(50, 205, 50, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+        }
+
+        .rec-item .rec-label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8888aa;
+        }
+
+        .rec-item .rec-value {
+            color: #32cd32;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            section { padding: 20px; }
+            .specs-grid { grid-template-columns: 1fr 1fr; }
+            .oc-table { font-size: 0.78em; }
+            .oc-table th, .oc-table td { padding: 6px 4px; }
+            .temp-segment { font-size: 0.75em; padding: 4px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>🪓 Bitaxe Gamma 601</h1>
+        <div class="subtitle">Guia Completo — Firmware, Overclock & Configuração</div>
+        <div class="badge-container">
+            <span class="badge">⚡ BM1370 ASIC</span>
+            <span class="badge blue">📡 ESP32-S3</span>
+            <span class="badge green">🏆 1.2 TH/s Stock</span>
+            <span class="badge red">🔥 Overclock até 1.8+ TH/s</span>
+        </div>
+    </header>
+
+    <nav>
+        <h3>📋 Navegação Rápida</h3>
+        <a href="#especificacoes">1. Especificações Técnicas</a>
+        <a href="#firmware">2. Atualização de Firmware</a>
+        <a href="#overclock">3. Overclock Seguro</a>
+        <a href="#passo-a-passo">4. Passo a Passo do Overclock</a>
+        <a href="#tabela-oc">5. Tabela de Overclock</a>
+        <a href="#tabela-termica">6. Limites Térmicos</a>
+        <a href="#disparo-oc">7. Destravando Configurações</a>
+        <a href="#recomendacao">8. Configuração Recomendada</a>
+        <a href="#problemas">9. Troubleshooting</a>
+        <a href="#links">10. Links Úteis</a>
+    </nav>
+
+    <!-- SEÇÃO 1: ESPECIFICAÇÕES -->
+    <section id="especificacoes">
+        <h2><span class="emoji">📊</span> Especificações Técnicas</h2>
+        <p>O <strong>Bitaxe Gamma 601</strong> é a 5ª revisão do projeto Bitaxe, equipado com o ASIC <strong>Bitmain BM1370</strong> (mesmo chip do Antminer S21 Pro).</p>
+
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="label">ASIC Chip</div>
+                <div class="value gold">1x BM1370</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Hashrate (Stock)</div>
+                <div class="value gold">1.1 - 1.2 TH/s</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Consumo (Stock)</div>
+                <div class="value blue">15W - 18W</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Eficiência</div>
+                <div class="value green">~14-15 J/TH</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Controlador</div>
+                <div class="value blue">ESP32-S3</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Alimentação</div>
+                <div class="value">5V DC ≥ 4A</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Display</div>
+                <div class="value">OLED 0.91" SSD1306</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Cooling</div>
+                <div class="value">Fan 40mm PWM</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Placa</div>
+                <div class="value">Gamma 601 (rev 600)</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">Algoritmo</div>
+                <div class="value gold">SHA-256 (BTC)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: FIRMWARE -->
+    <section id="firmware">
+        <h2><span class="emoji">🛠️</span> Atualização de Firmware</h2>
+
+        <h3>📦 Versão Atual</h3>
+        <p>A versão mais recente do <strong>ESP-Miner / AxeOS</strong> é a <strong>v2.14.x</strong> (Julho 2026).</p>
+
+        <div class="badge-container" style="justify-content: flex-start;">
+            <span class="badge green">✅ Stratum V2</span>
+            <span class="badge green">✅ mDNS (bitaxe.local)</span>
+            <span class="badge green">✅ Fan Control Melhorado</span>
+            <span class="badge green">✅ Dashboard Aprimorado</span>
+        </div>
+
+        <h3>📥 Método A — OTA pela Web (Recomendado) ⭐</h3>
+        <div class="steps-box">
+            <div class="step"><strong>1.</strong> Acesse o dashboard: <code>http://&lt;IP_DO_BITAXE&gt;</code></div>
+            <div class="step"><strong>2.</strong> Vá em <strong>Settings → Update Firmware</strong></div>
+            <div class="step"><strong>3.</strong> Clique em <strong>Check Latest Releases</strong> ou baixe o <code>esp-miner.bin</code></div>
+            <div class="step"><strong>4.</strong> Selecione o arquivo e clique <strong>Upload</strong></div>
+            <div class="step"><strong>5.</strong> Aguarde ~60s — ele reinicia sozinho ✅</div>
+        </div>
+        <div class="tip-box">
+            <strong>💡 Vantagem:</strong> O OTA preserva todas as configurações (Wi-Fi, pool, wallet)!
+        </div>
+
+        <h3>📥 Método B — Bitaxe Web Flasher (USB)</h3>
+        <p><em>Melhor para recuperação (unbrick) ou primeira configuração.</em></p>
+        <div class="steps-box">
+            <div class="step"><strong>1.</strong> Conecte o USB-C ao PC (cabo de <strong>dados</strong>)</div>
+            <div class="step"><strong>2.</strong> Coloque em modo bootloader:<br>
+                🔘 Segure <strong>Boot</strong> + aperte <strong>Reset</strong> + solte <strong>Boot</strong></div>
+            <div class="step"><strong>3.</strong> Abra o <a href="https://bitaxe.org/flash" style="color:#f7931a;">Bitaxe Web Flasher</a> no Chrome/Edge</div>
+            <div class="step"><strong>4.</strong> Conecte, selecione o modelo <strong>601</strong> e clique <strong>Start Flashing</strong></div>
+        </div>
+        <div class="warning-box">
+            <strong>⚠️ Atenção:</strong> Flash via USB <strong>apaga todas as configurações</strong>! Anote seu SSID e senha antes.
+        </div>
+
+        <h3>📥 Método C — bitaxetool (CLI Python)</h3>
+        <div class="cmd-block">
+            <span class="comment"># Instalar (versão compatível com esptool v4.9.0)</span><br>
+            <span class="prompt">$</span> pip install bitaxetool==0.6.1<br><br>
+            <span class="comment"># Flash completo no Gamma 601</span><br>
+            <span class="prompt">$</span> bitaxetool --port COM6 --config ./config-601.cvs --firmware ./esp-miner-factory-601-v2.14.0.bin
+        </div>
+        <div class="warning-box">
+            <strong>⚠️ Importante:</strong> bitaxetool NÃO funciona com esptool v5.x! Use a versão 0.6.1.
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: OVERCLOCK -->
+    <section id="overclock">
+        <h2><span class="emoji">🔥</span> Overclock Seguro no Gamma 601</h2>
+
+        <h3>⚠️ Preparação Obrigatória</h3>
+        <p>Antes de qualquer overclock, você PRECISA destes upgrades:</p>
+
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="label">🔌 Fonte</div>
+                <div class="value gold">Mean Well LRS-50-5</div>
+                <div style="font-size:0.8em;color:#888;margin-top:4px;">5V / 10A / 50W</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">🧊 Pasta Térmica</div>
+                <div class="value blue">Kryonaut Extreme</div>
+                <div style="font-size:0.8em;color:#888;margin-top:4px;">Alta condutividade</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">🔩 Heatsink</div>
+                <div class="value green">Pin-fin Upgrade</div>
+                <div style="font-size:0.8em;color:#888;margin-top:4px;">Dissipação superior</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">🟢 Heatsinks VRM</div>
+                <div class="value">Kit MOSFET</div>
+                <div style="font-size:0.8em;color:#888;margin-top:4px;">Essencial acima de 700 MHz</div>
+            </div>
+        </div>
+
+        <h3>⏱️ Teste de Baseline (24h)</h3>
+        <p>Antes de começar, deixe rodando 24h em configuração <strong>stock</strong> e registre:</p>
+        <div class="specs-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="spec-card">
+                <div class="label">📊 Hashrate</div>
+                <div class="value" style="color:#888;">_____ TH/s</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">🌡️ Temp</div>
+                <div class="value" style="color:#888;">_____ °C</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">❌ Erros</div>
+                <div class="value" style="color:#888;">_____ %</div>
+            </div>
+            <div class="spec-card">
+                <div class="label">⚡ Consumo</div>
+                <div class="value" style="color:#888;">_____ W</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: PASSO A PASSO -->
+    <section id="passo-a-passo">
+        <h2><span class="emoji">📈</span> Passo a Passo do Overclock</h2>
+
+        <h3>🔹 Fase 1: Apenas Frequência</h3>
+        <p>Aumente <strong>+25 MHz por vez</strong>, esperando 15-20 min entre cada passo:</p>
+        <div class="steps-box">
+            <div class="step"><strong>Passo 1:</strong> Stock → 525 MHz (baseline)</div>
+            <div class="step"><strong>Passo 2:</strong> +25 MHz → 550 MHz ✅ (rode 15-20 min)</div>
+            <div class="step"><strong>Passo 3:</strong> +25 MHz → 575 MHz ✅ (rode 15-20 min)</div>
+            <div class="step"><strong>Passo 4:</strong> +25 MHz → 600 MHz ✅ (rode 15-20 min)</div>
+            <div class="step"><strong>...</strong> Continue até notar instabilidade</div>
+        </div>
+
+        <div class="tip-box">
+            <strong>✅ Sinal de estabilidade:</strong> Erros &lt; 1-2%, temperatura ok, hashrate constante<br>
+            <strong>❌ Sinal de instabilidade:</strong> Hashrate caindo, shares rejeitados, reboot
+        </div>
+
+        <h3>🔹 Fase 2: Adicionar Voltagem</h3>
+        <p>Quando bater no muro da frequência, você tem 2 opções:</p>
+
+        <div class="specs-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="spec-card" style="border-left: 3px solid #32cd32;">
+                <div class="label">😌 Opção Conservadora</div>
+                <div class="value green">Volte 25 MHz</div>
+                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: ✅ Muito seguro</div>
+            </div>
+            <div class="spec-card" style="border-left: 3px solid #ff8c00;">
+                <div class="label">😈 Opção Agressiva</div>
+                <div class="value gold">+25~50 mV na voltagem</div>
+                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: ⚠️ Moderado</div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>☠️ REGRAS DE OURO DA VOLTAGEM:</strong><br>
+            ✅ Máximo seguro 24/7: <strong>1250 mV</strong><br>
+            ⚠️ Limite absoluto: <strong>1300 mV</strong><br>
+            ☠️ Acima de 1300 mV = risco de danificar o chip (electromigration)!
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: TABELA OC -->
+    <section id="tabela-oc">
+        <h2><span class="emoji">🎯</span> Tabela de Overclock</h2>
+
+        <div style="overflow-x: auto;">
+            <table class="oc-table">
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>Frequência</th>
+                        <th>Voltagem</th>
+                        <th>Hashrate</th>
+                        <th>Consumo</th>
+                        <th>Temp</th>
+                        <th>Erros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="level-stock"><strong>🌿 Stock</strong></td>
+                        <td>400-525 MHz</td>
+                        <td>1050 mV</td>
+                        <td><strong>1.0-1.2 TH/s</strong></td>
+                        <td>~15W</td>
+                        <td>~45°C</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td class="level-safe"><strong>✅ Seguro</strong></td>
+                        <td>600 MHz</td>
+                        <td>1150 mV</td>
+                        <td><strong>~1.3 TH/s</strong></td>
+                        <td>~20W</td>
+                        <td>~50°C</td>
+                        <td>&lt;1%</td>
+                    </tr>
+                    <tr>
+                        <td class="level-good"><strong>👍 Bom</strong></td>
+                        <td>700 MHz</td>
+                        <td>1200 mV</td>
+                        <td><strong>~1.5 TH/s</strong></td>
+                        <td>~25W</td>
+                        <td>~55°C</td>
+                        <td>&lt;1%</td>
+                    </tr>
+                    <tr>
+                        <td class="level-advanced"><strong>⚡ Avançado</strong></td>
+                        <td>800 MHz</td>
+                        <td>1250 mV</td>
+                        <td><strong>~1.6-1.7 TH/s</strong></td>
+                        <td>~30W</td>
+                        <td>~60°C</td>
+                        <td>&lt;2%</td>
+                    </tr>
+                    <tr>
+                        <td class="level-extreme"><strong>🔥 Extremo*</strong></td>
+                        <td>850-900 MHz</td>
+                        <td>1250-1300 mV</td>
+                        <td><strong>~1.8+ TH/s</strong></td>
+                        <td>~35W+</td>
+                        <td>~65°C</td>
+                        <td>&lt;2%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size:0.85em;color:#888;margin-top:8px;">*Extremo requer TODOS os upgrades de cooling (heatsink pin-fin, pasta Kryonaut, heatsinks VRM, fonte 50W)</p>
+    </section>
+
+    <!-- SEÇÃO 6: LIMITES TÉRMICOS -->
+    <section id="tabela-termica">
+        <h2><span class="emoji">🌡️</span> Limites Térmicos</h2>
+        <p><strong>NUNCA ultrapasse estes limites!</strong></p>
+
+        <div class="temp-bar">
+            <span class="temp-segment temp-green">✅ 45-55°C — Confortável</span>
+            <span class="temp-segment temp-yellow">⚠️ 55-65°C — Aceitável</span>
+            <span class="temp-segment temp-orange">🔶 65-70°C — Atenção!</span>
+            <span class="temp-segment temp-red">🔴 70-75°C — Throttling!</span>
+            <span class="temp-segment temp-darkred">☠️ 75°C+ — PERIGO!</span>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Dica:</strong> Se passar de 65°C, você precisa de <strong>melhor cooling</strong>. Não adianta só abaixar a voltagem — invista em heatsink e pasta térmica de qualidade.
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: DESTRAVAR OC -->
+    <section id="disparo-oc">
+        <h2><span class="emoji">🔓</span> Destravando Configurações OC</h2>
+        <p>No AxeOS, as opções de frequência e voltagem vêm ocultas por padrão:</p>
+
+        <div class="steps-box">
+            <div class="step"><strong>1.</strong> Vá em <strong>Settings</strong></div>
+            <div class="step"><strong>2.</strong> Adicione <code>?oc</code> no final da URL</div>
+            <div class="step"><strong>3.</strong> Exemplo: <code>http://192.168.1.100/settings?oc</code></div>
+            <div class="step"><strong>4.</strong> Pronto! Os campos de <strong>Frequency</strong> e <strong>Core Voltage</strong> apareceram ✅</div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: RECOMENDAÇÃO -->
+    <section id="recomendacao">
+        <h2><span class="emoji">🎯</span> Configuração Recomendada para Iniciar</h2>
+        <p>Comece com esta configuração <strong>segura</strong> que já dá um bom ganho:</p>
+
+        <div class="rec-config">
+            <div class="rec-item">
+                <div class="rec-label">Frequência</div>
+                <div class="rec-value">600 MHz</div>
+            </div>
+            <div class="rec-item">
+                <div class="rec-label">Voltagem</div>
+                <div class="rec-value">1150 mV</div>
+            </div>
+            <div class="rec-item">
+                <div class="rec-label">Heatsink</div>
+                <div class="rec-value">Original</div>
+            </div>
+            <div class="rec-item">
+                <div class="rec-label">Fonte</div>
+                <div class="rec-value">Original 20W</div>
+            </div>
+            <div class="rec-item">
+                <div class="rec-label">Resultado</div>
+                <div class="rec-value" style="color:#ffd700;">~1.3 TH/s</div>
+            </div>
+            <div class="rec-item">
+                <div class="rec-label">Consumo</div>
+                <div class="rec-value">~20W</div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Depois que pegar confiança,</strong> pode subir para 700 MHz com uma fonte melhor (Mean Well LRS-50-5) e pasta térmica de qualidade!
+        </div>
+
+        <h3>✅ Validação Final (72h)</h3>
+        <p>Depois de achar sua configuração ideal, valide:</p>
+        <div class="checklist-item"><span class="check">✅</span> Erros / shares rejeitados &lt; 2%</div>
+        <div class="checklist-item"><span class="check">✅</span> Temperatura sempre abaixo de 65°C</div>
+        <div class="checklist-item"><span class="check">✅</span> Sem reboots inesperados</div>
+        <div class="checklist-item"><span class="check">✅</span> Sem quedas bruscas de hashrate</div>
+    </section>
+
+    <!-- SEÇÃO 9: TROUBLESHOOTING -->
+    <section id="problemas">
+        <h2><span class="emoji">🚨</span> Troubleshooting</h2>
+
+        <div class="troubleshoot-grid">
+            <div class="trouble-card">
+                <div class="problem">🔄 Reboots aleatórios</div>
+                <div class="cause">Causa: Fonte insuficiente</div>
+                <div class="solution">✅ Troque para fonte de 50W (Mean Well)</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">🔥 VRM &gt; 90°C</div>
+                <div class="cause">Causa: Sem heatsink nos MOSFETs</div>
+                <div class="solution">✅ Adicione dissipadores nos VRMs</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">❌ Muitos shares rejeitados</div>
+                <div class="cause">Causa: Voltagem baixa para frequência</div>
+                <div class="solution">✅ Aumente +25mV ou diminua -25MHz</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">📉 Hashrate oscilando</div>
+                <div class="cause">Causa: Throttling térmico</div>
+                <div class="solution">✅ Melhore o cooling</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">⚙️ Não aparece ?oc</div>
+                <div class="cause">Causa: URL errada</div>
+                <div class="solution">✅ Digite /settings?oc na barra de endereço</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">🌐 Não acha o Bitaxe</div>
+                <div class="cause">Causa: Roteador bloqueando</div>
+                <div class="solution">✅ Desligue AiProtection/IoT Protection</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">🔌 USB-C não reconhece</div>
+                <div class="cause">Causa: Problema conhecido</div>
+                <div class="solution">✅ Use adaptador USB-A para USB-C</div>
+            </div>
+            <div class="trouble-card">
+                <div class="problem">📡 Sem hash após configurar</div>
+                <div class="cause">Causa: Config de pool errada</div>
+                <div class="solution">✅ Verifique URL, porta e wallet do pool</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: LINKS -->
+    <section id="links">
+        <h2><span class="emoji">📚</span> Links Úteis</h2>
+
+        <div class="links-grid">
+            <a href="https://github.com/bitaxeorg/ESP-Miner/releases" target="_blank" class="link-card">
+                <div class="link-title">📦 ESP-Miner Releases</div>
+                <div class="link-desc">Baixar a versão mais recente do firmware</div>
+            </a>
+            <a href="https://github.com/bitaxeorg/bitaxegamma" target="_blank" class="link-card">
+                <div class="link-title">🔧 Bitaxe Gamma Hardware</div>
+                <div class="link-desc">Repositório oficial do hardware Gamma</div>
+            </a>
+            <a href="https://bitaxe.org/flash" target="_blank" class="link-card">
+                <div class="link-title">🌐 Bitaxe Web Flasher</div>
+                <div class="link-desc">Flash via navegador (Chrome/Edge)</div>
+            </a>
+            <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card">
+                <div class="link-title">📖 D-Central Guide</div>
+                <div class="link-desc">Guia completo de firmware (inglês)</div>
+            </a>
+            <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card">
+                <div class="link-title">📖 Solo Satoshi Guide</div>
+                <div class="link-desc">Guia do AxeOS dashboard</div>
+            </a>
+            <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card">
+                <div class="link-title">🔥 Overclock Guide</div>
+                <div class="link-desc">Guia de overclock D-Central</div>
+            </a>
+            <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card">
+                <div class="link-title">🪓 Miner Miner (Shesh)</div>
+                <div class="link-desc">Dashboard animado do alexandersshen</div>
+            </a>
+            <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card">
+                <div class="link-title">🎯 Overclock Gamma</div>
+                <div class="link-desc">Guia específico para Gamma 601</div>
+            </a>
+        </div>
+
+        <div class="info-box">
+            <strong>📥 Arquivo de firmware para você:</strong><br>
+            <code>esp-miner-factory-601-v2.14.x.bin</code> — baixe o que tiver <strong>601</strong> no nome!
+        </div>
+    </section>
+
+    <footer>
+        <p>🪓 Bitaxe Gamma 601 — Guia Completo</p>
+        <p>Criado em Julho 2026 • <a href="https://github.com/bitaxeorg">bitaxeorg</a> • <a href="https://github.com/alexandersshen/bitaxe-miner-miner">alexandersshen/shesh</a></p>
+        <p style="margin-top:8px;font-size:0.8em;">Feito para a comunidade — um share de cada vez ⚡</p>
+    </footer>
+
+</div>
+
+<a href="#" class="scroll-top" title="Voltar ao topo">↑</a>
+
+</body>
+</html>
