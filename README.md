@@ -10,7 +10,7 @@
 
 ## 🎯 Propósito do Projeto
 
-Este projeto reúne, em português, **todo o conhecimento necessário para minerar Bitcoin com um Bitaxe** — um minerador ASIC open-source do tamanho de uma xícara. O site foi criado pela comunidade **Guilda** para ajudar mineradores brasileiros a:
+Este projeto reúne, em português, **todo o conhecimento necessário para minerar Bitcoin com um Bitaxe** — um minerador ASIC open-source do tamanho de uma xícara. O site foi criado pela comunidade **⛏️⛏️ B Guilda bitaxeBrasil** para ajudar mineradores brasileiros a:
 
 - Escolher o modelo de Bitaxe ideal (Max, Ultra, Supra, Gamma, GT, Hex)
 - Atualizar o firmware (ESP-Miner / AxeOS) com segurança
@@ -25,7 +25,7 @@ Este projeto reúne, em português, **todo o conhecimento necessário para miner
 
 | Página | Arquivo | Conteúdo |
 |--------|---------|----------|
-| **Home / Guilda** | `index.html` | Visão geral: todos os modelos, comparação completa, firmware, overclock, pools, API, troubleshooting, FAQ e links úteis |
+| **Home / ⛏️⛏️ B Guilda bitaxeBrasil** | `index.html` | Visão geral: todos os modelos, comparação completa, firmware, overclock, pools, API, troubleshooting, FAQ e links úteis |
 | **Guia Gamma 601** | `bitaxe-gamma-601-guia-completo.html` | Guia detalhado do Bitaxe Gamma 601 (BM1370): especificações, firmware, overclock passo a passo, tabelas, limites térmicos, destravamento OC e configuração recomendada |
 
 ---
@@ -159,7 +159,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 
 ## 👤 Autor e Créditos
 
-- **Autor**: Guilda (`@johnnymacena950-cmd`)
+- **Autor**: ⛏️⛏️ B Guilda bitaxeBrasil (`@johnnymacena950-cmd`)
 - **Comunidade**: [bitaxeorg](https://github.com/bitaxeorg) • [Telegram Bitaxe](https://t.me/bitaxe)
 - **Dashboard inspirador**: [Miner Miner (Shesh)](https://github.com/alexandersshen/bitaxe-miner-miner) por alexandersshen
 
