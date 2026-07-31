@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🪓 guilda bitaxeBrasil — Guia Completo de Mineração Bitcoin</title>
+<title>⛏️⛏️ B guilda bitaxeBrasil — Guia Completo de Mineração Bitcoin</title>
 <meta name="description" content="Guia completo sobre Bitaxe em português: modelos, firmware, overclock, pools, API e muito mais. Criado por Guilda.">
 <meta name="author" content="Guilda (johnnymacena950-cmd)">
 <meta property="og:title" content="Guilda bitaxeBrasil — Guia Completo de Mineração Bitcoin">
@@ -370,6 +370,35 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 .scroll-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
 .scroll-top:hover{background:rgba(247,147,26,0.2);transform:translateY(-3px)}
 
+/* ===== CALCULATOR ===== */
+.calc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:20px 0}
+.calc-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.calc-currencies{display:flex;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:4px}
+.calc-curr{padding:8px 20px;border:none;background:transparent;color:var(--text2);font-weight:600;font-size:0.85rem;border-radius:8px;cursor:pointer;transition:var(--transition);font-family:var(--font)}
+.calc-curr.active{background:var(--btc);color:#fff}
+.calc-curr:hover:not(.active){color:var(--btc)}
+.calc-note-inline{color:var(--text3);font-size:0.8rem}
+.calc-presets{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.calc-preset-label{color:var(--text3);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;margin-right:4px;font-weight:600}
+.calc-chip{padding:6px 14px;border-radius:100px;font-size:0.78rem;font-weight:600;background:var(--bg2);border:1px solid var(--border);color:var(--text2);cursor:pointer;transition:var(--transition);font-family:var(--font)}
+.calc-chip:hover{border-color:var(--border-hover);color:var(--btc)}
+.calc-chip.active{background:rgba(247,147,26,0.12);border-color:rgba(247,147,26,0.3);color:var(--btc)}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.calc-field{display:flex;flex-direction:column;gap:6px}
+.calc-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3);font-weight:600}
+.calc-field input{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:#fff;font-family:var(--mono);font-size:0.95rem;font-weight:500;transition:var(--transition);width:100%}
+.calc-field input:focus{outline:none;border-color:var(--btc);box-shadow:0 0 0 3px var(--btc-glow)}
+.calc-field input::-webkit-inner-spin-button{opacity:1}
+.calc-results{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:768px){.calc-results{grid-template-columns:1fr}}
+.calc-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.calc-panel h4{font-size:0.95rem;color:var(--btc);margin-bottom:12px}
+.calc-result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:0.9rem}
+.calc-result-row:last-child{border-bottom:none}
+.calc-result-row span{color:var(--text2)}
+.calc-result-row strong{color:#fff;font-family:var(--mono);font-size:0.92rem}
+.calc-disclaimer{color:var(--text3);font-size:0.78rem;margin-top:16px}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp 0.6s ease forwards}
@@ -391,7 +420,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
   <div class="container">
-    <a href="#hero" class="logo">🪓 Guilda bitaxeBrasil</a>
+    <a href="#hero" class="logo">⛏️⛏️ B Guilda bitaxeBrasil</a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
     <ul class="nav-links" id="navLinks" role="menubar">
       <li role="none"><a href="#modelos" role="menuitem">Modelos</a></li>
@@ -399,6 +428,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
       <li role="none"><a href="#firmware" role="menuitem">Firmware</a></li>
       <li role="none"><a href="#overclock" role="menuitem">Overclock</a></li>
       <li role="none"><a href="#pools" role="menuitem">Pools</a></li>
+      <li role="none"><a href="#calculadora" role="menuitem">Calculadora</a></li>
       <li role="none"><a href="#api" role="menuitem">API</a></li>
       <li role="none"><a href="#faq" role="menuitem">FAQ</a></li>
     </ul>
@@ -407,8 +437,8 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 
 <!-- ===== HERO ===== -->
 <section id="hero" class="hero">
-  <div class="hero-icon" aria-hidden="true">🪓</div>
-  <h1>🪓 Guilda bitaxeBrasil</h1>
+  <div class="hero-icon" aria-hidden="true">⛏️⛏️ B</div>
+  <h1>⛏️⛏️ B Guilda bitaxeBrasil</h1>
   <p class="subtitle">O guia mais completo em português para mineradores Bitcoin com Bitaxe</p>
   <div class="hero-badges">
     <span class="h-orange">⚡ Todos os Modelos</span>
@@ -426,7 +456,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 <section id="modelos" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">🪓 Todos os Modelos de Bitaxe</h2>
+      <h2 class="section-title">⛏️⛏️ B Todos os Modelos de Bitaxe</h2>
       <p class="section-desc">Conheça cada modelo disponível, do clássico Max ao potente Hex. Cada Bitaxe é um minerador ASIC open-source que funciona como um "bilhete de loteria" para mineração solo de Bitcoin.</p>
     </div>
     <div class="models-grid">
@@ -590,6 +620,65 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
   </div>
 </section>
 
+<!-- ===== CALCULADORA ===== -->
+<section id="calculadora" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">🧮 Calculadora de Rentabilidade</h2>
+      <p class="section-desc">Calcule quanto cada modelo pode gerar em <strong>pool</strong> e as chances na <strong>lotação solo</strong> (CKPool). Use um preset ou ajuste os valores manualmente.</p>
+    </div>
+    <div class="calc-card">
+      <div class="calc-toolbar">
+        <div class="calc-currencies" role="group" aria-label="Moeda">
+          <button type="button" class="calc-curr active" data-curr="BRL">R$ Real</button>
+          <button type="button" class="calc-curr" data-curr="USD">US$ Dólar</button>
+        </div>
+        <span class="calc-note-inline">💱 Câmbio usado na conversão: 1 US$ = R$ 5,50</span>
+      </div>
+
+      <div class="calc-presets">
+        <span class="calc-preset-label">Presets por modelo:</span>
+        <button type="button" class="calc-chip" data-hash="0.4" data-power="15">🔄 Max</button>
+        <button type="button" class="calc-chip" data-hash="0.45" data-power="12">🔄 Ultra</button>
+        <button type="button" class="calc-chip" data-hash="0.7" data-power="12">⭐ Supra</button>
+        <button type="button" class="calc-chip" data-hash="1.1" data-power="18">🔥 Gamma</button>
+        <button type="button" class="calc-chip" data-hash="2.1" data-power="40">🆕 GT</button>
+        <button type="button" class="calc-chip" data-hash="3.2" data-power="78">🆕 Hex</button>
+      </div>
+
+      <div class="calc-grid">
+        <label class="calc-field"><span class="calc-label">⚡ Hashrate (TH/s)</span><input type="number" id="calcHash" value="1.1" step="0.05" min="0"></label>
+        <label class="calc-field"><span class="calc-label">🔌 Potência (W)</span><input type="number" id="calcPower" value="18" step="1" min="0"></label>
+        <label class="calc-field"><span class="calc-label" id="calcElecLabel">💡 Energia (R$/kWh)</span><input type="number" id="calcElec" value="0.70" step="0.01" min="0"></label>
+        <label class="calc-field"><span class="calc-label" id="calcBtcLabel">💰 Preço do BTC (R$)</span><input type="number" id="calcBtc" value="550000" step="1000" min="0"></label>
+        <label class="calc-field"><span class="calc-label">🏊 Taxa do pool (%)</span><input type="number" id="calcFee" value="2" step="0.5" min="0" max="20"></label>
+        <label class="calc-field"><span class="calc-label">🌐 Rede (EH/s)</span><input type="number" id="calcNet" value="800" step="10" min="100"></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-panel">
+          <h4>🏊 Mineração em Pool</h4>
+          <div class="calc-result-row"><span>BTC por dia</span><strong id="resPoolBtc">—</strong></div>
+          <div class="calc-result-row"><span>Valor minerado/dia</span><strong id="resPoolValue">—</strong></div>
+          <div class="calc-result-row"><span>Custo de energia/dia</span><strong id="resEnergy">—</strong></div>
+          <div class="calc-result-row"><span>Lucro líquido/dia</span><strong id="resNetDay">—</strong></div>
+          <div class="calc-result-row"><span>Lucro líquido/mês</span><strong id="resNetMonth">—</strong></div>
+        </div>
+        <div class="calc-panel">
+          <h4>🎰 Loteria Solo (CKPool)</h4>
+          <div class="calc-result-row"><span>Chance de bloco/dia</span><strong id="resSoloDay">—</strong></div>
+          <div class="calc-result-row"><span>Tempo médio p/ bloco</span><strong id="resSoloTime">—</strong></div>
+          <div class="calc-result-row"><span>Chance em 1 ano</span><strong id="resSoloYear">—</strong></div>
+          <div class="calc-result-row"><span>Chance em 10 anos</span><strong id="resSolo10y">—</strong></div>
+          <div class="calc-result-row"><span>Prêmio do bloco (3,125 BTC)</span><strong id="resSoloPrize">—</strong></div>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">⚠️ Estimativas educativas — dificuldade da rede, preço do BTC e tarifa de energia mudam constantemente. Ajuste os valores para a realidade atual.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== API ===== -->
 <section id="api" class="section">
   <div class="container">
@@ -687,9 +776,9 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
       <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card"><div class="link-title">📖 Guia D-Central</div><div class="link-desc">Firmware (inglês)</div></a>
       <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card"><div class="link-title">📖 AxeOS Guide</div><div class="link-desc">Dashboard AxeOS</div></a>
       <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card"><div class="link-title">🔥 Overclock Guide</div><div class="link-desc">Overclock D-Central</div></a>
-      <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card"><div class="link-title">🪓 Miner Miner</div><div class="link-desc">Dashboard do shesh</div></a>
+      <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card"><div class="link-title">⛏️⛏️ B Miner Miner</div><div class="link-desc">Dashboard do shesh</div></a>
       <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card"><div class="link-title">🎯 OC Gamma</div><div class="link-desc">Overclock específico</div></a>
-      <a href="https://bitaxe.org" target="_blank" class="link-card"><div class="link-title">🪓 Bitaxe.org</div><div class="link-desc">Site oficial</div></a>
+      <a href="https://bitaxe.org" target="_blank" class="link-card"><div class="link-title">⛏️⛏️ B Bitaxe.org</div><div class="link-desc">Site oficial</div></a>
       <a href="https://github.com/bitaxeorg/ESP-Miner" target="_blank" class="link-card"><div class="link-title">💻 Código Fonte</div><div class="link-desc">ESP-Miner no GitHub</div></a>
       <a href="https://osmu.org" target="_blank" class="link-card"><div class="link-title">🏛️ OSMU</div><div class="link-desc">Open Source Mining</div></a>
       <a href="https://t.me/bitaxe" target="_blank" class="link-card"><div class="link-title">💬 Telegram</div><div class="link-desc">Comunidade global</div></a>
@@ -700,7 +789,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
-    <div class="f-brand">🪓 Guilda bitaxeBrasil</div>
+    <div class="f-brand">⛏️⛏️ B Guilda bitaxeBrasil</div>
     <div class="f-author">👤 Criado por <strong style="color:var(--btc)">Guilda</strong> · <a href="https://github.com/johnnymacena950-cmd" style="color:var(--blue);text-decoration:none;" target="_blank">@johnnymacena950-cmd</a></div>
     <div class="f-nav">
       <a href="#modelos">Modelos</a>
@@ -764,6 +853,86 @@ window.addEventListener('scroll', () => {
     a.classList.toggle('active', a.getAttribute('href') === '#' + current);
   });
 });
+
+// === CALCULADORA DE RENTABILIDADE ===
+(function(){
+  const RATE = 5.5;
+  const BLOCKS_PER_DAY = 144;
+  const BLOCK_REWARD = 3.125;
+  let currency = 'BRL';
+
+  const $ = id => document.getElementById(id);
+  const fmt = (n, d=2) => n.toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d});
+  const fmtBTC = n => n >= 1 ? fmt(n,4) : fmt(n,10);
+  const money = n => (currency==='BRL'?'R$ ':'US$ ')+fmt(n);
+  const sym = () => currency==='BRL'?'R$':'US$';
+  const green = getComputedStyle(document.documentElement).getPropertyValue('--green').trim() || '#32cd32';
+  const red = getComputedStyle(document.documentElement).getPropertyValue('--red').trim() || '#ff453a';
+
+  function read(){
+    return {
+      hash: parseFloat($('calcHash').value)||0,
+      power: parseFloat($('calcPower').value)||0,
+      elec: parseFloat($('calcElec').value)||0,
+      btc: parseFloat($('calcBtc').value)||0,
+      fee: parseFloat($('calcFee').value)||0,
+      net: parseFloat($('calcNet').value)||0
+    };
+  }
+  function render(){
+    const v = read();
+    const share = v.hash / (v.net * 1e6);
+    const btcDay = share * BLOCKS_PER_DAY * BLOCK_REWARD * (1 - v.fee/100);
+    const valueDay = btcDay * v.btc;
+    const energyDay = v.power * 24 / 1000 * v.elec;
+    const netDay = valueDay - energyDay;
+    const netMonth = netDay * 30;
+    $('resPoolBtc').textContent = fmtBTC(btcDay)+' BTC';
+    $('resPoolValue').textContent = money(valueDay);
+    $('resEnergy').textContent = money(energyDay);
+    const nd = $('resNetDay'); nd.textContent = money(netDay); nd.style.color = netDay>=0 ? green : red;
+    const nm = $('resNetMonth'); nm.textContent = money(netMonth); nm.style.color = netMonth>=0 ? green : red;
+    // Loteria solo
+    const pDay = 1 - Math.pow(1 - share, BLOCKS_PER_DAY);
+    const expDays = pDay>0 ? 1/pDay : Infinity;
+    const pYear = 1 - Math.pow(1-pDay, 365);
+    const p10 = 1 - Math.pow(1-pDay, 3650);
+    const prize = BLOCK_REWARD * v.btc;
+    $('resSoloDay').textContent = (pDay*100)<0.0001 ? '<0,0001%' : fmt(pDay*100,4)+'%';
+    $('resSoloTime').textContent = expDays===Infinity ? '—' : (expDays < 365 ? fmt(expDays,0)+' dias' : fmt(expDays/365,1)+' anos');
+    $('resSoloYear').textContent = fmt(pYear*100,3)+'%';
+    $('resSolo10y').textContent = fmt(p10*100,2)+'%';
+    $('resSoloPrize').textContent = money(prize);
+  }
+  function setCurrency(c){
+    if (c === currency) return;
+    const v = read();
+    currency = c;
+    if(c==='BRL'){ $('calcElec').value = (v.elec * RATE).toFixed(2); $('calcBtc').value = Math.round(v.btc * RATE); }
+    else { $('calcElec').value = (v.elec / RATE).toFixed(2); $('calcBtc').value = Math.round(v.btc / RATE); }
+    document.querySelectorAll('.calc-curr').forEach(b=>b.classList.toggle('active', b.dataset.curr===c));
+    $('calcElecLabel').textContent = '💡 Energia ('+sym()+'/kWh)';
+    $('calcBtcLabel').textContent = '💰 Preço do BTC ('+sym()+')';
+    render();
+  }
+  document.querySelectorAll('.calc-curr').forEach(b=>b.addEventListener('click',()=>setCurrency(b.dataset.curr)));
+  document.querySelectorAll('.calc-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      $('calcHash').value = chip.dataset.hash;
+      $('calcPower').value = chip.dataset.power;
+      document.querySelectorAll('.calc-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      render();
+    });
+  });
+  ['calcHash','calcPower','calcElec','calcBtc','calcFee','calcNet'].forEach(id=>{
+    $(id).addEventListener('input',()=>{
+      document.querySelectorAll('.calc-chip').forEach(c=>c.classList.remove('active'));
+      render();
+    });
+  });
+  render();
+})();
 
 // === FADE-IN ON SCROLL (Intersection Observer) ===
 const observer = new IntersectionObserver((entries) => {
