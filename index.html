@@ -107,6 +107,15 @@ body{
   .navbar .nav-links{display:flex!important}
 }
 
+/* ===== LOGO EMBLEMA ===== */
+.logo-emblem{display:inline-block;width:1.2em;height:1.2em;vertical-align:-0.18em;flex-shrink:0;color:var(--btc)}
+.navbar .logo .logo-emblem{width:30px;height:30px;vertical-align:middle}
+.hero-icon .logo-emblem{width:1em;height:1em;filter:drop-shadow(0 0 40px rgba(247,147,26,0.2))}
+.hero h1 .logo-emblem{width:0.95em;height:0.95em;vertical-align:-0.1em;margin-right:0.04em}
+footer .f-brand .logo-emblem{width:34px;height:34px;vertical-align:-7px}
+.section-title .logo-emblem{width:0.85em;height:0.85em;vertical-align:middle}
+.link-title .logo-emblem{width:1.05em;height:1.05em;vertical-align:-0.18em;margin-right:0.08em}
+
 /* ===== HERO ===== */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -417,10 +426,30 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 </head>
 <body>
 
+<!-- ===== LOGO EMBLEMA (SVG SPRITE) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo-emblem" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+        <g transform="rotate(45 50 50)">
+          <path d="M50 58 L50 84"/>
+          <path d="M50 58 C 32 58, 22 48, 23 33 C 24 24, 33 20, 39 27 C 44 36, 48 47, 50 58"/>
+        </g>
+        <g transform="rotate(135 50 50)">
+          <path d="M50 58 L50 84"/>
+          <path d="M50 58 C 32 58, 22 48, 23 33 C 24 24, 33 20, 39 27 C 44 36, 48 47, 50 58"/>
+        </g>
+      </g>
+      <circle cx="50" cy="50" r="17" fill="#08080f" stroke="currentColor" stroke-width="2.5"/>
+      <text x="50" y="51" text-anchor="middle" dominant-baseline="central" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="800" fill="currentColor">B</text>
+    </symbol>
+  </defs>
+</svg>
+
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
   <div class="container">
-    <a href="#hero" class="logo">⛏️⛏️ B Guilda bitaxeBrasil</a>
+    <a href="#hero" class="logo"><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Guilda bitaxeBrasil</a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
     <ul class="nav-links" id="navLinks" role="menubar">
       <li role="none"><a href="#modelos" role="menuitem">Modelos</a></li>
@@ -437,8 +466,8 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 
 <!-- ===== HERO ===== -->
 <section id="hero" class="hero">
-  <div class="hero-icon" aria-hidden="true">⛏️⛏️ B</div>
-  <h1>⛏️⛏️ B Guilda bitaxeBrasil</h1>
+  <div class="hero-icon" aria-hidden="true"><svg class="logo-emblem"><use href="#logo-emblem"/></svg></div>
+  <h1><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Guilda bitaxeBrasil</h1>
   <p class="subtitle">O guia mais completo em português para mineradores Bitcoin com Bitaxe</p>
   <div class="hero-badges">
     <span class="h-orange">⚡ Todos os Modelos</span>
@@ -456,7 +485,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 <section id="modelos" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">⛏️⛏️ B Todos os Modelos de Bitaxe</h2>
+      <h2 class="section-title"><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Todos os Modelos de Bitaxe</h2>
       <p class="section-desc">Conheça cada modelo disponível, do clássico Max ao potente Hex. Cada Bitaxe é um minerador ASIC open-source que funciona como um "bilhete de loteria" para mineração solo de Bitcoin.</p>
     </div>
     <div class="models-grid">
@@ -776,9 +805,9 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
       <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card"><div class="link-title">📖 Guia D-Central</div><div class="link-desc">Firmware (inglês)</div></a>
       <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card"><div class="link-title">📖 AxeOS Guide</div><div class="link-desc">Dashboard AxeOS</div></a>
       <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card"><div class="link-title">🔥 Overclock Guide</div><div class="link-desc">Overclock D-Central</div></a>
-      <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card"><div class="link-title">⛏️⛏️ B Miner Miner</div><div class="link-desc">Dashboard do shesh</div></a>
+      <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card"><div class="link-title"><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Miner Miner</div><div class="link-desc">Dashboard do shesh</div></a>
       <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card"><div class="link-title">🎯 OC Gamma</div><div class="link-desc">Overclock específico</div></a>
-      <a href="https://bitaxe.org" target="_blank" class="link-card"><div class="link-title">⛏️⛏️ B Bitaxe.org</div><div class="link-desc">Site oficial</div></a>
+      <a href="https://bitaxe.org" target="_blank" class="link-card"><div class="link-title"><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Bitaxe.org</div><div class="link-desc">Site oficial</div></a>
       <a href="https://github.com/bitaxeorg/ESP-Miner" target="_blank" class="link-card"><div class="link-title">💻 Código Fonte</div><div class="link-desc">ESP-Miner no GitHub</div></a>
       <a href="https://osmu.org" target="_blank" class="link-card"><div class="link-title">🏛️ OSMU</div><div class="link-desc">Open Source Mining</div></a>
       <a href="https://t.me/bitaxe" target="_blank" class="link-card"><div class="link-title">💬 Telegram</div><div class="link-desc">Comunidade global</div></a>
@@ -789,7 +818,7 @@ footer .f-copy a{color:var(--btc);text-decoration:none}
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
-    <div class="f-brand">⛏️⛏️ B Guilda bitaxeBrasil</div>
+    <div class="f-brand"><svg class="logo-emblem" aria-hidden="true"><use href="#logo-emblem"/></svg>Guilda bitaxeBrasil</div>
     <div class="f-author">👤 Criado por <strong style="color:var(--btc)">Guilda</strong> · <a href="https://github.com/johnnymacena950-cmd" style="color:var(--blue);text-decoration:none;" target="_blank">@johnnymacena950-cmd</a></div>
     <div class="f-nav">
       <a href="#modelos">Modelos</a>
