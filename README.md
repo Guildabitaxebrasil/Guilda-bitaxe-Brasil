@@ -1,4 +1,4 @@
-# ⛏️⛏️ B Guilda bitaxeBrasil
+# Guilda bitaxeBrasil
 
 > O guia mais completo em português para mineradores Bitcoin com **Bitaxe** — do iniciante ao overclock extremo.
 
@@ -10,7 +10,7 @@
 
 ## 🎯 Propósito do Projeto
 
-Este projeto reúne, em português, **todo o conhecimento necessário para minerar Bitcoin com um Bitaxe** — um minerador ASIC open-source do tamanho de uma xícara. O site foi criado pela comunidade **⛏️⛏️ B Guilda bitaxeBrasil** para ajudar mineradores brasileiros a:
+Este projeto reúne, em português, **todo o conhecimento necessário para minerar Bitcoin com um Bitaxe** — um minerador ASIC open-source do tamanho de uma xícara. O site foi criado pela comunidade **Guilda bitaxeBrasil** para ajudar mineradores brasileiros a:
 
 - Escolher o modelo de Bitaxe ideal (Max, Ultra, Supra, Gamma, GT, Hex)
 - Atualizar o firmware (ESP-Miner / AxeOS) com segurança
@@ -25,7 +25,7 @@ Este projeto reúne, em português, **todo o conhecimento necessário para miner
 
 | Página | Arquivo | Conteúdo |
 |--------|---------|----------|
-| **Home / ⛏️⛏️ B Guilda bitaxeBrasil** | `index.html` | Visão geral: todos os modelos, comparação completa, firmware, overclock, pools, API, troubleshooting, FAQ e links úteis |
+| **Home / Guilda bitaxeBrasil** | `index.html` | Visão geral: todos os modelos, comparação completa, firmware, overclock, pools, API, troubleshooting, FAQ e links úteis |
 | **Guia Gamma 601** | `bitaxe-gamma-601-guia-completo.html` | Guia detalhado do Bitaxe Gamma 601 (BM1370): especificações, firmware, overclock passo a passo, tabelas, limites térmicos, destravamento OC e configuração recomendada |
 
 ---
@@ -68,7 +68,7 @@ Não requer instalação nem dependências — é HTML/CSS/JS puro:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/johnnymacena950-cmd/Guilda-bitaxe-Brasil.git
+git clone https://github.com/Guilda-bitaxe-Brasil/Guilda-bitaxe-Brasil.git
 cd Guilda-bitaxe-Brasil
 
 # Abra a página principal (ou arraste o arquivo para o navegador)
@@ -91,7 +91,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 
 1. No GitHub, vá em **Settings → Pages**
 2. Em **Branch**, selecione `main` e a pasta `/ (root)`
-3. Salve — o site fica disponível em `https://<usuario>.github.io/Guilda-bitaxe-Brasil/`
+3. Salve — o site fica disponível em `https://Guilda-bitaxe-Brasil.github.io/Guilda-bitaxe-Brasil/`
 
 ---
 
@@ -159,7 +159,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 
 ## 👤 Autor e Créditos
 
-- **Autor**: ⛏️⛏️ B Guilda bitaxeBrasil (`@johnnymacena950-cmd`)
+- **Autor**: Guilda bitaxeBrasil (`@Guilda-bitaxe-Brasil`)
 - **Comunidade**: [bitaxeorg](https://github.com/bitaxeorg) • [Telegram Bitaxe](https://t.me/bitaxe)
 - **Dashboard inspirador**: [Miner Miner (Shesh)](https://github.com/alexandersshen/bitaxe-miner-miner) por alexandersshen
 
