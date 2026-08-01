@@ -293,8 +293,14 @@ table.comp tr:last-child td{border-bottom:none}
 @media(max-width:480px){.pools-grid{grid-template-columns:1fr}}
 .pool-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:var(--transition);
+  padding:20px;transition:var(--transition);display:block;text-decoration:none;color:inherit;
+  position:relative;
 }
+.pool-card .pool-name{transition:var(--transition)}
+.pool-card:hover .pool-name{color:var(--btc)}
+.pool-card::after{content:'↗';position:absolute;top:14px;right:16px;color:var(--btc);opacity:0;transform:translateY(4px);transition:var(--transition);font-weight:700;font-size:0.9rem}
+.pool-card:hover::after{opacity:1;transform:translateY(0)}
+.pool-card:focus-visible::after{opacity:1;transform:translateY(0)}
 .pool-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
 .pool-name{font-size:1.1rem;font-weight:700;color:var(--text-strong);margin-bottom:2px}
 .pool-type{font-size:0.8rem;color:var(--text3);margin-bottom:8px}
@@ -771,10 +777,10 @@ table.comp tr:hover td:first-child{background:var(--bg)}
 
     <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">🏊 Pools Recomendados</h3>
     <div class="pools-grid reveal">
-      <div class="pool-card"><div class="pool-name">CKPool</div><div class="pool-type">Mineração Solo (Loteria)</div><div class="pool-url">solo.ckpool.org:3333</div><div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, fica com 3.125 BTC. Taxa de 2% apenas se achar bloco.</div><span class="pool-badge solo">🎯 Solo</span></div>
-      <div class="pool-card"><div class="pool-name">OCEAN</div><div class="pool-type">Pool Descentralizado</div><div class="pool-url">stratum-v1.ocean.xyz:4444</div><div class="pool-desc">Pool cypherpunk de Luke Dashjr e Jack Dorsey. Não-custodial, suporta SV2.</div><span class="pool-badge solo">🔐 Descentralizado</span></div>
-      <div class="pool-card"><div class="pool-name">ViaBTC</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">Regional (via site)</div><div class="pool-desc">PPS+, PPLNS e SOLO. Requer conta. Taxa ~2-4%.</div><span class="pool-badge pooled">🏊 Pool</span></div>
-      <div class="pool-card"><div class="pool-name">F2Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">btc.f2pool.com:3333</div><div class="pool-desc">Um dos pools mais antigos. FPPS+, taxa ~2.5%. Requer cadastro.</div><span class="pool-badge pooled">🏊 Pool</span></div>
+      <a href="https://ckpool.org" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">CKPool</div><div class="pool-type">Mineração Solo (Loteria)</div><div class="pool-url">solo.ckpool.org:3333</div><div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, fica com 3.125 BTC. Taxa de 2% apenas se achar bloco.</div><span class="pool-badge solo">🎯 Solo</span></a>
+      <a href="https://ocean.xyz" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">OCEAN</div><div class="pool-type">Pool Descentralizado</div><div class="pool-url">stratum-v1.ocean.xyz:4444</div><div class="pool-desc">Pool cypherpunk de Luke Dashjr e Jack Dorsey. Não-custodial, suporta SV2.</div><span class="pool-badge solo">🔐 Descentralizado</span></a>
+      <a href="https://www.viabtc.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">ViaBTC</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">Regional (via site)</div><div class="pool-desc">PPS+, PPLNS e SOLO. Requer conta. Taxa ~2-4%.</div><span class="pool-badge pooled">🏊 Pool</span></a>
+      <a href="https://www.f2pool.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">F2Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">btc.f2pool.com:3333</div><div class="pool-desc">Um dos pools mais antigos. FPPS+, taxa ~2.5%. Requer cadastro.</div><span class="pool-badge pooled">🏊 Pool</span></a>
     </div>
 
     <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">🎰 Visualizando a Loteria Solo</h3>
