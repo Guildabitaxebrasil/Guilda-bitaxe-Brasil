@@ -68,7 +68,7 @@ Não requer instalação nem dependências — é HTML/CSS/JS puro:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/Guilda-bitaxe-Brasil/Guilda-bitaxe-Brasil.git
+git clone https://github.com/Guildabitaxebrasil/Guilda-bitaxe-Brasil.git
 cd Guilda-bitaxe-Brasil
 
 # Abra a página principal (ou arraste o arquivo para o navegador)
@@ -91,7 +91,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 
 1. No GitHub, vá em **Settings → Pages**
 2. Em **Branch**, selecione `main` e a pasta `/ (root)`
-3. Salve — o site fica disponível em `https://Guilda-bitaxe-Brasil.github.io/Guilda-bitaxe-Brasil/`
+3. Salve — o site fica disponível em `https://Guildabitaxebrasil.github.io/Guilda-bitaxe-Brasil/`
 
 ---
 
@@ -159,7 +159,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 
 ## 👤 Autor e Créditos
 
-- **Autor**: Guilda bitaxeBrasil (`@Guilda-bitaxe-Brasil`)
+- **Autor**: Guilda bitaxeBrasil (`@Guildabitaxebrasil`)
 - **Comunidade**: [bitaxeorg](https://github.com/bitaxeorg) • [Telegram Bitaxe](https://t.me/bitaxe)
 - **Dashboard inspirador**: [Miner Miner (Shesh)](https://github.com/alexandersshen/bitaxe-miner-miner) por alexandersshen
 
