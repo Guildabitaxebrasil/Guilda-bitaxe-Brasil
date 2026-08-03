@@ -25,7 +25,7 @@ Este projeto reúne, em português, **todo o conhecimento necessário para miner
 
 | Página | Arquivo | Conteúdo |
 |--------|---------|----------|
-| **Home / Guilda bitaxeBrasil** | `index.html` | Visão geral: todos os modelos, comparação completa, firmware, overclock, pools, API, troubleshooting, FAQ e links úteis |
+| **Home / Guilda bitaxeBrasil** | `index.html` | Visão geral: o que é Bitaxe, modelos, comparação, primeiros passos, firmware, overclock, pools, API, troubleshooting, FAQ, riscos e avisos, links úteis e sobre a guilda |
 | **Guia Gamma 601** | `bitaxe-gamma-601-guia-completo.html` | Guia detalhado do Bitaxe Gamma 601 (BM1370): especificações, firmware, overclock passo a passo, tabelas, limites térmicos, destravamento OC e configuração recomendada |
 
 ---
@@ -42,13 +42,17 @@ Presente nas **duas páginas**, com:
 - Cálculo em **tempo real** a cada digitação ou clique
 
 ### 🏠 Home (`index.html`)
+- **O que é Bitaxe**: introdução ao projeto open-source (open source, mineração solo, consumo e SHA-256)
 - **Modelos**: Max, Ultra, Supra, Gamma (⭐ destaque), GT (Turbo) e Hex — com chip, hashrate, consumo, eficiência e voltagem
 - **Comparação completa** em tabela lado a lado
+- **Primeiros Passos**: guia rápido de configuração do zero (modelo, fonte, Wi-Fi, firmware e pool)
 - **Firmware**: OTA pela web, Web Flasher (USB) e bitaxetool (CLI)
 - **Overclock seguro**: destravamento via `?oc`, limites térmicos e voltagem
 - **Pools**: CKPool (solo), OCEAN, ViaBTC, F2Pool + suporte a **Stratum V2**
 - **API do AxeOS**: endpoints REST e WebSockets com exemplos `curl`
-- **Troubleshooting** e **FAQ** interativos (accordion)
+- **Troubleshooting** e **FAQ** (accordion interativo)
+- **Riscos e Avisos**: disclaimers sobre overclock, estimativas e segurança elétrica
+- **Sobre a Guilda**: apresentação da comunidade com links para Telegram e GitHub
 
 ### 📖 Guia Gamma 601 (`bitaxe-gamma-601-guia-completo.html`)
 - **Especificações técnicas** detalhadas (ASIC BM1370, ESP32-S3, OLED, fan PWM)
@@ -58,7 +62,13 @@ Presente nas **duas páginas**, com:
 - **Limites térmicos** (45°C → 75°C+)
 - **Configuração recomendada** para iniciar (600 MHz / 1150 mV → ~1.3 TH/s)
 - **Troubleshooting** com causas e soluções
-- **Navegação moderna**: scroll-spy, reveal ao rolar e botão voltar ao topo
+- **Navegação**: scroll-spy, reveal sutil ao rolar, botão voltar ao topo e link de volta à página principal
+
+### 🎨 Visual profissional
+Redesign aplicado nas **duas páginas**:
+- **Sem animações**: títulos sólidos (sem gradiente animado), hovers discretos, sem efeitos de brilho ou flutuação
+- **Emojis reduzidos**: apenas em avisos (⚠️) e dicas (💡) — removidos de títulos, botões e cards
+- **Tema claro/escuro** na home, transições rápidas (0,2s) e tipografia consistente (Inter + JetBrains Mono)
 
 ---
 
@@ -110,10 +120,10 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 ## 🛠️ Stack Tecnológica
 
 - **HTML5** semântico
-- **CSS3** — design system com variáveis customizadas (`:root`), glassmorphism, gradientes animados, scrollbar customizada
+- **CSS3** — design system com variáveis customizadas (`:root`), tema claro/escuro (home), visual sóbrio e profissional, sem animações (apenas transições de hover), scrollbar customizada
 - **JavaScript puro (Vanilla JS)** — sem frameworks ou bibliotecas externas:
   - Calculadora de rentabilidade (IIFE)
-  - Scroll-spy no menu, animação *reveal* (IntersectionObserver) e botão voltar ao topo
+  - Scroll-spy no menu, reveal sutil ao rolar (IntersectionObserver) e botão voltar ao topo
   - Accordion de FAQ e menu mobile na home
 - **Google Fonts**: Inter (texto) + JetBrains Mono (código/números)
 

@@ -11,7 +11,7 @@
     <style>
         :root {
             --btc: #f7931a;
-            --btc-glow: rgba(247, 147, 26, 0.3);
+            --btc-glow: rgba(247, 147, 26, 0.15);
             --btc-dim: #d47815;
             --bg: #08080f;
             --bg2: #0d0d1a;
@@ -30,7 +30,7 @@
             --radius-sm: 10px;
             --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --mono: 'JetBrains Mono', 'Courier New', monospace;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.2s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -64,18 +64,10 @@
             font-size: clamp(2rem, 6vw, 3.4rem);
             font-weight: 800;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #f7931a, #ffd700 50%, #f7931a);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
             margin-bottom: 10px;
-            animation: gradientShift 5s ease-in-out infinite;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
 
         header .subtitle { color: var(--text2); font-size: 1.15em; max-width: 620px; margin: 0 auto; }
 
@@ -92,7 +84,7 @@
             backdrop-filter: blur(6px);
         }
 
-        .badge:hover { transform: translateY(-2px); border-color: rgba(247, 147, 26, 0.5); }
+        .badge:hover { border-color: rgba(247, 147, 26, 0.5); }
         .badge.blue { background: rgba(91, 141, 239, 0.1); border-color: rgba(91, 141, 239, 0.25); color: var(--blue); }
         .badge.green { background: rgba(46, 204, 113, 0.1); border-color: rgba(46, 204, 113, 0.25); color: var(--green); }
         .badge.red { background: rgba(231, 76, 60, 0.1); border-color: rgba(231, 76, 60, 0.25); color: var(--red); }
@@ -129,7 +121,6 @@
             color: var(--btc);
             background: rgba(247, 147, 26, 0.07);
             border-color: rgba(247, 147, 26, 0.15);
-            transform: translateX(3px);
         }
 
         nav a.active {
@@ -169,29 +160,17 @@
 
         section:hover::before { opacity: 1; }
 
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease, border-color var(--transition), box-shadow var(--transition); }
+        .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease, border-color var(--transition), box-shadow var(--transition); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
         h2 {
             font-size: clamp(1.5rem, 3.5vw, 1.9rem);
             margin-bottom: 20px;
             color: var(--btc);
-            display: flex;
-            align-items: center;
-            gap: 14px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
-        h2 .emoji {
-            width: 52px; height: 52px; min-width: 52px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 1.5em;
-            background: rgba(247, 147, 26, 0.1);
-            border: 1px solid rgba(247, 147, 26, 0.25);
-            border-radius: 14px;
-            box-shadow: 0 0 20px rgba(247, 147, 26, 0.1);
-        }
 
         h3 { font-size: 1.15em; margin: 24px 0 12px; color: #e0e0f0; font-weight: 700; }
 
@@ -232,7 +211,7 @@
             transition: opacity var(--transition);
         }
 
-        .spec-card:hover { transform: translateY(-3px); border-color: var(--border-hover); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+        .spec-card:hover { border-color: var(--border-hover); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
         .spec-card:hover::before { opacity: 1; }
 
         .spec-card .label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text3); font-weight: 600; }
@@ -317,7 +296,7 @@
         /* ===== TEMP BAR ===== */
         .temp-bar { display: flex; align-items: center; gap: 6px; margin: 14px 0; flex-wrap: wrap; }
         .temp-segment { padding: 7px 14px; border-radius: 100px; font-size: 0.85em; font-weight: 600; transition: var(--transition); }
-        .temp-segment:hover { transform: translateY(-2px); }
+
         .temp-green { background: rgba(46, 204, 113, 0.12); color: var(--green); border: 1px solid rgba(46, 204, 113, 0.3); }
         .temp-yellow { background: rgba(241, 196, 15, 0.1); color: var(--gold); border: 1px solid rgba(241, 196, 15, 0.3); }
         .temp-orange { background: rgba(230, 126, 34, 0.1); color: #ff8c00; border: 1px solid rgba(230, 126, 34, 0.3); }
@@ -354,7 +333,7 @@
             transition: var(--transition);
         }
 
-        .link-card:hover { transform: translateY(-3px); border-color: var(--border-hover); background: var(--card-hover); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+        .link-card:hover { border-color: var(--border-hover); background: var(--card-hover); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
         .link-card .link-title { color: var(--btc); font-weight: 700; margin-bottom: 4px; }
         .link-card .link-desc { font-size: 0.82em; color: var(--text3); }
 
@@ -372,7 +351,7 @@
             color: var(--text2);
         }
 
-        .checklist-item:hover { border-color: rgba(46, 204, 113, 0.25); transform: translateX(4px); }
+        .checklist-item:hover { border-color: rgba(46, 204, 113, 0.25); }
         .checklist-item .check { color: var(--green); font-size: 1.15em; flex-shrink: 0; }
 
         /* ===== TROUBLESHOOT ===== */
@@ -386,7 +365,7 @@
             transition: var(--transition);
         }
 
-        .trouble-card:hover { transform: translateY(-3px); border-color: rgba(231, 76, 60, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+        .trouble-card:hover { border-color: rgba(231, 76, 60, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
         .trouble-card .problem { color: var(--red); font-weight: 700; margin-bottom: 4px; }
         .trouble-card .solution { color: var(--green); font-size: 0.9em; }
         .trouble-card .cause { color: var(--text3); font-size: 0.85em; margin-bottom: 4px; }
@@ -403,7 +382,7 @@
             transition: var(--transition);
         }
 
-        .rec-item:hover { transform: translateY(-3px); border-color: rgba(46, 204, 113, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .rec-item:hover { border-color: rgba(46, 204, 113, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
         .rec-item .rec-label { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); font-weight: 600; }
         .rec-item .rec-value { color: var(--green); font-weight: 700; font-size: 1.15em; margin-top: 2px; }
 
@@ -442,7 +421,7 @@
         }
 
         .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        .scroll-top:hover { background: rgba(247, 147, 26, 0.25); box-shadow: 0 0 30px var(--btc-glow); transform: translateY(-3px); }
+        .scroll-top:hover { background: rgba(247, 147, 26, 0.25); box-shadow: 0 0 30px var(--btc-glow); }
 
         /* ===== CALCULADORA DE RENTABILIDADE ===== */
         .calc-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 16px 0; }
@@ -455,7 +434,7 @@
         .calc-presets { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
         .calc-preset-label { color: var(--text3); font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; font-weight: 600; }
         .calc-chip { padding: 6px 14px; border-radius: 100px; font-size: 0.78em; font-weight: 600; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); cursor: pointer; transition: var(--transition); font-family: var(--font); }
-        .calc-chip:hover { border-color: var(--border-hover); color: var(--btc); transform: translateY(-1px); }
+        .calc-chip:hover { border-color: var(--border-hover); color: var(--btc); }
         .calc-chip.active { background: rgba(247, 147, 26, 0.12); border-color: rgba(247, 147, 26, 0.3); color: var(--btc); }
         .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 20px; }
         .calc-field { display: flex; flex-direction: column; gap: 6px; }
@@ -491,7 +470,6 @@
             .oc-table th, .oc-table td { padding: 8px 5px; }
             .temp-segment { font-size: 0.75em; padding: 5px 10px; }
             .badge { font-size: 0.78em; padding: 6px 14px; }
-            h2 .emoji { width: 44px; height: 44px; min-width: 44px; font-size: 1.2em; }
             .steps-box { padding: 14px 16px; }
             .steps-box .step strong:first-child { min-width: auto; }
             .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; font-size: 1.3em; }
@@ -506,15 +484,15 @@
         <h1>Bitaxe Gamma 601</h1>
         <div class="subtitle">Guia Completo — Firmware, Overclock & Configuração</div>
         <div class="badge-container">
-            <span class="badge">⚡ BM1370 ASIC</span>
-            <span class="badge blue">📡 ESP32-S3</span>
-            <span class="badge green">🏆 1.2 TH/s Stock</span>
-            <span class="badge red">🔥 Overclock até 1.8+ TH/s</span>
+            <span class="badge">BM1370 ASIC</span>
+            <span class="badge blue">ESP32-S3</span>
+            <span class="badge green">1.2 TH/s Stock</span>
+            <span class="badge red">Overclock até 1.8+ TH/s</span>
         </div>
     </header>
 
     <nav>
-        <h3>📋 Navegação Rápida</h3>
+        <h3>Navegação Rápida</h3>
         <a href="#especificacoes">1. Especificações Técnicas</a>
         <a href="#firmware">2. Atualização de Firmware</a>
         <a href="#overclock">3. Overclock Seguro</a>
@@ -530,7 +508,7 @@
 
     <!-- SEÇÃO 1: ESPECIFICAÇÕES -->
     <section id="especificacoes">
-        <h2><span class="emoji">📊</span> Especificações Técnicas</h2>
+        <h2>Especificações Técnicas</h2>
         <p>O <strong>Bitaxe Gamma 601</strong> é a 5ª revisão do projeto Bitaxe, equipado com o ASIC <strong>Bitmain BM1370</strong> (mesmo chip do Antminer S21 Pro).</p>
 
         <div class="specs-grid">
@@ -579,36 +557,36 @@
 
     <!-- SEÇÃO 2: FIRMWARE -->
     <section id="firmware">
-        <h2><span class="emoji">🛠️</span> Atualização de Firmware</h2>
+        <h2>Atualização de Firmware</h2>
 
-        <h3>📦 Versão Atual</h3>
+        <h3>Versão Atual</h3>
         <p>A versão mais recente do <strong>ESP-Miner / AxeOS</strong> é a <strong>v2.14.x</strong> (Julho 2026).</p>
 
         <div class="badge-container" style="justify-content: flex-start;">
-            <span class="badge green">✅ Stratum V2</span>
-            <span class="badge green">✅ mDNS (bitaxe.local)</span>
-            <span class="badge green">✅ Fan Control Melhorado</span>
-            <span class="badge green">✅ Dashboard Aprimorado</span>
+            <span class="badge green">Stratum V2</span>
+            <span class="badge green">mDNS (bitaxe.local)</span>
+            <span class="badge green">Fan Control Melhorado</span>
+            <span class="badge green">Dashboard Aprimorado</span>
         </div>
 
-        <h3>📥 Método A — OTA pela Web (Recomendado) ⭐</h3>
+        <h3>Método A — OTA pela web (Recomendado)</h3>
         <div class="steps-box">
             <div class="step"><strong>1.</strong> Acesse o dashboard: <code>http://&lt;IP_DO_BITAXE&gt;</code></div>
             <div class="step"><strong>2.</strong> Vá em <strong>Settings → Update Firmware</strong></div>
             <div class="step"><strong>3.</strong> Clique em <strong>Check Latest Releases</strong> ou baixe o <code>esp-miner.bin</code></div>
             <div class="step"><strong>4.</strong> Selecione o arquivo e clique <strong>Upload</strong></div>
-            <div class="step"><strong>5.</strong> Aguarde ~60s — ele reinicia sozinho ✅</div>
+            <div class="step"><strong>5.</strong> Aguarde ~60s — ele reinicia sozinho</div>
         </div>
         <div class="tip-box">
             <strong>💡 Vantagem:</strong> O OTA preserva todas as configurações (Wi-Fi, pool, wallet)!
         </div>
 
-        <h3>📥 Método B — Bitaxe Web Flasher (USB)</h3>
+        <h3>Método B — Web Flasher (USB)</h3>
         <p><em>Melhor para recuperação (unbrick) ou primeira configuração.</em></p>
         <div class="steps-box">
             <div class="step"><strong>1.</strong> Conecte o USB-C ao PC (cabo de <strong>dados</strong>)</div>
             <div class="step"><strong>2.</strong> Coloque em modo bootloader:<br>
-                🔘 Segure <strong>Boot</strong> + aperte <strong>Reset</strong> + solte <strong>Boot</strong></div>
+                Segure <strong>Boot</strong> + aperte <strong>Reset</strong> + solte <strong>Boot</strong></div>
             <div class="step"><strong>3.</strong> Abra o <a href="https://bitaxe.org/flash" style="color:#f7931a;">Bitaxe Web Flasher</a> no Chrome/Edge</div>
             <div class="step"><strong>4.</strong> Conecte, selecione o modelo <strong>601</strong> e clique <strong>Start Flashing</strong></div>
         </div>
@@ -616,7 +594,7 @@
             <strong>⚠️ Atenção:</strong> Flash via USB <strong>apaga todas as configurações</strong>! Anote seu SSID e senha antes.
         </div>
 
-        <h3>📥 Método C — bitaxetool (CLI Python)</h3>
+        <h3>Método C — bitaxetool (linha de comando)</h3>
         <div class="cmd-block">
             <span class="comment"># Instalar (versão compatível com esptool v4.9.0)</span><br>
             <span class="prompt">$</span> pip install bitaxetool==0.6.1<br><br>
@@ -630,51 +608,51 @@
 
     <!-- SEÇÃO 3: OVERCLOCK -->
     <section id="overclock">
-        <h2><span class="emoji">🔥</span> Overclock Seguro no Gamma 601</h2>
+        <h2>Overclock Seguro no Gamma 601</h2>
 
         <h3>⚠️ Preparação Obrigatória</h3>
         <p>Antes de qualquer overclock, você PRECISA destes upgrades:</p>
 
         <div class="specs-grid">
             <div class="spec-card">
-                <div class="label">🔌 Fonte</div>
+                <div class="label">Fonte</div>
                 <div class="value gold">Mean Well LRS-50-5</div>
                 <div style="font-size:0.8em;color:#888;margin-top:4px;">5V / 10A / 50W</div>
             </div>
             <div class="spec-card">
-                <div class="label">🧊 Pasta Térmica</div>
+                <div class="label">Pasta Térmica</div>
                 <div class="value blue">Kryonaut Extreme</div>
                 <div style="font-size:0.8em;color:#888;margin-top:4px;">Alta condutividade</div>
             </div>
             <div class="spec-card">
-                <div class="label">🔩 Heatsink</div>
+                <div class="label">Heatsink</div>
                 <div class="value green">Pin-fin Upgrade</div>
                 <div style="font-size:0.8em;color:#888;margin-top:4px;">Dissipação superior</div>
             </div>
             <div class="spec-card">
-                <div class="label">🟢 Heatsinks VRM</div>
+                <div class="label">Heatsinks VRM</div>
                 <div class="value">Kit MOSFET</div>
                 <div style="font-size:0.8em;color:#888;margin-top:4px;">Essencial acima de 700 MHz</div>
             </div>
         </div>
 
-        <h3>⏱️ Teste de Baseline (24h)</h3>
+        <h3>Teste de Baseline (24h)</h3>
         <p>Antes de começar, deixe rodando 24h em configuração <strong>stock</strong> e registre:</p>
         <div class="specs-grid" style="grid-template-columns: repeat(4, 1fr);">
             <div class="spec-card">
-                <div class="label">📊 Hashrate</div>
+                <div class="label">Hashrate</div>
                 <div class="value" style="color:#888;">_____ TH/s</div>
             </div>
             <div class="spec-card">
-                <div class="label">🌡️ Temp</div>
+                <div class="label">Temp</div>
                 <div class="value" style="color:#888;">_____ °C</div>
             </div>
             <div class="spec-card">
-                <div class="label">❌ Erros</div>
+                <div class="label">Erros</div>
                 <div class="value" style="color:#888;">_____ %</div>
             </div>
             <div class="spec-card">
-                <div class="label">⚡ Consumo</div>
+                <div class="label">Consumo</div>
                 <div class="value" style="color:#888;">_____ W</div>
             </div>
         </div>
@@ -682,50 +660,50 @@
 
     <!-- SEÇÃO 4: PASSO A PASSO -->
     <section id="passo-a-passo">
-        <h2><span class="emoji">📈</span> Passo a Passo do Overclock</h2>
+        <h2>Passo a Passo do Overclock</h2>
 
-        <h3>🔹 Fase 1: Apenas Frequência</h3>
+        <h3>Fase 1: Apenas Frequência</h3>
         <p>Aumente <strong>+25 MHz por vez</strong>, esperando 15-20 min entre cada passo:</p>
         <div class="steps-box">
             <div class="step"><strong>Passo 1:</strong> Stock → 525 MHz (baseline)</div>
-            <div class="step"><strong>Passo 2:</strong> +25 MHz → 550 MHz ✅ (rode 15-20 min)</div>
-            <div class="step"><strong>Passo 3:</strong> +25 MHz → 575 MHz ✅ (rode 15-20 min)</div>
-            <div class="step"><strong>Passo 4:</strong> +25 MHz → 600 MHz ✅ (rode 15-20 min)</div>
+            <div class="step"><strong>Passo 2:</strong> +25 MHz → 550 MHz (rode 15-20 min)</div>
+            <div class="step"><strong>Passo 3:</strong> +25 MHz → 575 MHz (rode 15-20 min)</div>
+            <div class="step"><strong>Passo 4:</strong> +25 MHz → 600 MHz (rode 15-20 min)</div>
             <div class="step"><strong>...</strong> Continue até notar instabilidade</div>
         </div>
 
         <div class="tip-box">
-            <strong>✅ Sinal de estabilidade:</strong> Erros &lt; 1-2%, temperatura ok, hashrate constante<br>
-            <strong>❌ Sinal de instabilidade:</strong> Hashrate caindo, shares rejeitados, reboot
+            <strong>Sinal de estabilidade:</strong> Erros &lt; 1-2%, temperatura ok, hashrate constante<br>
+            <strong>Sinal de instabilidade:</strong> Hashrate caindo, shares rejeitados, reboot
         </div>
 
-        <h3>🔹 Fase 2: Adicionar Voltagem</h3>
+        <h3>Fase 2: Adicionar Voltagem</h3>
         <p>Quando bater no muro da frequência, você tem 2 opções:</p>
 
         <div class="specs-grid" style="grid-template-columns: 1fr 1fr;">
             <div class="spec-card" style="border-left: 3px solid #32cd32;">
-                <div class="label">😌 Opção Conservadora</div>
+                <div class="label">Opção Conservadora</div>
                 <div class="value green">Volte 25 MHz</div>
-                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: ✅ Muito seguro</div>
+                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: Muito seguro</div>
             </div>
             <div class="spec-card" style="border-left: 3px solid #ff8c00;">
-                <div class="label">😈 Opção Agressiva</div>
+                <div class="label">Opção Agressiva</div>
                 <div class="value gold">+25~50 mV na voltagem</div>
-                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: ⚠️ Moderado</div>
+                <div style="font-size:0.85em;color:#888;margin-top:4px;">Risco: Moderado</div>
             </div>
         </div>
 
         <div class="warning-box">
-            <strong>☠️ REGRAS DE OURO DA VOLTAGEM:</strong><br>
-            ✅ Máximo seguro 24/7: <strong>1250 mV</strong><br>
-            ⚠️ Limite absoluto: <strong>1300 mV</strong><br>
-            ☠️ Acima de 1300 mV = risco de danificar o chip (electromigration)!
+            <strong>⚠️ Regras de ouro da voltagem:</strong><br>
+            Máximo seguro 24/7: <strong>1250 mV</strong><br>
+            Limite absoluto: <strong>1300 mV</strong><br>
+            Acima de 1300 mV = risco de danificar o chip (electromigration)!
         </div>
     </section>
 
     <!-- SEÇÃO 5: TABELA OC -->
     <section id="tabela-oc">
-        <h2><span class="emoji">🎯</span> Tabela de Overclock</h2>
+        <h2>Tabela de Overclock</h2>
 
         <div style="overflow-x: auto;">
             <table class="oc-table">
@@ -742,7 +720,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="level-stock"><strong>🌿 Stock</strong></td>
+                        <td class="level-stock"><strong>Stock</strong></td>
                         <td>400-525 MHz</td>
                         <td>1050 mV</td>
                         <td><strong>1.0-1.2 TH/s</strong></td>
@@ -751,7 +729,7 @@
                         <td>0%</td>
                     </tr>
                     <tr>
-                        <td class="level-safe"><strong>✅ Seguro</strong></td>
+                        <td class="level-safe"><strong>Seguro</strong></td>
                         <td>600 MHz</td>
                         <td>1150 mV</td>
                         <td><strong>~1.3 TH/s</strong></td>
@@ -760,7 +738,7 @@
                         <td>&lt;1%</td>
                     </tr>
                     <tr>
-                        <td class="level-good"><strong>👍 Bom</strong></td>
+                        <td class="level-good"><strong>Bom</strong></td>
                         <td>700 MHz</td>
                         <td>1200 mV</td>
                         <td><strong>~1.5 TH/s</strong></td>
@@ -769,7 +747,7 @@
                         <td>&lt;1%</td>
                     </tr>
                     <tr>
-                        <td class="level-advanced"><strong>⚡ Avançado</strong></td>
+                        <td class="level-advanced"><strong>Avançado</strong></td>
                         <td>800 MHz</td>
                         <td>1250 mV</td>
                         <td><strong>~1.6-1.7 TH/s</strong></td>
@@ -778,7 +756,7 @@
                         <td>&lt;2%</td>
                     </tr>
                     <tr>
-                        <td class="level-extreme"><strong>🔥 Extremo*</strong></td>
+                        <td class="level-extreme"><strong>Extremo*</strong></td>
                         <td>850-900 MHz</td>
                         <td>1250-1300 mV</td>
                         <td><strong>~1.8+ TH/s</strong></td>
@@ -794,15 +772,15 @@
 
     <!-- SEÇÃO 6: LIMITES TÉRMICOS -->
     <section id="tabela-termica">
-        <h2><span class="emoji">🌡️</span> Limites Térmicos</h2>
+        <h2>Limites Térmicos</h2>
         <p><strong>NUNCA ultrapasse estes limites!</strong></p>
 
         <div class="temp-bar">
-            <span class="temp-segment temp-green">✅ 45-55°C — Confortável</span>
-            <span class="temp-segment temp-yellow">⚠️ 55-65°C — Aceitável</span>
-            <span class="temp-segment temp-orange">🔶 65-70°C — Atenção!</span>
-            <span class="temp-segment temp-red">🔴 70-75°C — Throttling!</span>
-            <span class="temp-segment temp-darkred">☠️ 75°C+ — PERIGO!</span>
+            <span class="temp-segment temp-green">45-55 °C — Confortável</span>
+            <span class="temp-segment temp-yellow">55-65 °C — Aceitável</span>
+            <span class="temp-segment temp-orange">65-70 °C — Atenção</span>
+            <span class="temp-segment temp-red">70-75 °C — Throttling</span>
+            <span class="temp-segment temp-darkred">75 °C+ — Perigo</span>
         </div>
 
         <div class="info-box">
@@ -812,20 +790,20 @@
 
     <!-- SEÇÃO 7: DESTRAVAR OC -->
     <section id="disparo-oc">
-        <h2><span class="emoji">🔓</span> Destravando Configurações OC</h2>
+        <h2>Destravando Configurações de Overclock</h2>
         <p>No AxeOS, as opções de frequência e voltagem vêm ocultas por padrão:</p>
 
         <div class="steps-box">
             <div class="step"><strong>1.</strong> Vá em <strong>Settings</strong></div>
             <div class="step"><strong>2.</strong> Adicione <code>?oc</code> no final da URL</div>
             <div class="step"><strong>3.</strong> Exemplo: <code>http://192.168.1.100/settings?oc</code></div>
-            <div class="step"><strong>4.</strong> Pronto! Os campos de <strong>Frequency</strong> e <strong>Core Voltage</strong> apareceram ✅</div>
+            <div class="step"><strong>4.</strong> Pronto! Os campos de <strong>Frequency</strong> e <strong>Core Voltage</strong> apareceram.</div>
         </div>
     </section>
 
     <!-- SEÇÃO 8: RECOMENDAÇÃO -->
     <section id="recomendacao">
-        <h2><span class="emoji">🎯</span> Configuração Recomendada para Iniciar</h2>
+        <h2>Configuração Recomendada para Iniciar</h2>
         <p>Comece com esta configuração <strong>segura</strong> que já dá um bom ganho:</p>
 
         <div class="rec-config">
@@ -859,89 +837,89 @@
             <strong>💡 Depois que pegar confiança,</strong> pode subir para 700 MHz com uma fonte melhor (Mean Well LRS-50-5) e pasta térmica de qualidade!
         </div>
 
-        <h3>✅ Validação Final (72h)</h3>
+        <h3>Validação Final (72h)</h3>
         <p>Depois de achar sua configuração ideal, valide:</p>
-        <div class="checklist-item"><span class="check">✅</span> Erros / shares rejeitados &lt; 2%</div>
-        <div class="checklist-item"><span class="check">✅</span> Temperatura sempre abaixo de 65°C</div>
-        <div class="checklist-item"><span class="check">✅</span> Sem reboots inesperados</div>
-        <div class="checklist-item"><span class="check">✅</span> Sem quedas bruscas de hashrate</div>
+        <div class="checklist-item"><span class="check">✓</span> Erros / shares rejeitados &lt; 2%</div>
+        <div class="checklist-item"><span class="check">✓</span> Temperatura sempre abaixo de 65°C</div>
+        <div class="checklist-item"><span class="check">✓</span> Sem reboots inesperados</div>
+        <div class="checklist-item"><span class="check">✓</span> Sem quedas bruscas de hashrate</div>
     </section>
 
     <!-- SEÇÃO 9: TROUBLESHOOTING -->
     <section id="problemas">
-        <h2><span class="emoji">🚨</span> Troubleshooting</h2>
+        <h2>Solução de Problemas</h2>
 
         <div class="troubleshoot-grid">
             <div class="trouble-card">
-                <div class="problem">🔄 Reboots aleatórios</div>
+                <div class="problem">Reboots aleatórios</div>
                 <div class="cause">Causa: Fonte insuficiente</div>
-                <div class="solution">✅ Troque para fonte de 50W (Mean Well)</div>
+                <div class="solution">Troque para fonte de 50W (Mean Well)</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">🔥 VRM &gt; 90°C</div>
+                <div class="problem">VRM acima de 90 °C</div>
                 <div class="cause">Causa: Sem heatsink nos MOSFETs</div>
-                <div class="solution">✅ Adicione dissipadores nos VRMs</div>
+                <div class="solution">Adicione dissipadores nos VRMs</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">❌ Muitos shares rejeitados</div>
+                <div class="problem">Muitos shares rejeitados</div>
                 <div class="cause">Causa: Voltagem baixa para frequência</div>
-                <div class="solution">✅ Aumente +25mV ou diminua -25MHz</div>
+                <div class="solution">Aumente +25mV ou diminua -25MHz</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">📉 Hashrate oscilando</div>
+                <div class="problem">Hashrate oscilando</div>
                 <div class="cause">Causa: Throttling térmico</div>
-                <div class="solution">✅ Melhore o cooling</div>
+                <div class="solution">Melhore o cooling</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">⚙️ Não aparece ?oc</div>
+                <div class="problem">Opções de overclock não aparecem</div>
                 <div class="cause">Causa: URL errada</div>
-                <div class="solution">✅ Digite /settings?oc na barra de endereço</div>
+                <div class="solution">Digite /settings?oc na barra de endereço</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">🌐 Não acha o Bitaxe</div>
+                <div class="problem">Não encontra o Bitaxe na rede</div>
                 <div class="cause">Causa: Roteador bloqueando</div>
-                <div class="solution">✅ Desligue AiProtection/IoT Protection</div>
+                <div class="solution">Desligue AiProtection/IoT Protection</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">🔌 USB-C não reconhece</div>
+                <div class="problem">USB-C não é reconhecido</div>
                 <div class="cause">Causa: Problema conhecido</div>
-                <div class="solution">✅ Use adaptador USB-A para USB-C</div>
+                <div class="solution">Use adaptador USB-A para USB-C</div>
             </div>
             <div class="trouble-card">
-                <div class="problem">📡 Sem hash após configurar</div>
+                <div class="problem">Sem hashrate após configurar</div>
                 <div class="cause">Causa: Config de pool errada</div>
-                <div class="solution">✅ Verifique URL, porta e wallet do pool</div>
+                <div class="solution">Verifique URL, porta e wallet do pool</div>
             </div>
         </div>
     </section>
 
     <!-- SEÇÃO 10: LINKS -->
     <section id="links">
-        <h2><span class="emoji">📚</span> Links Úteis</h2>
+        <h2>Links Úteis</h2>
 
         <div class="links-grid">
             <a href="https://github.com/bitaxeorg/ESP-Miner/releases" target="_blank" class="link-card">
-                <div class="link-title">📦 ESP-Miner Releases</div>
+                <div class="link-title">ESP-Miner Releases</div>
                 <div class="link-desc">Baixar a versão mais recente do firmware</div>
             </a>
             <a href="https://github.com/bitaxeorg/bitaxegamma" target="_blank" class="link-card">
-                <div class="link-title">🔧 Bitaxe Gamma Hardware</div>
+                <div class="link-title">Bitaxe Gamma Hardware</div>
                 <div class="link-desc">Repositório oficial do hardware Gamma</div>
             </a>
             <a href="https://bitaxe.org/flash" target="_blank" class="link-card">
-                <div class="link-title">🌐 Bitaxe Web Flasher</div>
+                <div class="link-title">Bitaxe Web Flasher</div>
                 <div class="link-desc">Flash via navegador (Chrome/Edge)</div>
             </a>
             <a href="https://d-central.tech/bitaxe-firmware-update-guide/" target="_blank" class="link-card">
-                <div class="link-title">📖 D-Central Guide</div>
+                <div class="link-title">Guia D-Central</div>
                 <div class="link-desc">Guia completo de firmware (inglês)</div>
             </a>
             <a href="https://www.solosatoshi.com/axeos-guide/" target="_blank" class="link-card">
-                <div class="link-title">📖 Solo Satoshi Guide</div>
+                <div class="link-title">Guia do Solo Satoshi</div>
                 <div class="link-desc">Guia do AxeOS dashboard</div>
             </a>
             <a href="https://d-central.tech/bitaxe-overclocking-guide/" target="_blank" class="link-card">
-                <div class="link-title">🔥 Overclock Guide</div>
+                <div class="link-title">Guia de Overclock</div>
                 <div class="link-desc">Guia de overclock D-Central</div>
             </a>
             <a href="https://github.com/alexandersshen/bitaxe-miner-miner" target="_blank" class="link-card">
@@ -949,20 +927,20 @@
                 <div class="link-desc">Dashboard animado do alexandersshen</div>
             </a>
             <a href="https://www.solosatoshi.com/how-to-overclock-bitaxe-gamma/" target="_blank" class="link-card">
-                <div class="link-title">🎯 Overclock Gamma</div>
+                <div class="link-title">Overclock do Gamma</div>
                 <div class="link-desc">Guia específico para Gamma 601</div>
             </a>
         </div>
 
         <div class="info-box">
-            <strong>📥 Arquivo de firmware para você:</strong><br>
+            <strong>Arquivo de firmware para você:</strong><br>
             <code>esp-miner-factory-601-v2.14.x.bin</code> — baixe o que tiver <strong>601</strong> no nome!
         </div>
     </section>
 
     <!-- SEÇÃO 11: CALCULADORA -->
     <section id="calculadora">
-        <h2><span class="emoji">🧮</span> Calculadora de Rentabilidade</h2>
+        <h2>Calculadora de Rentabilidade</h2>
         <p>Calcule quanto seu Bitaxe Gamma 601 pode gerar em <strong>pool</strong> e as chances na <strong>loteria solo</strong> (CKPool). Use um preset de overclock ou ajuste os valores manualmente.</p>
 
         <div class="calc-card">
@@ -971,30 +949,30 @@
                     <button type="button" class="calc-curr active" data-curr="BRL">R$ Real</button>
                     <button type="button" class="calc-curr" data-curr="USD">US$ Dólar</button>
                 </div>
-                <span class="calc-note-inline">💱 Câmbio usado na conversão: 1 US$ = R$ 5,50</span>
+                <span class="calc-note-inline">Câmbio usado na conversão: 1 US$ = R$ 5,50</span>
             </div>
 
             <div class="calc-presets">
                 <span class="calc-preset-label">Presets de overclock:</span>
-                <button type="button" class="calc-chip" data-hash="1.1" data-power="15">🌿 Stock</button>
-                <button type="button" class="calc-chip" data-hash="1.3" data-power="20">✅ Seguro</button>
-                <button type="button" class="calc-chip" data-hash="1.5" data-power="25">👍 Bom</button>
-                <button type="button" class="calc-chip" data-hash="1.65" data-power="30">⚡ Avançado</button>
-                <button type="button" class="calc-chip" data-hash="1.8" data-power="35">🔥 Extremo</button>
+                <button type="button" class="calc-chip" data-hash="1.1" data-power="15">Stock</button>
+                <button type="button" class="calc-chip" data-hash="1.3" data-power="20">Seguro</button>
+                <button type="button" class="calc-chip" data-hash="1.5" data-power="25">Bom</button>
+                <button type="button" class="calc-chip" data-hash="1.65" data-power="30">Avançado</button>
+                <button type="button" class="calc-chip" data-hash="1.8" data-power="35">Extremo</button>
             </div>
 
             <div class="calc-grid">
-                <label class="calc-field"><span class="calc-label">⚡ Hashrate (TH/s)</span><input type="number" id="calcHash" value="1.1" step="0.05" min="0"></label>
-                <label class="calc-field"><span class="calc-label">🔌 Potência (W)</span><input type="number" id="calcPower" value="15" step="1" min="0"></label>
-                <label class="calc-field"><span class="calc-label" id="calcElecLabel">💡 Energia (R$/kWh)</span><input type="number" id="calcElec" value="0.70" step="0.01" min="0"></label>
-                <label class="calc-field"><span class="calc-label" id="calcBtcLabel">💰 Preço do BTC (R$)</span><input type="number" id="calcBtc" value="550000" step="1000" min="0"></label>
-                <label class="calc-field"><span class="calc-label">🏊 Taxa do pool (%)</span><input type="number" id="calcFee" value="2" step="0.5" min="0" max="20"></label>
-                <label class="calc-field"><span class="calc-label">🌐 Rede (EH/s)</span><input type="number" id="calcNet" value="800" step="10" min="100"></label>
+                <label class="calc-field"><span class="calc-label">Hashrate (TH/s)</span><input type="number" id="calcHash" value="1.1" step="0.05" min="0"></label>
+                <label class="calc-field"><span class="calc-label">Potência (W)</span><input type="number" id="calcPower" value="15" step="1" min="0"></label>
+                <label class="calc-field"><span class="calc-label" id="calcElecLabel">Energia (R$/kWh)</span><input type="number" id="calcElec" value="0.70" step="0.01" min="0"></label>
+                <label class="calc-field"><span class="calc-label" id="calcBtcLabel">Preço do BTC (R$)</span><input type="number" id="calcBtc" value="550000" step="1000" min="0"></label>
+                <label class="calc-field"><span class="calc-label">Taxa do pool (%)</span><input type="number" id="calcFee" value="2" step="0.5" min="0" max="20"></label>
+                <label class="calc-field"><span class="calc-label">Rede (EH/s)</span><input type="number" id="calcNet" value="800" step="10" min="100"></label>
             </div>
 
             <div class="calc-results">
                 <div class="calc-panel">
-                    <h4>🏊 Mineração em Pool</h4>
+                    <h4>Mineração em pool</h4>
                     <div class="calc-result-row"><span>BTC por dia</span><strong id="resPoolBtc">—</strong></div>
                     <div class="calc-result-row"><span>Valor minerado/dia</span><strong id="resPoolValue">—</strong></div>
                     <div class="calc-result-row"><span>Custo de energia/dia</span><strong id="resEnergy">—</strong></div>
@@ -1002,7 +980,7 @@
                     <div class="calc-result-row"><span>Lucro líquido/mês</span><strong id="resNetMonth">—</strong></div>
                 </div>
                 <div class="calc-panel">
-                    <h4>🎰 Loteria Solo (CKPool)</h4>
+                    <h4>Loteria solo (CKPool)</h4>
                     <div class="calc-result-row"><span>Chance de bloco/dia</span><strong id="resSoloDay">—</strong></div>
                     <div class="calc-result-row"><span>Tempo médio p/ bloco</span><strong id="resSoloTime">—</strong></div>
                     <div class="calc-result-row"><span>Chance em 1 ano</span><strong id="resSoloYear">—</strong></div>
@@ -1017,8 +995,9 @@
 
     <footer>
         <p>Bitaxe Gamma 601 — Guia Completo</p>
-        <p>Criado em Julho 2026 • <a href="https://github.com/bitaxeorg">bitaxeorg</a> • <a href="https://github.com/alexandersshen/bitaxe-miner-miner">alexandersshen/shesh</a></p>
-        <p style="margin-top:8px;font-size:0.8em;">Feito para a comunidade — um share de cada vez ⚡</p>
+        <p>© 2026 • <a href="https://github.com/bitaxeorg">bitaxeorg</a> • <a href="https://github.com/alexandersshen/bitaxe-miner-miner">alexandersshen/shesh</a></p>
+        <p style="margin-top:8px;font-size:0.8em;">Feito para a comunidade — um share de cada vez</p>
+        <p style="margin-top:10px;"><a href="index.html">← Voltar ao guia principal</a></p>
     </footer>
 
 </div>
@@ -1110,8 +1089,8 @@
     if(c==='BRL'){ $('calcElec').value = (v.elec * RATE).toFixed(2); $('calcBtc').value = Math.round(v.btc * RATE); }
     else { $('calcElec').value = (v.elec / RATE).toFixed(2); $('calcBtc').value = Math.round(v.btc / RATE); }
     document.querySelectorAll('.calc-curr').forEach(b=>b.classList.toggle('active', b.dataset.curr===c));
-    $('calcElecLabel').textContent = '💡 Energia ('+sym()+'/kWh)';
-    $('calcBtcLabel').textContent = '💰 Preço do BTC ('+sym()+')';
+    $('calcElecLabel').textContent = 'Energia ('+sym()+'/kWh)';
+    $('calcBtcLabel').textContent = 'Preço do BTC ('+sym()+')';
     render();
   }
   document.querySelectorAll('.calc-curr').forEach(b=>b.addEventListener('click',()=>setCurrency(b.dataset.curr)));
