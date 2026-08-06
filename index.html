@@ -312,9 +312,25 @@ table.comp tr:last-child td{border-bottom:none}
 @media(max-width:480px){.api-grid{grid-template-columns:1fr}}
 .api-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:14px 16px;transition:var(--transition);
+  padding:14px 34px 14px 16px;transition:var(--transition);
+  display:block;text-decoration:none;color:inherit;position:relative;
 }
-.api-card:hover{border-color:var(--border-hover)}
+.api-card::after{content:'↗';position:absolute;top:14px;right:14px;color:var(--btc);opacity:0;transform:translateY(4px);transition:var(--transition);font-weight:700;font-size:0.85rem}
+.api-card:hover,.api-card:focus-visible{border-color:var(--border-hover);background:var(--card-hover)}
+.api-card:hover::after,.api-card:focus-visible::after{opacity:1;transform:translateY(0)}
+.api-card.ws-card::after{content:'Copiar';font-size:0.6rem;padding:2px 7px;border-radius:5px;background:rgba(91,141,239,0.14);color:var(--blue);border:1px solid rgba(91,141,239,0.25);top:12px;right:12px;font-weight:700}
+.api-card.copied{border-color:rgba(46,204,113,0.4);background:rgba(46,204,113,0.06)}
+
+/* ===== IP BAR (API) ===== */
+.api-ipbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 4px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.api-ip-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--btc);white-space:nowrap}
+.api-ip-input{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text-strong);font-family:var(--mono);font-size:0.85rem;flex:1;min-width:180px;transition:var(--transition)}
+.api-ip-input:focus{outline:none;border-color:var(--btc);box-shadow:0 0 0 3px var(--btc-glow)}
+.api-ip-save{background:linear-gradient(135deg,var(--btc),var(--btc-dim));border:none;color:#fff;font-weight:600;font-size:0.8rem;padding:9px 18px;border-radius:8px;cursor:pointer;transition:var(--transition);font-family:var(--font)}
+.api-ip-save:hover{filter:brightness(1.12)}
+.api-ip-save.saved{background:linear-gradient(135deg,var(--green),#27ae60)}
+.api-ip-hint{width:100%;color:var(--text3);font-size:0.75rem}
+.api-ip-hint strong{color:var(--btc);font-family:var(--mono);font-weight:600}
 .api-method{
   display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;
   font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;
@@ -933,25 +949,32 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <p class="section-desc">O AxeOS expõe uma API RESTful completa para monitoramento e controle. Perfeito para criar dashboards e automações.</p>
     </div>
 
+    <div class="api-ipbar reveal">
+      <label class="api-ip-label" for="apiIp">IP da sua Bitaxe</label>
+      <input type="text" id="apiIp" class="api-ip-input" placeholder="ex.: 192.168.1.50 ou bitaxe.local" spellcheck="false" autocomplete="off" autocapitalize="off">
+      <button type="button" class="api-ip-save" id="apiIpSave">Salvar</button>
+      <span class="api-ip-hint">Clique em um card para abrir o endpoint na sua Bitaxe <strong id="apiIpBadge">bitaxe.local</strong> em nova aba ↗ · endpoints de escrita (POST/PATCH/PUT) exigem o método correto — a aba mostra a resposta da API · a Bitaxe responde via HTTP na sua rede local.</span>
+    </div>
+
     <div class="api-grid reveal">
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/info</div><div class="api-desc">Informações completas (hashrate, temp, shares)</div></div>
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/asic</div><div class="api-desc">Configurações do ASIC</div></div>
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/statistics</div><div class="api-desc">Histórico de telemetria</div></div>
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/scoreboard</div><div class="api-desc">Top 20 shares mais difíceis</div></div>
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/wifi/scan</div><div class="api-desc">Escaneia redes Wi-Fi</div></div>
-      <div class="api-card"><span class="api-method m-get">GET</span><div class="api-path">/api/system/logs</div><div class="api-desc">Download dos logs</div></div>
-      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/restart</div><div class="api-desc">Reinicia o sistema</div></div>
-      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/pause</div><div class="api-desc">Pausa a mineração</div></div>
-      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/resume</div><div class="api-desc">Retoma a mineração</div></div>
-      <div class="api-card"><span class="api-method m-post">POST</span><div class="api-path">/api/system/OTA</div><div class="api-desc">Atualiza firmware</div></div>
-      <div class="api-card"><span class="api-method m-patch">PATCH</span><div class="api-path">/api/system</div><div class="api-desc">Atualiza configurações</div></div>
-      <div class="api-card"><span class="api-method m-put">PUT</span><div class="api-path">/api/system/pools/{slot}</div><div class="api-desc">Configura pool (SV1/SV2)</div></div>
+      <a class="api-card" href="#" data-endpoint="/api/system/info" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/info</div><div class="api-desc">Informações completas (hashrate, temp, shares)</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/asic" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/asic</div><div class="api-desc">Configurações do ASIC</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/statistics" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/statistics</div><div class="api-desc">Histórico de telemetria</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/scoreboard" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/scoreboard</div><div class="api-desc">Top 20 shares mais difíceis</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/wifi/scan" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/wifi/scan</div><div class="api-desc">Escaneia redes Wi-Fi</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/logs" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/logs</div><div class="api-desc">Download dos logs</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/restart" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/restart</div><div class="api-desc">Reinicia o sistema</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/pause" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/pause</div><div class="api-desc">Pausa a mineração</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/resume" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/resume</div><div class="api-desc">Retoma a mineração</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/OTA" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/OTA</div><div class="api-desc">Atualiza firmware</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system" target="_blank" rel="noopener"><span class="api-method m-patch">PATCH</span><div class="api-path">/api/system</div><div class="api-desc">Atualiza configurações</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/pools/{slot}" target="_blank" rel="noopener"><span class="api-method m-put">PUT</span><div class="api-path">/api/system/pools/{slot}</div><div class="api-desc">Configura pool (SV1/SV2)</div></a>
     </div>
 
     <h3 style="color:var(--btc);margin:20px 0 12px;font-size:1.05rem;">WebSockets</h3>
     <div class="api-grid" style="grid-template-columns:1fr 1fr">
-      <div class="api-card"><span class="api-method m-get">WS</span><div class="api-path">/api/ws</div><div class="api-desc">Stream de logs em tempo real</div></div>
-      <div class="api-card"><span class="api-method m-get">WS</span><div class="api-path">/api/ws/live</div><div class="api-desc">Stream JSON de telemetria ao vivo</div></div>
+      <a class="api-card ws-card" href="#" data-endpoint="/api/ws"><span class="api-method m-get">WS</span><div class="api-path">/api/ws</div><div class="api-desc">Stream de logs em tempo real</div></a>
+      <a class="api-card ws-card" href="#" data-endpoint="/api/ws/live"><span class="api-method m-get">WS</span><div class="api-path">/api/ws/live</div><div class="api-desc">Stream JSON de telemetria ao vivo</div></a>
     </div>
 
     <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">Exemplo</h3>
@@ -1260,6 +1283,85 @@ document.querySelectorAll('.code').forEach(block => {
   });
 });
 
+
+// === CARDS DA API: IP CONFIGURÁVEL ===
+(function(){
+  const IP_KEY = 'bitaxeIp';
+  const DEFAULT_IP = 'bitaxe.local';
+  const cards = document.querySelectorAll('.api-card');
+  const input = document.getElementById('apiIp');
+  const saveBtn = document.getElementById('apiIpSave');
+  const badge = document.getElementById('apiIpBadge');
+  let ip = DEFAULT_IP;
+  try { ip = localStorage.getItem(IP_KEY) || DEFAULT_IP; } catch (e) {}
+
+  function clean(v){
+    return (v || '').trim().replace(/^https?:\/\//i, '').replace(/^ws:\/\//i, '').replace(/\/+$/, '').replace(/^\[|\]$/g, '');
+  }
+  function host(hostname){
+    // Endereços IPv6 precisam de colchetes na URL
+    return hostname.indexOf(':') !== -1 ? '[' + hostname + ']' : hostname;
+  }
+  function apply(){
+    if (input) input.value = ip;
+    if (badge) badge.textContent = ip;
+    cards.forEach(card => {
+      const ep = card.getAttribute('data-endpoint') || '';
+      if (card.classList.contains('ws-card')) {
+        card.setAttribute('href', '#');
+        card.title = 'Copiar ws://' + host(ip) + ep;
+      } else {
+        card.setAttribute('href', 'http://' + host(ip) + ep);
+        card.title = 'Abrir http://' + host(ip) + ep;
+      }
+    });
+  }
+  function save(){
+    const v = clean(input ? input.value : '');
+    if (v) { ip = v; try { localStorage.setItem(IP_KEY, v); } catch (e) {} }
+    else { ip = DEFAULT_IP; try { localStorage.removeItem(IP_KEY); } catch (e) {} }
+    apply();
+    if (saveBtn) {
+      saveBtn.textContent = '✅ Salvo';
+      saveBtn.classList.add('saved');
+      setTimeout(() => { saveBtn.textContent = 'Salvar'; saveBtn.classList.remove('saved'); }, 1500);
+    }
+  }
+  if (saveBtn) saveBtn.addEventListener('click', save);
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); save(); } });
+
+  // Cards WebSocket não abrem em aba — copiam a URL real para a área de transferência
+  cards.forEach(card => {
+    if (!card.classList.contains('ws-card')) return;
+    const desc = card.querySelector('.api-desc');
+    if (desc) card.dataset.desc = desc.textContent; // texto original guardado uma única vez
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const url = 'ws://' + host(ip) + (card.getAttribute('data-endpoint') || '');
+      const orig = card.dataset.desc !== undefined ? card.dataset.desc : (desc ? desc.textContent : '');
+      const flash = () => {
+        card.classList.add('copied');
+        if (desc) desc.textContent = 'URL copiada!';
+        setTimeout(() => {
+          card.classList.remove('copied');
+          if (desc) desc.textContent = orig;
+        }, 1800);
+      };
+      const fallback = () => {
+        const ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(flash).catch(() => { fallback(); flash(); });
+      } else { fallback(); flash(); }
+    });
+  });
+
+  apply();
+})();
 
 // === REVEAL AO ROLAR ===
 const revealEls = document.querySelectorAll('.reveal');
