@@ -29,6 +29,16 @@ Este projeto reúne, em português, **todo o conhecimento necessário para miner
 | **Guia Gamma 601** | `bitaxe-gamma-601-guia-completo.html` | Guia detalhado do Bitaxe Gamma 601 (BM1370): especificações, firmware, overclock passo a passo, tabelas, limites térmicos, destravamento OC e configuração recomendada |
 
 ---
+## 🎬 Conteúdo para Vídeo (YouTube)
+
+Arquivos de apoio para o canal da Guilda no YouTube — acompanham o conteúdo do site:
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `descricao-youtube.md` | Descrição pronta para colar no YouTube Studio: 3 sugestões de título, descrição principal com os 6 modelos e todos os tópicos, capítulos/timestamps, tags/hashtags, versão curta para o feed e seção extra com o guia do Gamma 601 |
+| `legenda-video-4min.srt` | Legenda sincronizada (SRT) do vídeo de 4 minutos: introdução, os 6 modelos, firmware (3 métodos), overclock seguro, pools (solo vs tradicional), rentabilidade, API do AxeOS e dicas rápidas |
+
+---
 
 ## ✨ Funcionalidades
 
@@ -111,6 +121,8 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 .
 ├── index.html                            # Página principal da Guilda
 ├── bitaxe-gamma-601-guia-completo.html   # Guia detalhado do Gamma 601
+├── descricao-youtube.md                 # Descrição para o vídeo do YouTube (copiar e colar no Studio)
+├── legenda-video-4min.srt               # Legenda do vídeo de 4 minutos (SRT)
 ├── .nojekyll                             # Habilita GitHub Pages com nomes de arquivo com números
 └── README.md                             # Este arquivo
 ```
