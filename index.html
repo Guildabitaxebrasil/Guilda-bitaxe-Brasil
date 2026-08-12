@@ -634,6 +634,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <li role="none"><a href="#firmware" role="menuitem">Firmware</a></li>
       <li role="none"><a href="#overclock" role="menuitem">Overclock</a></li>
       <li role="none"><a href="#pools" role="menuitem">Pools</a></li>
+      <li role="none"><a href="#moedas" role="menuitem">Moedas</a></li>
       <li role="none"><a href="#calculadora" role="menuitem">Calculadora</a></li>
       <li role="none"><a href="#api" role="menuitem">API</a></li>
       <li role="none"><a href="#faq" role="menuitem">FAQ</a></li>
@@ -899,6 +900,81 @@ table.comp tr:hover td:first-child{background:var(--bg)}
   </div>
 </section>
 
+<!-- ===== MOEDAS E PROTOCOLOS ===== -->
+<section id="moedas" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Moedas e Protocolos</h2>
+      <p class="section-desc">O Bitaxe usa chips ASIC SHA-256, o mesmo do Bitcoin. Por isso, ele pode minerar qualquer moeda que utilize esse algoritmo. Conheça todas as opções disponíveis.</p>
+    </div>
+
+    <h3 style="color:var(--btc);margin-bottom:16px;font-size:1.05rem;">Moedas SHA-256 compatíveis</h3>
+    <div class="table-wrap reveal">
+      <table class="comp">
+        <thead><tr><th>Moeda</th><th>Ticker</th><th>Algoritmo</th><th>Descrição</th><th>Pools Recomendados</th></tr></thead>
+        <tbody>
+          <tr><td>🟠 Bitcoin</td><td>BTC</td><td>SHA-256d</td><td>A rede principal. Mineração solo = loteria de 3,125 BTC por bloco.</td><td>CKPool, OCEAN, ViaBTC, F2Pool</td></tr>
+          <tr><td>🟧 Fractal Bitcoin</td><td>FB</td><td>SHA-256d</td><td>Solução de escalabilidade do Bitcoin. Blocos a cada 30s. 2/3 permissionless + 1/3 merge mining.</td><td>SoloPool, Kryptex, ViaBTC</td></tr>
+          <tr><td>💚 Bitcoin Cash</td><td>BCH</td><td>SHA-256d</td><td>Fork do Bitcoin com blocos maiores (32 MB). Mesma dificuldade do BTC.</td><td>ViaBTC, F2Pool, SoloPool</td></tr>
+          <tr><td>💜 eCash</td><td>XEC</td><td>SHA-256</td><td>Antigo Bitcoin Cash ABC. Adicionou proof-of-stake + proof-of-work.</td><td>SoloPool, Zergpool</td></tr>
+          <tr><td>🔵 DigiByte</td><td>DGB</td><td>SHA-256</td><td>Rede multi-algoritmo. SHA-256 é um dos 5 algoritmos suportados.</td><td>Zergpool, SoloPool, Minincore</td></tr>
+          <tr><td>🟡 Peercoin</td><td>PPC</td><td>SHA-256</td><td>Primeira moeda proof-of-stake. Ainda aceita mineração SHA-256.</td><td>Pools multi-moeda</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box box-info"><div class="box-title">ℹ️ Importante</div><p>O Bitaxe <strong>só miner SHA-256</strong>. Moedas como Kaspa (kHeavyHash), Dogecoin (Scrypt) ou Ethereum (Ethash) <strong>não são compatíveis</strong>. Verifique sempre o algoritmo antes de configurar.</p></div>
+
+    <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Protocolos de Mineração</h3>
+    <div class="models-grid reveal">
+      <div class="glow-card">
+        <h3>📡 Stratum V1 (SV1)</h3>
+        <p>O protocolo clássico de mineração. Funciona via TCP com mensagens JSON em texto plano. É o mais compatível com todos os pools. Configuração padrão no AxeOS.</p>
+        <div class="code" style="margin-top:12px;font-size:0.78rem">
+          <span class="c"># Configuração SV1 (padrão)</span><br>
+          stratumURL: solo.ckpool.org<br>
+          stratumPort: 3333<br>
+          stratumUser: bc1...<br>
+          stratumPassword: x<br>
+          stratumProtocol: SV1
+        </div>
+      </div>
+      <div class="glow-card">
+        <h3>🔐 Stratum V2 (SV2)</h3>
+        <p>O protocolo da nova geração. Oferece criptografia (handshake NOISE), redução de overhead com framing binário, e suporte a canais customizados. Mais seguro e eficiente.</p>
+        <div class="code" style="margin-top:12px;font-size:0.78rem">
+          <span class="c"># Configuração SV2 via API</span><br>
+          stratumURL: v2.srtm.ocean.xyz<br>
+          stratumPort: 3334<br>
+          stratumUser: bc1...<br>
+          stratumPassword: x<br>
+          stratumProtocol: SV2
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Pools para cada moeda</h3>
+    <div class="pools-grid reveal">
+      <a href="https://solopool.org" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">SoloPool.org</div><div class="pool-type">Solo Multi-Moeda</div><div class="pool-url">solopool.org</div><div class="pool-desc">Suporta solo mining para FB, DGB, XEC e outras moedas SHA-256. Ideal para Bitaxe.</div><span class="pool-badge solo">Solo</span></a>
+      <a href="https://kryptex.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Kryptex</div><div class="pool-type">Pool PPS+</div><div class="pool-url">fb.kryptex.network:7013</div><div class="pool-desc">Suporta Fractal Bitcoin com pagamento PPS+. Porta dedicada para FB.</div><span class="pool-badge pooled">Pool</span></a>
+      <a href="https://www.viabtc.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">ViaBTC (Merge Mining)</div><div class="pool-type">Merge Mining</div><div class="pool-url">via site</div><div class="pool-desc">Minere BTC e ganhe FB automaticamente via merge mining. Sem config extra.</div><span class="pool-badge pooled">Merge</span></a>
+      <a href="https://zergpool.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Zergpool</div><div class="pool-type">Multi-Algoritmo</div><div class="pool-url">zergpool.com</div><div class="pool-desc">Suporta DGB-SHA256, XEC e outras moedas. Auto-switch de moeda mais rentável.</div><span class="pool-badge pooled">Pool</span></a>
+    </div>
+
+    <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Como configurar Fractal Bitcoin</h3>
+    <div class="steps reveal">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Acesse o dashboard do Bitaxe (AxeOS) pelo navegador</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Vá em <strong>Settings</strong> → Pool</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Stratum URL:</strong> <code style="font-family:var(--mono)">stratum+tcp://fb.kryptex.network:7013</code> (ou outro pool FB)</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Username:</strong> seu endereço Fractal Bitcoin (<code style="font-family:var(--mono)">fb1..."</code>)</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Password:</strong> <code style="font-family:var(--mono)">x</code> ou deixe em branco</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">Salve e reinicie. Aguarde 10-20 minutos para ver shares no painel do pool.</div></div>
+    </div>
+
+    <div class="box box-warn"><div class="box-title">⚠️ Atenção com endereços</div><p>Use <strong>sempre o endereço correto</strong> da moeda que você está minerando. Enviar BTC para um endereço FB, ou vice-versa, resulta em <strong>perda permanente</strong> dos fundos.</p></div>
+  </div>
+</section>
+
 <!-- ===== CALCULADORA ===== -->
 <section id="calculadora" class="section">
   <div class="container">
@@ -1119,6 +1195,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <a href="#firmware">Firmware</a>
       <a href="#overclock">Overclock</a>
       <a href="#pools">Pools</a>
+      <a href="#moedas">Moedas</a>
       <a href="#api">API</a>
       <a href="#faq">FAQ</a>
     </div>
