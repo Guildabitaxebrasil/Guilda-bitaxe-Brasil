@@ -862,10 +862,12 @@ table.comp tr:hover td:first-child{background:var(--bg)}
 
     <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">Pools recomendados</h3>
     <div class="pools-grid reveal">
-      <a href="https://ckpool.org" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">CKPool</div><div class="pool-type">Mineração Solo (Loteria)</div><div class="pool-url">solo.ckpool.org:3333</div><div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, fica com 3.125 BTC. Taxa de 2% apenas se achar bloco.</div><span class="pool-badge solo">Solo</span></a>
+      <a href="https://solo.ckpool.org" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">CKPool</div><div class="pool-type">Mineração Solo (Loteria)</div><div class="pool-url">solo.ckpool.org:3333</div><div class="pool-desc">O pool solo mais popular. Se encontrar um bloco, fica com 3.125 BTC. Taxa de 2% apenas se achar bloco.</div><span class="pool-badge solo">Solo</span></a>
       <a href="https://ocean.xyz" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">OCEAN</div><div class="pool-type">Pool Descentralizado</div><div class="pool-url">stratum-v1.ocean.xyz:4444</div><div class="pool-desc">Pool cypherpunk de Luke Dashjr e Jack Dorsey. Não-custodial, suporta SV2.</div><span class="pool-badge solo">Descentralizado</span></a>
       <a href="https://www.viabtc.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">ViaBTC</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">Regional (via site)</div><div class="pool-desc">PPS+, PPLNS e SOLO. Requer conta. Taxa ~2-4%.</div><span class="pool-badge pooled">Pool</span></a>
       <a href="https://www.f2pool.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">F2Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">btc.f2pool.com:3333</div><div class="pool-desc">Um dos pools mais antigos. FPPS+, taxa ~2.5%. Requer cadastro.</div><span class="pool-badge pooled">Pool</span></a>
+      <a href="https://pool.braiins.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Braiins Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">stratum.brains.com:3333</div><div class="pool-desc">O pool mais antigo do mundo (desde 2010). FPPS, suporta Stratum V2, payouts via Lightning. Não-custodial.</div><span class="pool-badge pooled">Pool</span></a>
+      <a href="https://parasite.space" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Parasite Pool</div><div class="pool-type">Solo Cooperativo</div><div class="pool-url">parasite.space</div><div class="pool-desc">Pool solo alternativa: quem achar o bloco fica com 1 BTC, o resto (2,125 BTC) é dividido entre todos os mineradores. Descentralizado e justo.</div><span class="pool-badge solo">Solo</span></a>
     </div>
 
     <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">Como funciona a loteria solo</h3>
@@ -913,7 +915,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <table class="comp">
         <thead><tr><th>Moeda</th><th>Ticker</th><th>Algoritmo</th><th>Descrição</th><th>Pools Recomendados</th></tr></thead>
         <tbody>
-          <tr><td>🟠 Bitcoin</td><td>BTC</td><td>SHA-256d</td><td>A rede principal. Mineração solo = loteria de 3,125 BTC por bloco.</td><td>CKPool, OCEAN, ViaBTC, F2Pool</td></tr>
+          <tr><td>🟠 Bitcoin</td><td>BTC</td><td>SHA-256d</td><td>A rede principal. Mineração solo = loteria de 3,125 BTC por bloco.</td><td>CKPool, OCEAN, ViaBTC, F2Pool, Braiins, Parasite</td></tr>
           <tr><td>🟧 Fractal Bitcoin</td><td>FB</td><td>SHA-256d</td><td>Solução de escalabilidade do Bitcoin. Blocos a cada 30s. 2/3 permissionless + 1/3 merge mining.</td><td>SoloPool, Kryptex, ViaBTC</td></tr>
           <tr><td>💚 Bitcoin Cash</td><td>BCH</td><td>SHA-256d</td><td>Fork do Bitcoin com blocos maiores (32 MB). Mesma dificuldade do BTC.</td><td>ViaBTC, F2Pool, SoloPool</td></tr>
           <tr><td>💜 eCash</td><td>XEC</td><td>SHA-256</td><td>Antigo Bitcoin Cash ABC. Adicionou proof-of-stake + proof-of-work.</td><td>SoloPool, Zergpool</td></tr>

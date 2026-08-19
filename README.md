@@ -58,7 +58,7 @@ Presente nas **duas páginas**, com:
 - **Primeiros Passos**: guia rápido de configuração do zero (modelo, fonte, Wi-Fi, firmware e pool)
 - **Firmware**: OTA pela web, Web Flasher (USB) e bitaxetool (CLI)
 - **Overclock seguro**: destravamento via `?oc`, limites térmicos e voltagem
-- **Pools**: CKPool (solo), OCEAN, ViaBTC, F2Pool + suporte a **Stratum V2**
+- **Pools**: CKPool (solo), OCEAN, ViaBTC, F2Pool, Braiins, Parasite Pool + suporte a **Stratum V2**
 - **API do AxeOS**: endpoints REST e WebSockets com exemplos `curl`
 - **Troubleshooting** e **FAQ** (accordion interativo)
 - **Riscos e Avisos**: disclaimers sobre overclock, estimativas e segurança elétrica
@@ -169,6 +169,8 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 | OCEAN | Descentralizado | `stratum-v1.ocean.xyz:4444` |
 | ViaBTC | Tradicional | Regional (via site) |
 | F2Pool | Tradicional | `btc.f2pool.com:3333` |
+| Braiins | Tradicional | `stratum.brains.com:3333` |
+| Parasite | Solo Cooperativo | `parasite.space` |
 
 ### API do AxeOS (destaques)
 - `GET /api/system/info` — informações completas
