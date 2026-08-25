@@ -332,10 +332,10 @@ table.comp tr:last-child td{border-bottom:none}
   padding:14px 34px 14px 16px;transition:var(--transition);
   display:block;text-decoration:none;color:inherit;position:relative;
 }
-.api-card::after{content:'↗';position:absolute;top:14px;right:14px;color:var(--btc);opacity:0;transform:translateY(4px);transition:var(--transition);font-weight:700;font-size:0.85rem}
+.api-card::after{content:'Copiar';position:absolute;top:12px;right:12px;font-size:0.6rem;padding:2px 7px;border-radius:5px;background:rgba(247,147,26,0.14);color:var(--btc);border:1px solid rgba(247,147,26,0.25);font-weight:700;opacity:0;transform:translateY(4px);transition:var(--transition)}
 .api-card:hover,.api-card:focus-visible{border-color:var(--border-hover);background:var(--card-hover)}
 .api-card:hover::after,.api-card:focus-visible::after{opacity:1;transform:translateY(0)}
-.api-card.ws-card::after{content:'Copiar';font-size:0.6rem;padding:2px 7px;border-radius:5px;background:rgba(91,141,239,0.14);color:var(--blue);border:1px solid rgba(91,141,239,0.25);top:12px;right:12px;font-weight:700}
+.api-card.ws-card::after{background:rgba(91,141,239,0.14);color:var(--blue);border-color:rgba(91,141,239,0.25)}
 .api-card.copied{border-color:rgba(46,204,113,0.4);background:rgba(46,204,113,0.06)}
 
 /* ===== IP BAR (API) ===== */
@@ -1426,14 +1426,16 @@ document.querySelectorAll('.code').forEach(block => {
   if (saveBtn) saveBtn.addEventListener('click', save);
   if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); save(); } });
 
-  // Cards WebSocket não abrem em aba — copiam a URL real para a área de transferência
+  // Todos os cards copiam a URL ao clicar — WS copiam e bloqueiam navegação;
+  // cards normais copiam E abrem em nova aba (quando a Bitaxe estiver na rede).
   cards.forEach(card => {
-    if (!card.classList.contains('ws-card')) return;
     const desc = card.querySelector('.api-desc');
-    if (desc) card.dataset.desc = desc.textContent; // texto original guardado uma única vez
+    if (desc) card.dataset.desc = desc.textContent;
+    const isWs = card.classList.contains('ws-card');
     card.addEventListener('click', e => {
-      e.preventDefault();
-      const url = 'ws://' + host(ip) + (card.getAttribute('data-endpoint') || '');
+      if (isWs) e.preventDefault();
+      const scheme = isWs ? 'ws://' : 'http://';
+      const url = scheme + host(ip) + (card.getAttribute('data-endpoint') || '');
       const orig = card.dataset.desc !== undefined ? card.dataset.desc : (desc ? desc.textContent : '');
       const flash = () => {
         card.classList.add('copied');
@@ -1447,7 +1449,7 @@ document.querySelectorAll('.code').forEach(block => {
         const ta = document.createElement('textarea');
         ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
         document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); } catch (e) {}
+        try { document.execCommand('copy'); } catch (e2) {}
         ta.remove();
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
