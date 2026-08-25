@@ -1073,27 +1073,73 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <a class="api-card ws-card" href="#" data-endpoint="/api/ws/live"><span class="api-method m-get">WS</span><div class="api-path">/api/ws/live</div><div class="api-desc">Stream JSON de telemetria ao vivo</div></a>
     </div>
 
-    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">Exemplo</h3>
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">Exemplo — <code>/api/system/info</code></h3>
     <div class="code">
-      <span class="c"># Obter informações do self-test</span><br>
-      <span class="p">$</span> curl http://&lt;BITAXE-IP&gt;/api/system/selfTest<br><br>
+      <span class="p">$</span> curl http://192.168.18.98/api/system/info<br><br>
+      <span class="c"># Resposta (resumida)</span><br>
+      {
+      <br>  "hashRate": 1081.47,
+      <br>  "hashRate_avg": 1053.88,
+      <br>  "hashRate_1m": 1054.56,
+      <br>  "hashRate_10m": 1056.72,
+      <br>  "hashRate_1h": 1054.76,
+      <br>  "hashRate8c": 1093.50,
+      <br>  "expectedHashrate": 1071,
+      <br>  "power": 19.75,
+      <br>  "temp": 63.5,
+      <br>  "vrTemp": 64,
+      <br>  "coreVoltage": 1100,
+      <br>  "coreVoltageActual": 1093,
+      <br>  "frequency": 525,
+      <br>  "errorPercentage": 0.79,
+      <br>  "sharesAccepted": 3023,
+      <br>  "sharesRejected": 4,
+      <br>  "bestDiff": 317181839,
+      <br>  "ASICModel": "BM1370",
+      <br>  "boardVersion": "601a-2",
+      <br>  "stratumURL": "solo.ckpool.org",
+      <br>  "stratumUser": "bc1qx3n...lewcn4",
+      <br>  "uptimeSeconds": 12553,
+      <br>  "blockHeight": 964036,
+      <br>  "networkDifficulty": 125807076547197,
+      <br>  "fanspeed": 100,
+      <br>  "fanrpm": 7814,
+      <br>  "appVersion": "V1.0.1-rc.6",
+      <br>  "ssid": "AGILITY - MACENA_2G",
+      <br>  "hostname": "bitaxe",
+      <br>  "ipv4": "192.168.18.98"
+      <br>}
+    </div>
+    <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">Exemplo — <code>/api/system/selfTest</code></h3>
+    <div class="code">
+      <span class="p">$</span> curl http://192.168.18.98/api/system/selfTest<br><br>
       <span class="c"># Resposta</span><br>
       {
       <br>  "selfTestActive": 0,
       <br>  "selfTestParams": {
       <br>    "asicFrequency": 525,
       <br>    "asicVoltage": 1100,
+      <br>    "freq": 525,
+      <br>    "vol": 1150,
       <br>    "power_min": 10,
       <br>    "power_max": 25,
       <br>    "ghs_min": 900,
       <br>    "ghs_max": 1800,
-      <br>    "last_ghs": 993.8554,
-      <br>    "last_power": 18.943,
       <br>    "errorPercentage_max": 8,
+      <br>    "errorPercentage_delay": 120,
+      <br>    "last_ghs": 993.86,
+      <br>    "last_power": 18.94,
       <br>    "error_code": 0,
       <br>    "is_finished": 0,
       <br>    "is_success": 0
-      <br>  }
+      <br>  },
+      <br>  "model": "LT-001",
+      <br>  "power": 19.75,
+      <br>  "temp": 63.5,
+      <br>  "hashRate": 1081.47,
+      <br>  "ASICModel": "BM1370",
+      <br>  "boardVersion": "601a-2",
+      <br>  "appVersion": "V1.0.1-rc.6"
       <br>}
     </div>
   </div>
