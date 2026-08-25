@@ -1058,6 +1058,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <a class="api-card" href="#" data-endpoint="/api/system/scoreboard" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/scoreboard</div><div class="api-desc">Top 20 shares mais difíceis</div></a>
       <a class="api-card" href="#" data-endpoint="/api/system/wifi/scan" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/wifi/scan</div><div class="api-desc">Escaneia redes Wi-Fi</div></a>
       <a class="api-card" href="#" data-endpoint="/api/system/logs" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/logs</div><div class="api-desc">Download dos logs</div></a>
+      <a class="api-card" href="#" data-endpoint="/api/system/selfTest" target="_blank" rel="noopener"><span class="api-method m-get">GET</span><div class="api-path">/api/system/selfTest</div><div class="api-desc">Status do self-test e parâmetros do ASIC</div></a>
       <a class="api-card" href="#" data-endpoint="/api/system/restart" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/restart</div><div class="api-desc">Reinicia o sistema</div></a>
       <a class="api-card" href="#" data-endpoint="/api/system/pause" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/pause</div><div class="api-desc">Pausa a mineração</div></a>
       <a class="api-card" href="#" data-endpoint="/api/system/resume" target="_blank" rel="noopener"><span class="api-method m-post">POST</span><div class="api-path">/api/system/resume</div><div class="api-desc">Retoma a mineração</div></a>
@@ -1074,10 +1075,26 @@ table.comp tr:hover td:first-child{background:var(--bg)}
 
     <h3 style="color:var(--btc);margin:28px 0 12px;font-size:1.05rem;">Exemplo</h3>
     <div class="code">
-      <span class="c"># Obter informações do sistema</span><br>
-      <span class="p">$</span> curl http://&lt;BITAXE-IP&gt;/api/system/info<br><br>
+      <span class="c"># Obter informações do self-test</span><br>
+      <span class="p">$</span> curl http://&lt;BITAXE-IP&gt;/api/system/selfTest<br><br>
       <span class="c"># Resposta</span><br>
-      {"hashRate":"1.2 TH/s","temp":52,"power":18.5,"sharesAccepted":42,"bestDifficulty":"2.3M","asicModel":"BM1370"}
+      {
+      <br>  "selfTestActive": 0,
+      <br>  "selfTestParams": {
+      <br>    "asicFrequency": 525,
+      <br>    "asicVoltage": 1100,
+      <br>    "power_min": 10,
+      <br>    "power_max": 25,
+      <br>    "ghs_min": 900,
+      <br>    "ghs_max": 1800,
+      <br>    "last_ghs": 993.8554,
+      <br>    "last_power": 18.943,
+      <br>    "errorPercentage_max": 8,
+      <br>    "error_code": 0,
+      <br>    "is_finished": 0,
+      <br>    "is_success": 0
+      <br>  }
+      <br>}
     </div>
   </div>
 </section>
