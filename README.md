@@ -26,6 +26,7 @@ Este projeto reúne, em português, **todo o conhecimento necessário para miner
 | Página | Arquivo | Conteúdo |
 |--------|---------|----------|
 | **Home / Guilda bitaxeBrasil** | `index.html` | Visão geral: o que é Bitaxe, modelos, comparação, primeiros passos, firmware, overclock, pools, API, troubleshooting, FAQ, riscos e avisos, links úteis e sobre a guilda |
+| **Dashboard Tempo Real** | `dashboard.html` | Dashboard em tempo real com gráficos circulares (gauges) e gráficos de linha para monitorar hashrate, temperatura, potência e eficiência via WebSocket |
 | **Guia Gamma 601** | `bitaxe-gamma-601-guia-completo.html` | Guia detalhado do Bitaxe Gamma 601 (BM1370): especificações, firmware, overclock passo a passo, tabelas, limites térmicos, destravamento OC e configuração recomendada |
 
 ---
@@ -120,6 +121,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 ```
 .
 ├── index.html                            # Página principal da Guilda
+├── dashboard.html                        # Dashboard em tempo real (gauges + gráficos de linha)
 ├── bitaxe-gamma-601-guia-completo.html   # Guia detalhado do Gamma 601
 ├── descricao-youtube.md                 # Descrição para o vídeo do YouTube (copiar e colar no Studio)
 ├── legenda-video-4min.srt               # Legenda do vídeo de 4 minutos (SRT)
