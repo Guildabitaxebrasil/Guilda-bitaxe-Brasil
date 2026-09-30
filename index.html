@@ -924,11 +924,34 @@ table.comp tr:hover td:first-child{background:var(--bg)}
           <tr><td>💜 eCash</td><td>XEC</td><td>SHA-256</td><td>Antigo Bitcoin Cash ABC. Adicionou proof-of-stake + proof-of-work.</td><td>SoloPool, Zergpool</td></tr>
           <tr><td>🔵 DigiByte</td><td>DGB</td><td>SHA-256</td><td>Rede multi-algoritmo. SHA-256 é um dos 5 algoritmos suportados.</td><td>Zergpool, SoloPool, Minincore</td></tr>
           <tr><td>🟡 Peercoin</td><td>PPC</td><td>SHA-256</td><td>Primeira moeda proof-of-stake. Ainda aceita mineração SHA-256.</td><td>Pools multi-moeda</td></tr>
+          <tr><td>🔷 Bitcoin SV</td><td>BSV</td><td>SHA-256d</td><td>Fork do Bitcoin Cash com blocos ainda maiores. Mesmo algoritmo do BTC.</td><td>ViaBTC, F2Pool, Braiins</td></tr>
+          <tr><td>⚪ Litecoin Cash</td><td>LCC</td><td>SHA-256</td><td>Fork do Litecoin que trocou o Scrypt por SHA-256.</td><td>Zergpool, pools multi-moeda</td></tr>
+          <tr><td>🟤 Emercoin</td><td>EMC</td><td>SHA-256</td><td>Blockchain de serviços (DNS, VPN). Ainda aceita mineração SHA-256.</td><td>Pools multi-moeda</td></tr>
+          <tr><td>🔴 Terracoin</td><td>TRC</td><td>SHA-256</td><td>Projeto de governança e doações. Comunidade pequena, mas ativa.</td><td>Pools multi-moeda</td></tr>
+          <tr><td>🟣 Unobtanium</td><td>UNO</td><td>SHA-256</td><td>Moeda escassa de longa data, dificuldade baixa (boa para solo).</td><td>Pools multi-moeda</td></tr>
+          <tr><td>⚡ Quai Network</td><td>QUAI</td><td>SHA-256d</td><td>Rede multi-chain nova, ficou popular para mineração solo com ASICs SHA-256.</td><td>Pools dedicadas QUAI</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="box box-info"><div class="box-title">ℹ️ Importante</div><p>O Bitaxe <strong>só miner SHA-256</strong>. Moedas como Kaspa (kHeavyHash), Dogecoin (Scrypt) ou Ethereum (Ethash) <strong>não são compatíveis</strong>. Verifique sempre o algoritmo antes de configurar.</p></div>
+
+    <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Merge Mining (bônus automático)</h3>
+    <p style="color:var(--text2);margin-bottom:16px;">Com <strong>merge mining</strong> você minera Bitcoin e recebe moedas auxiliares de brinde — a pool cuida de tudo, sem configuração extra no Bitaxe. Basta a pool suportar.</p>
+    <div class="table-wrap reveal">
+      <table class="comp">
+        <thead><tr><th>Moeda</th><th>Ticker</th><th>Como funciona</th><th>Pools Recomendados</th></tr></thead>
+        <tbody>
+          <tr><td>🔒 Namecoin</td><td>NMC</td><td>Merge mined com BTC desde 2011 (AuxPoW). Registro de domínios .bit.</td><td>ViaBTC, Braiins, OCEAN</td></tr>
+          <tr><td>🛡️ Syscoin</td><td>SYS</td><td>Merge mined com BTC. Plataforma de ativos e mercado descentralizado.</td><td>Pools com merge mining</td></tr>
+          <tr><td>🚗 Elastos</td><td>ELA</td><td>Merge mined com BTC. Infraestrutura Web3.</td><td>Pools Elastos, ViaBTC</td></tr>
+          <tr><td>🏗️ Rootstock</td><td>RSK</td><td>Sidechain do Bitcoin merge mined via tagged hashes.</td><td>Pools Rootstock</td></tr>
+          <tr><td>⛓️ Hathor</td><td>HTR</td><td>Merge mined com BTC. Rede para tokens e dApps.</td><td>Pools Hathor</td></tr>
+          <tr><td>💠 VCash</td><td>XVC</td><td>Merge mined com BTC via AuxPoW.</td><td>Pools compatíveis</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box box-tip"><div class="box-title">💡 Dica</div><p>No merge mining você <strong>não aponta o Bitaxe</strong> para a moeda auxiliar — só minera BTC normalmente. Os bônus das moedas auxiliares chegam automaticamente pela pool.</p></div>
 
     <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Protocolos de Mineração</h3>
     <div class="models-grid reveal">
