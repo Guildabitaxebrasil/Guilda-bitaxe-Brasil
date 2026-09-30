@@ -173,6 +173,7 @@ O projeto já contém o arquivo `.nojekyll` (necessário para o GitHub Pages ser
 | F2Pool | Tradicional | `btc.f2pool.com:3333` |
 | Braiins | Tradicional | `stratum.brains.com:3333` |
 | Parasite | Solo Cooperativo | `parasite.space` |
+| Parasite (BCH) | Solo Cooperativo | `para.bch.ee:3333` |
 
 ### API do AxeOS (destaques)
 - `GET /api/system/info` — informações completas

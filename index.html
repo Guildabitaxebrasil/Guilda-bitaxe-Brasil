@@ -870,6 +870,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <a href="https://www.f2pool.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">F2Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">btc.f2pool.com:3333</div><div class="pool-desc">Um dos pools mais antigos. FPPS+, taxa ~2.5%. Requer cadastro.</div><span class="pool-badge pooled">Pool</span></a>
       <a href="https://pool.braiins.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Braiins Pool</div><div class="pool-type">Pool Tradicional</div><div class="pool-url">stratum.brains.com:3333</div><div class="pool-desc">O pool mais antigo do mundo (desde 2010). FPPS, suporta Stratum V2, payouts via Lightning. Não-custodial.</div><span class="pool-badge pooled">Pool</span></a>
       <a href="https://parasite.space" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Parasite Pool</div><div class="pool-type">Solo Cooperativo</div><div class="pool-url">parasite.space</div><div class="pool-desc">Pool solo alternativa: quem achar o bloco fica com 1 BTC, o resto (2,125 BTC) é dividido entre todos os mineradores. Descentralizado e justo.</div><span class="pool-badge solo">Solo</span></a>
+      <a href="https://bch.ee" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Parasite Pool (BCH)</div><div class="pool-type">Solo Cooperativo</div><div class="pool-url">para.bch.ee:3333</div><div class="pool-desc">A versão Bitcoin Cash do Parasite Pool: 1 BCH de bônus para quem achar o bloco + o restante dividido proporcionalmente. Taxa de 2%, sem custódia.</div><span class="pool-badge solo">Solo</span></a>
     </div>
 
     <h3 style="color:var(--btc);margin:28px 0 16px;font-size:1.05rem;">Como funciona a loteria solo</h3>
@@ -919,7 +920,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
         <tbody>
           <tr><td>🟠 Bitcoin</td><td>BTC</td><td>SHA-256d</td><td>A rede principal. Mineração solo = loteria de 3,125 BTC por bloco.</td><td>CKPool, OCEAN, ViaBTC, F2Pool, Braiins, Parasite</td></tr>
           <tr><td>🟧 Fractal Bitcoin</td><td>FB</td><td>SHA-256d</td><td>Solução de escalabilidade do Bitcoin. Blocos a cada 30s. 2/3 permissionless + 1/3 merge mining.</td><td>SoloPool, Kryptex, ViaBTC</td></tr>
-          <tr><td>💚 Bitcoin Cash</td><td>BCH</td><td>SHA-256d</td><td>Fork do Bitcoin com blocos maiores (32 MB). Mesma dificuldade do BTC.</td><td>ViaBTC, F2Pool, SoloPool</td></tr>
+          <tr><td>💚 Bitcoin Cash</td><td>BCH</td><td>SHA-256d</td><td>Fork do Bitcoin com blocos maiores (32 MB). Mesma dificuldade do BTC.</td><td>ViaBTC, F2Pool, SoloPool, Parasite BCH (bch.ee)</td></tr>
           <tr><td>💜 eCash</td><td>XEC</td><td>SHA-256</td><td>Antigo Bitcoin Cash ABC. Adicionou proof-of-stake + proof-of-work.</td><td>SoloPool, Zergpool</td></tr>
           <tr><td>🔵 DigiByte</td><td>DGB</td><td>SHA-256</td><td>Rede multi-algoritmo. SHA-256 é um dos 5 algoritmos suportados.</td><td>Zergpool, SoloPool, Minincore</td></tr>
           <tr><td>🟡 Peercoin</td><td>PPC</td><td>SHA-256</td><td>Primeira moeda proof-of-stake. Ainda aceita mineração SHA-256.</td><td>Pools multi-moeda</td></tr>
@@ -959,6 +960,7 @@ table.comp tr:hover td:first-child{background:var(--bg)}
 
     <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Pools para cada moeda</h3>
     <div class="pools-grid reveal">
+      <a href="https://bch.ee" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Parasite Pool (BCH)</div><div class="pool-type">Solo Cooperativo</div><div class="pool-url">para.bch.ee:3333</div><div class="pool-desc">Versão Bitcoin Cash do Parasite Pool (bch.ee): taxa de 2%, 1 BCH de bônus para quem achar o bloco e o restante dividido proporcionalmente (PROP). Payout direto na coinbase, sem custódia.</div><span class="pool-badge solo">Solo</span></a>
       <a href="https://solopool.org" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">SoloPool.org</div><div class="pool-type">Solo Multi-Moeda</div><div class="pool-url">solopool.org</div><div class="pool-desc">Suporta solo mining para FB, DGB, XEC e outras moedas SHA-256. Ideal para Bitaxe.</div><span class="pool-badge solo">Solo</span></a>
       <a href="https://kryptex.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">Kryptex</div><div class="pool-type">Pool PPS+</div><div class="pool-url">fb.kryptex.network:7013</div><div class="pool-desc">Suporta Fractal Bitcoin com pagamento PPS+. Porta dedicada para FB.</div><span class="pool-badge pooled">Pool</span></a>
       <a href="https://www.viabtc.com" target="_blank" rel="noopener noreferrer" class="pool-card"><div class="pool-name">ViaBTC (Merge Mining)</div><div class="pool-type">Merge Mining</div><div class="pool-url">via site</div><div class="pool-desc">Minere BTC e ganhe FB automaticamente via merge mining. Sem config extra.</div><span class="pool-badge pooled">Merge</span></a>
@@ -973,6 +975,16 @@ table.comp tr:hover td:first-child{background:var(--bg)}
       <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Username:</strong> seu endereço Fractal Bitcoin (<code style="font-family:var(--mono)">fb1..."</code>)</div></div>
       <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Password:</strong> <code style="font-family:var(--mono)">x</code> ou deixe em branco</div></div>
       <div class="step"><div class="step-num">6</div><div class="step-content">Salve e reinicie. Aguarde 10-20 minutos para ver shares no painel do pool.</div></div>
+    </div>
+
+    <h3 style="color:var(--btc);margin:32px 0 16px;font-size:1.05rem;">Como configurar Bitcoin Cash</h3>
+    <div class="steps reveal">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Acesse o dashboard do Bitaxe (AxeOS) pelo navegador</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Vá em <strong>Settings</strong> → Pool</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Stratum URL:</strong> <code style="font-family:var(--mono)">para.bch.ee</code> porta <code style="font-family:var(--mono)">3333</code> (use <code style="font-family:var(--mono)">3334</code> para diff alto, tipo NiceHash)</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Username:</strong> seu endereço Bitcoin Cash (<code style="font-family:var(--mono)">bitcoincash:q..."</code>), com <code style="font-family:var(--mono)">.worker</code> opcional</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Password:</strong> <code style="font-family:var(--mono)">x</code> ou deixe em branco</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">Salve e reinicie. Todo bloco paga direto na coinbase: 2% de taxa, 1 BCH pro achador e o resto proporcional (PROP).</div></div>
     </div>
 
     <div class="box box-warn"><div class="box-title">⚠️ Atenção com endereços</div><p>Use <strong>sempre o endereço correto</strong> da moeda que você está minerando. Enviar BTC para um endereço FB, ou vice-versa, resulta em <strong>perda permanente</strong> dos fundos.</p></div>
